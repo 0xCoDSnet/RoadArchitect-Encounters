@@ -22,6 +22,8 @@ subprojects {
     }
 
     repositories {
+        mavenLocal()
+
         maven { url = uri('https://maven.wispforest.io') }
         maven { url = uri('https://maven.terraformersmc.com/') }
         maven { url = uri('https://maven.shedaniel.me/') }

@@ -39,6 +39,9 @@ dependencies {
 
     common(project(path: ':modules:common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':modules:common', configuration: 'transformProductionNeoForge')
+
+    // Compile-time access to RA API
+    compileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
 }
 
 processResources {
@@ -56,4 +59,10 @@ shadowJar {
 
 remapJar {
     inputFile.set shadowJar.archiveFile
+}
+
+
+dependencies {
+    // Dev-run: include RoadArchitect (NeoForge) at runtime
+    runtimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-neoforge:${rootProject.roadarchitect_version}"
 }

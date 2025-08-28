@@ -35,27 +35,16 @@ dependencies {
 
     common(project(path: ':modules:common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':modules:common', configuration: 'transformProductionFabric')
+
     // Compile-time access to RA API
     modCompileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
 }
 
 processResources {
-    def props = [
-            version              : project.version,
-            mod_id               : rootProject.findProperty('mod_id'),
-            mod_name             : rootProject.findProperty('mod_name'),
-            mod_description      : rootProject.findProperty('mod_description'),
-            mod_authors          : rootProject.findProperty('mod_authors'),
-            mod_homepage         : rootProject.findProperty('mod_homepage'),
-            mod_sources          : rootProject.findProperty('mod_sources'),
-            mod_license          : rootProject.findProperty('mod_license'),
-            minecraft_version    : rootProject.findProperty('minecraft_version'),
-            fabric_loader_version: rootProject.findProperty('fabric_loader_version'),
-    ]
-    inputs.properties(props)
+    inputs.property 'version', project.version
 
     filesMatching('fabric.mod.json') {
-        expand(props)
+        expand version: inputs.properties.version
     }
 }
 
@@ -70,6 +59,6 @@ remapJar {
 
 
 dependencies {
-    // Dev-run: include RoadArchitect (Fabric) at runtime
-    modRuntimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-fabric:${rootProject.roadarchitect_version}"
+    // Dev-run: include RoadArchitect (Quilt) at runtime
+    modRuntimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-quilt:${rootProject.roadarchitect_version}"
 }
