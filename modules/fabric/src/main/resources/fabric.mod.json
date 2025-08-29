@@ -10,6 +10,12 @@
   "entrypoints": {
     "main": [
       "net.oxcodsnet.roadencounters.fabric.RoadEncountersFabric"
+    ],
+    "modmenu": [
+      "net.oxcodsnet.roadencounters.fabric.config.RoadEncountersModMenu"
+    ],
+    "fabric-datagen": [
+      "net.oxcodsnet.roadencounters.fabric.datagen.RoadEncountersDataGenerator"
     ]
   },
   "depends": {

@@ -1,0 +1,20 @@
+architectury {
+    common(["fabric", "neoforge", "quilt"])
+}
+
+dependencies {
+    // For @Environment annotations
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+    // Cloth Config API (compile only in common; actual runtime provided per platform)
+    compileOnly "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
+
+    // Architectury API common
+    implementation "dev.architectury:architectury:${rootProject.architectury_api_version}"
+}
+
+
+dependencies {
+    // Compile against RoadArchitect common API from mavenLocal with remapping
+    modCompileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
+}

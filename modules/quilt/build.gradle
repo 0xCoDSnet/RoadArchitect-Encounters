@@ -38,6 +38,9 @@ dependencies {
 
     // Compile-time access to RA API
     modCompileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
+
+    // Cloth Config (runtime on Quilt via Fabric injection)
+    modImplementation "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
 }
 
 processResources {

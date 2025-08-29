@@ -1,0 +1,17 @@
+{
+  "text.autoconfig.roadencounters.option.cooldownSeconds": "Кулдаун (секунды)",
+  "text.autoconfig.roadencounters.option.cooldownSeconds.@Tooltip": "Время до повторной готовности маркера после срабатывания.",
+  "text.autoconfig.roadencounters.option.maxMarkers": "Макс. маркеров на путь",
+  "text.autoconfig.roadencounters.option.maxMarkers.@Tooltip": "Сколько триггеров ставить вдоль одного финализированного пути.",
+  "text.autoconfig.roadencounters.option.mobsMax": "Макс. мобов",
+  "text.autoconfig.roadencounters.option.mobsMax.@Tooltip": "Максимальное количество мобов в засаде.",
+  "text.autoconfig.roadencounters.option.mobsMin": "Мин. мобов",
+  "text.autoconfig.roadencounters.option.mobsMin.@Tooltip": "Минимальное количество мобов в засаде.",
+  "text.autoconfig.roadencounters.option.spawnOffset": "Разброс спавна (блоки)",
+  "text.autoconfig.roadencounters.option.spawnOffset.@Tooltip": "Случайное смещение по X/Z вокруг центра маркера.",
+  "text.autoconfig.roadencounters.option.strideBlocks": "Шаг по пути (блоки)",
+  "text.autoconfig.roadencounters.option.strideBlocks.@Tooltip": "Через какое расстояние вдоль пути ставить следующий маркер.",
+  "text.autoconfig.roadencounters.option.triggerRadius": "Радиус срабатывания (блоки)",
+  "text.autoconfig.roadencounters.option.triggerRadius.@Tooltip": "Расстояние, на котором игрок активирует засаду.",
+  "text.autoconfig.roadencounters.title": "Road Encounters: Настройки"
+}
