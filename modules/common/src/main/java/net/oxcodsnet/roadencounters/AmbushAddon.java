@@ -64,7 +64,7 @@ public final class AmbushAddon implements RoadAddon {
         }
 
         if (placed > 0) {
-            LOGGER.info("Ambush markers placed: {} on {}", placed, pathKey);
+            LOGGER.debug("Ambush markers placed: {} on {}", placed, pathKey);
         }
     }
 
