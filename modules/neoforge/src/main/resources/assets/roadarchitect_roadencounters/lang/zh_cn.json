@@ -1,0 +1,17 @@
+{
+  "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds": "冷却时间（秒）",
+  "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds.@Tooltip": "标记触发后再次就绪所需的时间。",
+  "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers": "每条路径的最大标记数",
+  "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip": "沿已完成的路径放置多少个触发标记。",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMax": "最多怪物数量",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMax.@Tooltip": "一次埋伏中的最多怪物数量。",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMin": "最少怪物数量",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMin.@Tooltip": "一次埋伏中的最少怪物数量。",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset": "生成偏移（方块）",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset.@Tooltip": "围绕标记中心在 X/Z 方向的随机偏移。",
+  "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks": "沿路径的步进（方块）",
+  "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks.@Tooltip": "沿路径放置标记之间的距离。",
+  "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius": "触发半径（方块）",
+  "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius.@Tooltip": "玩家接近到该距离时触发埋伏。",
+  "text.autoconfig.roadarchitect_roadencounters.title": "Road Encounters：设置"
+}

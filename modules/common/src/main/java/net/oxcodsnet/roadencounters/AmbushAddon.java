@@ -31,7 +31,7 @@ import java.util.UUID;
  * and handles triggering on player proximity.
  */
 public final class AmbushAddon implements RoadAddon {
-    public static final String MOD_ID = "roadencounters";
+    public static final String MOD_ID = "roadarchitect_roadencounters";
     public static final Identifier ADDON_ID = Identifier.of(MOD_ID, "ambush_addon");
     public static final Identifier AMBUSH_TRIGGER = Identifier.of(MOD_ID, "ambush");
     private static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID + "/AmbushAddon");

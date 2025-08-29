@@ -7,8 +7,8 @@ import net.oxcodsnet.roadencounters.config.AmbushConfig;
 import net.oxcodsnet.roadencounters.config.REConfig;
 import net.oxcodsnet.roadencounters.config.REConfigHolder;
 
-public final class FabricREConfigBridge {
-    private FabricREConfigBridge() {}
+public final class QuiltREConfigBridge {
+    private QuiltREConfigBridge() {}
 
     public static void init() {
         ConfigHolder<AmbushConfig> holder;

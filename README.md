@@ -1,6 +1,6 @@
 # RoadArchitect: Road Encounters
 
-- Mod ID: `roadencounters`
+- Mod ID: `roadarchitect_roadencounters`
 - Minecraft: 1.21.x
 - Loaders: Fabric, NeoForge, Quilt (Architectury)
 

@@ -4,7 +4,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 
-@Config(name = "roadencounters")
+@Config(name = "roadarchitect_roadencounters")
 public class AmbushConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip

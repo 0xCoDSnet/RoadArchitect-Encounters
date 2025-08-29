@@ -1,0 +1,17 @@
+{
+  "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds": "Temps de recharge (secondes)",
+  "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds.@Tooltip": "Durée avant que le marqueur soit de nouveau prêt après déclenchement.",
+  "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers": "Marqueurs max par route",
+  "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip": "Nombre de déclencheurs à placer le long d’une route finalisée.",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMax": "Nombre max de mobs",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMax.@Tooltip": "Nombre maximal de mobs lors d’une embuscade.",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMin": "Nombre min de mobs",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMin.@Tooltip": "Nombre minimum de mobs lors d’une embuscade.",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset": "Décalage d’apparition (blocs)",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset.@Tooltip": "Décalage aléatoire X/Z autour du centre du marqueur pour l’apparition.",
+  "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks": "Pas le long de la route (blocs)",
+  "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks.@Tooltip": "Distance le long de la route entre les marqueurs placés.",
+  "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius": "Rayon de déclenchement (blocs)",
+  "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius.@Tooltip": "Distance de proximité du joueur pour déclencher l’embuscade.",
+  "text.autoconfig.roadarchitect_roadencounters.title": "Road Encounters : Paramètres"
+}

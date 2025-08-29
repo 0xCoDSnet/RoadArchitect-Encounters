@@ -24,6 +24,12 @@ configurations {
     }
 }
 
+fabricApi {
+    configureDataGeneration() {
+        client = true
+    }
+}
+
 dependencies {
     modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
 
@@ -31,16 +37,25 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
 
     // Architectury API. This is optional, and you can comment it out if you don't need it.
-    modImplementation "dev.architectury:architectury-fabric:$rootProject.architectury_api_version"
+    //modImplementation "dev.architectury:architectury-fabric:$rootProject.architectury_api_version"
+
+    // Cloth Config (runtime on Fabric for AutoConfig)
+    modImplementation "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
+
+    // Mod Menu (optional) for config screen discovery
+    modCompileOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
+    modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
 
     common(project(path: ':modules:common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':modules:common', configuration: 'transformProductionFabric')
-
     // Compile-time access to RA API
     modCompileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
+}
 
-    // Cloth Config (runtime on Quilt via Fabric injection)
-    modImplementation "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
+// Limit Fabric datagen to this mod only (pass --mod MODID)
+tasks.matching { it.name == "runDatagen" }.configureEach {
+    // Ensure only this mod's datagen entrypoint runs
+    args '--mod', rootProject.findProperty('mod_id')
 }
 
 processResources {

@@ -4,30 +4,34 @@ issueTrackerURL="https://github.com/0xCoDSnet/RoadArchitect-Road-Encounters/issu
 license="${mod_license}"
 
 [[mods]]
-modId="roadencounters"
+modId="${mod_id}"
 version="${version}"
 displayName="${mod_name}"
 description="${mod_description}"
-logoFile = "assets/roadarchitect/icon.png"
+logoFile = "assets/roadarchitect_roadencounters/icon.png"
 displayURL="https://github.com/0xCoDSnet/RoadArchitect-Road-Encounters"
 
-[[dependencies.roadencounters]]
+[[dependencies.${mod_id}]]
 modId = "minecraft"
 type = "required"
 versionRange = "[1.21,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.roadencounters]]
+[[dependencies.${mod_id}]]
 modId = "neoforge"
 type = "required"
 versionRange = "[21.0,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.roadencounters]]
+[[dependencies.${mod_id}]]
 modId="roadarchitect"
 type = "required"
 versionRange="*"
 ordering="NONE"
 side="BOTH"
+
+[modproperties.${mod_id}]
+catalogueImageIcon = "assets/roadarchitect_roadencounters/icon.png"
+

@@ -9,7 +9,7 @@ import net.oxcodsnet.roadencounters.AmbushAddon;
 import net.oxcodsnet.roadencounters.neoforge.client.RoadEncountersNeoForgeClient;
 import net.oxcodsnet.roadencounters.neoforge.config.NeoForgeREConfigBridge;
 
-@Mod("roadencounters")
+@Mod("roadarchitect_roadencounters")
 public final class RoadEncountersNeoForge {
     public RoadEncountersNeoForge(IEventBus modBus, ModContainer container, Dist dist) {
         NeoForgeREConfigBridge.init();

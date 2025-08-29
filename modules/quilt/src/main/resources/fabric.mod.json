@@ -7,9 +7,16 @@
   "authors": ["${mod_authors}"],
   "license": "${mod_license}",
   "environment": "*",
+  "icon": "assets/roadarchitect_roadencounters/icon.png",
   "entrypoints": {
     "main": [
       "net.oxcodsnet.roadencounters.fabric.RoadEncountersQuilt"
+    ],
+    "modmenu": [
+      "net.oxcodsnet.roadencounters.fabric.config.RoadEncountersModMenu"
+    ],
+    "fabric-datagen": [
+      "net.oxcodsnet.roadencounters.fabric.datagen.RoadEncountersDataGenerator"
     ]
   },
   "depends": {

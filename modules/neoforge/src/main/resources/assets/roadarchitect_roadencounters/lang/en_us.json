@@ -1,0 +1,17 @@
+{
+  "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds": "Cooldown (seconds)",
+  "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds.@Tooltip": "Time before a marker becomes ready again after firing.",
+  "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers": "Max markers per path",
+  "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip": "How many triggers to place along a finalized path.",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMax": "Max mobs",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMax.@Tooltip": "Maximum number of mobs in an ambush.",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMin": "Min mobs",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMin.@Tooltip": "Minimum number of mobs in an ambush.",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset": "Spawn offset (blocks)",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset.@Tooltip": "Random X/Z offset around marker center for spawns.",
+  "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks": "Stride along path (blocks)",
+  "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks.@Tooltip": "Distance along the path between placed markers.",
+  "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius": "Trigger radius (blocks)",
+  "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius.@Tooltip": "Player proximity distance to fire an ambush.",
+  "text.autoconfig.roadarchitect_roadencounters.title": "Road Encounters: Settings"
+}
