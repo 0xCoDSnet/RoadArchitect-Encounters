@@ -1,0 +1,17 @@
+{
+  "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds": "Час відновлення (секунди)",
+  "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds.@Tooltip": "Час до повторної готовності мітки після спрацювання.",
+  "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers": "Макс. міток на маршрут",
+  "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip": "Скільки тригерів розміщувати вздовж завершеного маршруту.",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMax": "Макс. кількість мобів",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMax.@Tooltip": "Максимальна кількість мобів у засідці.",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMin": "Мін. кількість мобів",
+  "text.autoconfig.roadarchitect_roadencounters.option.mobsMin.@Tooltip": "Мінімальна кількість мобів у засідці.",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset": "Зсув появи (блоки)",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset.@Tooltip": "Випадковий зсув по X/Z навколо центру мітки для появи мобів.",
+  "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks": "Крок уздовж маршруту (блоки)",
+  "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks.@Tooltip": "Відстань уздовж маршруту між розміщеними мітками.",
+  "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius": "Радіус спрацювання (блоки)",
+  "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius.@Tooltip": "Відстань наближення гравця для спрацювання засідки.",
+  "text.autoconfig.roadarchitect_roadencounters.title": "Road Encounters: Налаштування"
+}
