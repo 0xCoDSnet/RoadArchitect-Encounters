@@ -2,6 +2,9 @@ plugins {
     id 'dev.architectury.loom' version '1.11-SNAPSHOT' apply false
     id 'architectury-plugin' version '3.4-SNAPSHOT'
     id 'com.gradleup.shadow' version '8.3.6' apply false
+    id "com.modrinth.minotaur" version "2.8.8" apply false
+    id 'net.darkhax.curseforgegradle' version '1.1.26' apply false
+    id "co.uzzu.dotenv.gradle" version "4.0.0"
 }
 
 architectury {
@@ -13,9 +16,68 @@ allprojects {
     version = rootProject.mod_version
 }
 
+// ====================== CurseForge ====================
+// ---- helpers for CurseForge ----
+ext.resolveCurseforgeToken = {
+    // 1) env
+    def t = System.getenv("CURSEFORGE_TOKEN")
+    // 2) из dotenv (.env)
+    if (!t) {
+        def e = rootProject.extensions.findByName("env")
+        if (e != null) {
+            if (e.isPresent("CURSEFORGE_TOKEN"))        t = e.fetch("CURSEFORGE_TOKEN")
+            else if (e.isPresent("curseforge_token"))    t = e.fetch("curseforge_token")
+        }
+    }
+    // 3) из gradle.properties
+    if (!t && rootProject.hasProperty("CURSEFORGE_TOKEN")) {
+        t = rootProject.property("CURSEFORGE_TOKEN")?.toString()
+    }
+    return t
+}
+
+tasks.register("publishCurseForgeAll") {
+    dependsOn(
+            ":modules:fabric:curseforge",
+            ":modules:neoforge:curseforge",
+            ":modules:quilt:curseforge",
+    )
+}
+// ====================================================
+
+// ====================== Modrinth ====================
+// ---- helpers for Modrinth ----
+ext.resolveModrinthToken = {
+    // 1) из переменных окружения
+    def t = System.getenv("MODRINTH_TOKEN")
+    // 2) из плагина dotenv (.env в корне)
+    if (!t) {
+        def e = rootProject.extensions.findByName("env")
+        if (e != null) {
+            if (e.isPresent("MODRINTH_TOKEN"))      t = e.fetch("MODRINTH_TOKEN")
+            else if (e.isPresent("modrinth_token")) t = e.fetch("modrinth_token") // если в .env в нижнем регистре
+        }
+    }
+    // 3) из gradle.properties (на всякий случай)
+    if (!t && rootProject.hasProperty("MODRINTH_TOKEN")) {
+        t = rootProject.property("MODRINTH_TOKEN")?.toString()
+    }
+    return t
+}
+
+// один таск на всё
+tasks.register("publishModrinthAll") {
+    dependsOn(
+            ":modules:fabric:modrinth",
+            ":modules:neoforge:modrinth",
+            ":modules:quilt:modrinth",
+    )
+}
+
 subprojects {
     apply plugin: 'dev.architectury.loom'
     apply plugin: 'architectury-plugin'
+    apply plugin: 'maven-publish'
 
     base {
         archivesName = "$rootProject.archives_name-$project.name"
@@ -35,6 +97,9 @@ subprojects {
             it.mappings("net.fabricmc:yarn:$rootProject.yarn_mappings:v2")
             it.mappings("dev.architectury:yarn-mappings-patch-neoforge:$rootProject.yarn_mappings_patch_neoforge_version")
         }
+        testImplementation "org.junit.jupiter:junit-jupiter-api:5.10.2"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.10.2"
+        testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.10.2"
     }
 
     java {
@@ -43,5 +108,29 @@ subprojects {
         targetCompatibility = JavaVersion.VERSION_21
     }
 
-    tasks.withType(JavaCompile).configureEach { it.options.release = 21 }
+    tasks.withType(JavaCompile).configureEach {
+        it.options.release = 21
+    }
+
+    tasks.withType(Test).configureEach {
+        useJUnitPlatform()
+    }
+
+    // Configure Maven publishing.
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                artifactId = base.archivesName.get()
+                from components.java
+            }
+        }
+
+        // See https://docs.gradle.org/current/userguide/publishing_maven.html for information on how to set up publishing.
+        repositories {
+            // Add repositories to publish to here.
+            // Notice: This block does NOT have the same function as the block in the top level.
+            // The repositories here will be used for publishing your artifact, not for
+            // retrieving dependencies.
+        }
+    }
 }

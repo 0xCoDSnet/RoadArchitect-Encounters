@@ -50,7 +50,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.entityId = "minecraft:pillager";
             e.weight = 100;
-            e.countMin = 3;
+            e.countMin = 4;
             e.countMax = 5;
             return e;
         }

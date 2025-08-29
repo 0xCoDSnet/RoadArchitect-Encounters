@@ -59,6 +59,7 @@ processResources {
             mod_license          : rootProject.findProperty('mod_license'),
             minecraft_version    : rootProject.findProperty('minecraft_version'),
             neoforge_version     : rootProject.findProperty('neoforge_version'),
+            cloth_config_version : rootProject.findProperty('cloth_config_version'),
     ]
     inputs.properties(props)
 
@@ -74,6 +75,7 @@ shadowJar {
 
 remapJar {
     inputFile.set shadowJar.archiveFile
+    archiveFileName.set("roadarchitect_encounters-${project.version}-neoforge+${rootProject.minecraft_version}.jar")
 }
 
 
@@ -82,4 +84,55 @@ dependencies {
     // Use dev-mapped artifact (Yarn) so it matches the project's mapping style
     // and can be remapped by Loom for the NeoForge userdev.
     modLocalRuntime "net.oxcodsnet.roadarchitect:roadarchitect-neoforge:${rootProject.roadarchitect_version}:dev-shadow"
+}
+
+// =========== Modrith =========
+apply plugin: "com.modrinth.minotaur"
+def modrinth_token = rootProject.ext.resolveModrinthToken()
+if (!modrinth_token) throw new GradleException("Set MODRINTH_TOKEN env or in .env")
+
+modrinth {
+    token = modrinth_token
+    projectId = "XVknWoiY"
+    versionNumber = "${project.version}-neoforge"
+    versionName   = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [NeoForge]"
+    versionType   = "release"                 // или "beta"/"alpha"
+    gameVersions  = [ rootProject.minecraft_version ]
+    loaders       = [ "neoforge" ]
+    uploadFile    = remapJar                   // из Loom
+    changelog     = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : ""
+    dependencies { required.project "cloth-config" }
+}
+
+// ====================== CurseForge ====================
+apply plugin: "net.darkhax.curseforgegradle"
+
+def curse_token = rootProject.ext.resolveCurseforgeToken()
+if (!curse_token) throw new GradleException("Set CURSEFORGE_TOKEN env or in .env/gradle.properties")
+
+
+def curse_project_id =
+        (findProperty("curseforge_project_fabric")
+                ?: System.getenv("CURSEFORGE_PROJECT_FABRIC")
+                ?: findProperty("curseforge_project")
+                ?: System.getenv("CURSEFORGE_PROJECT_ID")
+                ?: "1337294")
+
+tasks.register("curseforge", net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+    apiToken = curse_token
+
+    disableVersionDetection()
+
+    dependsOn remapJar
+    def mainFile = upload(curse_project_id as String, remapJar)
+
+    mainFile.displayName = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [NeoForge]"
+    mainFile.releaseType = "release"
+    mainFile.addModLoader("NeoForge")
+    mainFile.addGameVersion("${rootProject.minecraft_version}")
+    mainFile.addJavaVersion("Java 21")
+    mainFile.addEnvironment("Client", "Server")
+    mainFile.changelog = rootProject.file("CHANGELOG.md"); mainFile.changelogType = "markdown"
+    mainFile.addRequirement("cloth-config")
+    mainFile.addOptional("catalogue")
 }

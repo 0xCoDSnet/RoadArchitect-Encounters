@@ -20,10 +20,15 @@
     ]
   },
   "depends": {
-    "minecraft": "${minecraft_version}",
-    "fabricloader": ">=${fabric_loader_version}",
+    "fabricloader": ">=${fabric_loader_version_for_quilt}",
+    "minecraft": "~${minecraft_version}",
+    "java": ">=21",
     "fabric-api": "*",
-    "roadarchitect": "*"
+    "roadarchitect": ">=1.4.0",
+    "cloth-config2": ">=${cloth_config_version}"
+  },
+  "suggests": {
+    "modmenu": "${modmenu_version}"
   },
   "contact": {
     "sources": "${mod_sources}",

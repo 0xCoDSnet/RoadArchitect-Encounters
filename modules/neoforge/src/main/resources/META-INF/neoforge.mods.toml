@@ -10,6 +10,7 @@ displayName="${mod_name}"
 description="${mod_description}"
 logoFile = "assets/roadarchitect_roadencounters/icon.png"
 displayURL="https://github.com/0xCoDSnet/RoadArchitect-Road-Encounters"
+authors = "${mod_authors}"
 
 [[dependencies.${mod_id}]]
 modId = "minecraft"
@@ -28,9 +29,16 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId="roadarchitect"
 type = "required"
-versionRange="*"
+versionRange="[1.4.0,)"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "cloth_config"
+type = "required"
+versionRange = "[${cloth_config_version},)"
+ordering = "NONE"
+side = "BOTH"
 
 [modproperties.${mod_id}]
 catalogueImageIcon = "assets/roadarchitect_roadencounters/icon.png"

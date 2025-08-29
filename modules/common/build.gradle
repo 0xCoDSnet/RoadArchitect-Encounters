@@ -10,7 +10,7 @@ dependencies {
     compileOnly "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
 
     // Architectury API common
-    implementation "dev.architectury:architectury:${rootProject.architectury_api_version}"
+    //implementation "dev.architectury:architectury:${rootProject.architectury_api_version}"
 }
 
 
