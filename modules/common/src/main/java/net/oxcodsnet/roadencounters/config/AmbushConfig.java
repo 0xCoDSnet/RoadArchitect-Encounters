@@ -16,7 +16,7 @@ public class AmbushConfig implements ConfigData {
     public int strideBlocks = 160;
 
     @ConfigEntry.Gui.Tooltip
-    @ConfigEntry.BoundedDiscrete(min = 8, max = 512)
+    @ConfigEntry.BoundedDiscrete(min = 15, max = 512)
     public int triggerRadius = 75;
 
     @ConfigEntry.Gui.Tooltip
@@ -24,16 +24,37 @@ public class AmbushConfig implements ConfigData {
     public int cooldownSeconds = 300;
 
     @ConfigEntry.Gui.Tooltip
-    @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
-    public int mobsMin = 4;
-
-    @ConfigEntry.Gui.Tooltip
-    @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
-    public int mobsMax = 5;
-
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.BoundedDiscrete(min = 0, max = 32)
     public int spawnOffset = 6;
+
+    @ConfigEntry.Gui.Tooltip
+    public java.util.List<SpawnEntry> spawns = new java.util.ArrayList<>(java.util.List.of(
+            SpawnEntry.defaultPillager()
+    ));
+
+    public static class SpawnEntry {
+        @ConfigEntry.Gui.Tooltip
+        public String entityId = "minecraft:pillager";
+
+        @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+        public int weight = 100;
+
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
+        public int countMin = 4;
+
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
+        public int countMax = 5;
+
+        public static SpawnEntry defaultPillager() {
+            var e = new SpawnEntry();
+            e.entityId = "minecraft:pillager";
+            e.weight = 100;
+            e.countMin = 3;
+            e.countMax = 5;
+            return e;
+        }
+    }
 
     // Data class only; platform bridges register and expose via REConfigHolder
 }

@@ -1,4 +1,11 @@
 {
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry": "Spawn-Eintrag",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMax": "Max. Anzahl",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMin": "Min. Anzahl",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.entityId": "Entity-ID",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.entityId.@Tooltip": "Namespaced Name, z. B. minecraft:pillager.",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.weight": "Chancen-Gewicht",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.weight.@Tooltip": "Höheres Gewicht = höhere Wahrscheinlichkeit.",
   "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds": "Abklingzeit (Sekunden)",
   "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds.@Tooltip": "Zeit, bis eine Markierung nach dem Auslösen wieder bereit ist.",
   "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers": "Max. Markierungen pro Route",
@@ -9,9 +16,17 @@
   "text.autoconfig.roadarchitect_roadencounters.option.mobsMin.@Tooltip": "Mindestanzahl an Mobs in einem Hinterhalt.",
   "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset": "Spawn-Versatz (Blöcke)",
   "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset.@Tooltip": "Zufälliger X/Z-Versatz um das Markierungszentrum für Spawns.",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns": "Spawn-Optionen",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.@Tooltip": "Liste möglicher Entitäten mit Gewicht und Anzahl.",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.countMax": "Max. Anzahl",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.countMin": "Min. Anzahl",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.entityId": "Entity-ID",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.entityId.@Tooltip": "Namespaced Name, z. B. minecraft:pillager.",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.weight": "Chancen-Gewicht",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.weight.@Tooltip": "Höheres Gewicht = höhere Wahrscheinlichkeit.",
   "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks": "Schritt entlang der Route (Blöcke)",
   "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks.@Tooltip": "Abstand entlang der Route zwischen platzierten Markierungen.",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius": "Auslöser-Radius (Blöcke)",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius.@Tooltip": "Spieler-Nähe, um einen Hinterhalt auszulösen.",
-  "text.autoconfig.roadarchitect_roadencounters.title": "Road Encounters: Einstellungen"
+  "text.autoconfig.roadarchitect_roadencounters.title": "RoadArchitect: Encounters: Einstellungen"
 }

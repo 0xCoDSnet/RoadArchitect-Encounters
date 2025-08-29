@@ -1,4 +1,11 @@
 {
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry": "Запись спавна",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMax": "Макс. кол-во",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMin": "Мин. кол-во",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.entityId": "Сущность",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.entityId.@Tooltip": "Идентификатор вида minecraft:pillager и т.п.",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.weight": "Шанс (вес)",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.weight.@Tooltip": "Чем выше вес, тем выше вероятность выбора.",
   "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds": "Кулдаун (секунды)",
   "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds.@Tooltip": "Время до повторной готовности маркера после срабатывания.",
   "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers": "Макс. маркеров на путь",
@@ -9,9 +16,17 @@
   "text.autoconfig.roadarchitect_roadencounters.option.mobsMin.@Tooltip": "Минимальное количество мобов в засаде.",
   "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset": "Разброс спавна (блоки)",
   "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset.@Tooltip": "Случайное смещение по X/Z вокруг центра маркера.",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns": "Список спавна",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.@Tooltip": "Сущности, которые могут появиться, с весом и количеством.",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.countMax": "Макс. кол-во",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.countMin": "Мин. кол-во",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.entityId": "Сущность",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.entityId.@Tooltip": "Идентификатор вида minecraft:pillager и т.п.",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.weight": "Шанс (вес)",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.weight.@Tooltip": "Чем выше вес, тем выше вероятность выбора.",
   "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks": "Шаг по пути (блоки)",
   "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks.@Tooltip": "Через какое расстояние вдоль пути ставить следующий маркер.",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius": "Радиус срабатывания (блоки)",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius.@Tooltip": "Расстояние, на котором игрок активирует засаду.",
-  "text.autoconfig.roadarchitect_roadencounters.title": "Road Encounters: Настройки"
+  "text.autoconfig.roadarchitect_roadencounters.title": "RoadArchitect: Encounters: Настройки"
 }

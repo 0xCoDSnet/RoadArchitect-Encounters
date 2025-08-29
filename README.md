@@ -1,10 +1,10 @@
-# RoadArchitect: Road Encounters
+# RoadArchitect: Encounters
 
 - Mod ID: `roadarchitect_roadencounters`
 - Minecraft: 1.21.x
 - Loaders: Fabric, NeoForge, Quilt (Architectury)
 
-Road Encounters adds dynamic ambient events along roads built by RoadArchitect. When a planned path is finalized, the addon places lightweight one‑shot markers. As a player approaches a marker (≤75 blocks) and the chunk is loaded, the marker fires an encounter — e.g., a small 4–5 pillager ambush — and then removes itself. Encounters are sparse, non‑intrusive and only trigger near roads to keep gameplay balanced and performance friendly.
+RoadArchitect: Encounters adds dynamic ambient events along roads built by RoadArchitect. When a planned path is finalized, the addon places lightweight one‑shot markers. As a player approaches a marker (≤75 blocks) and the chunk is loaded, the marker fires an encounter — e.g., a small 4–5 pillager ambush — and then removes itself. Encounters are sparse, non‑intrusive and only trigger near roads to keep gameplay balanced and performance friendly.
 
 Key points:
 - Uses the official RoadArchitect addon API (no core patches).

@@ -1,4 +1,11 @@
 {
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry": "生成条目",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMax": "最大数量",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMin": "最小数量",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.entityId": "实体ID",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.entityId.@Tooltip": "带命名空间的名称，例如 minecraft:pillager。",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.weight": "概率权重",
+  "text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.weight.@Tooltip": "权重越高，概率越大。",
   "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds": "冷却时间（秒）",
   "text.autoconfig.roadarchitect_roadencounters.option.cooldownSeconds.@Tooltip": "标记触发后再次就绪所需的时间。",
   "text.autoconfig.roadarchitect_roadencounters.option.maxMarkers": "每条路径的最大标记数",
@@ -9,9 +16,17 @@
   "text.autoconfig.roadarchitect_roadencounters.option.mobsMin.@Tooltip": "一次埋伏中的最少怪物数量。",
   "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset": "生成偏移（方块）",
   "text.autoconfig.roadarchitect_roadencounters.option.spawnOffset.@Tooltip": "围绕标记中心在 X/Z 方向的随机偏移。",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns": "生成选项",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.@Tooltip": "可能出现的实体列表及其权重和数量。",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.countMax": "最大数量",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.countMin": "最小数量",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.entityId": "实体ID",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.entityId.@Tooltip": "带命名空间的名称，例如 minecraft:pillager。",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.weight": "概率权重",
+  "text.autoconfig.roadarchitect_roadencounters.option.spawns.weight.@Tooltip": "权重越高，概率越大。",
   "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks": "沿路径的步进（方块）",
   "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks.@Tooltip": "沿路径放置标记之间的距离。",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius": "触发半径（方块）",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius.@Tooltip": "玩家接近到该距离时触发埋伏。",
-  "text.autoconfig.roadarchitect_roadencounters.title": "Road Encounters：设置"
+  "text.autoconfig.roadarchitect_roadencounters.title": "RoadArchitect: Encounters：设置"
 }

@@ -9,10 +9,13 @@ public interface REConfig {
     int strideBlocks();
     int triggerRadius();
     int cooldownSeconds();
-    int mobsMin();
-    int mobsMax();
     int spawnOffset();
+    java.util.List<SpawnSpec> spawnSpecs();
 
     default long cooldownTicks() { return (long) cooldownSeconds() * 20L; }
-}
 
+    /**
+     * Defines one spawn option in the weighted list.
+     */
+    record SpawnSpec(String entityId, int weight, int countMin, int countMax) {}
+}

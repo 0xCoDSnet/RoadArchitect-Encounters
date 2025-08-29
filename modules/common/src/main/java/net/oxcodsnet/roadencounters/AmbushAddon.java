@@ -3,7 +3,10 @@ package net.oxcodsnet.roadencounters;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.PatrolEntity;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PillagerEntity;
+import net.minecraft.registry.Registries;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -120,21 +123,58 @@ public final class AmbushAddon implements RoadAddon {
     private void handleAmbush(ServerWorld world, BlockPos pos) {
         if (world.getDifficulty() == Difficulty.PEACEFUL) return;
         Random rnd = world.getRandom();
-        int count = config.mobsMin() + rnd.nextInt(Math.max(1, (config.mobsMax() - config.mobsMin() + 1)));
+        // decide what to spawn via weighted list; ensure non-null fallback
+        REConfig.SpawnSpec picked = pickSpawn(config, rnd);
+        int count = picked.countMin() + rnd.nextInt(Math.max(1, (picked.countMax() - picked.countMin() + 1)));
+        Identifier chosenId = Identifier.tryParse(picked.entityId());
+
         for (int i = 0; i < count; i++) {
             int r = config.spawnOffset();
             int ox = rnd.nextInt(r * 2 + 1) - r;
             int oz = rnd.nextInt(r * 2 + 1) - r;
             BlockPos spawn = findGround(world, pos.add(ox, 0, oz));
-            PillagerEntity mob = EntityType.PILLAGER.create(world);
-            if (mob == null) continue;
-            mob.initialize((ServerWorldAccess) world, world.getLocalDifficulty(spawn), SpawnReason.EVENT, null);
-            mob.refreshPositionAndAngles(spawn, rnd.nextFloat() * 360f, 0);
-            world.spawnEntity(mob);
-            if (i == 0 && mob instanceof PatrolEntity pe) {
-                pe.setPatrolLeader(true);
+            EntityType<?> type = resolveEntityType(chosenId);
+            if (type == null) {
+                // fallback to pillager if invalid id
+                type = EntityType.PILLAGER;
+            }
+            Entity e = type.create(world);
+            if (e == null) continue;
+            if (e instanceof MobEntity me) {
+                me.initialize(world, world.getLocalDifficulty(spawn), SpawnReason.EVENT, null);
+                me.refreshPositionAndAngles(spawn, rnd.nextFloat() * 360f, 0);
+                world.spawnEntity(me);
+                if (i == 0 && me instanceof PatrolEntity pe) {
+                    pe.setPatrolLeader(true);
+                }
+            } else {
+                e.refreshPositionAndAngles(spawn, rnd.nextFloat() * 360f, 0);
+                world.spawnEntity(e);
             }
         }
+    }
+
+    private static EntityType<?> resolveEntityType(Identifier id) {
+        if (id == null) return null;
+        return Registries.ENTITY_TYPE.getOrEmpty(id).orElse(null);
+    }
+
+    private static REConfig.SpawnSpec pickSpawn(REConfig cfg, Random rnd) {
+        var list = cfg.spawnSpecs();
+        if (list == null || list.isEmpty()) return new REConfig.SpawnSpec("minecraft:pillager", 100, 4, 5);
+        int total = 0;
+        for (var s : list) {
+            if (s.weight() > 0) total += s.weight();
+        }
+        if (total <= 0) return list.get(0);
+        int r = rnd.nextInt(total);
+        int acc = 0;
+        for (var s : list) {
+            if (s.weight() <= 0) continue;
+            acc += s.weight();
+            if (r < acc) return s;
+        }
+        return list.get(0);
     }
 
     private static BlockPos findGround(ServerWorld world, BlockPos near) {

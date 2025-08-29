@@ -31,9 +31,9 @@ public final class REConfigHolder {
         @Override public int strideBlocks() { return 160; }
         @Override public int triggerRadius() { return 75; }
         @Override public int cooldownSeconds() { return 300; }
-        @Override public int mobsMin() { return 4; }
-        @Override public int mobsMax() { return 5; }
         @Override public int spawnOffset() { return 6; }
+        @Override public java.util.List<REConfig.SpawnSpec> spawnSpecs() {
+            return java.util.List.of(new REConfig.SpawnSpec("minecraft:pillager", 100, 4, 5));
+        }
     }
 }
-

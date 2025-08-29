@@ -23,10 +23,19 @@ public final class FabricREConfigBridge {
 
     private static void ensureBoundsAndPublish(ConfigHolder<AmbushConfig> holder) {
         var cfg = holder.getConfig();
-        if (cfg.mobsMax < cfg.mobsMin) {
-            cfg.mobsMax = cfg.mobsMin;
-            holder.save();
+        // sanitize spawn entries
+        boolean changed = false;
+        if (cfg.spawns != null) {
+            for (var e : cfg.spawns) {
+                if (e.countMax < e.countMin) { e.countMax = e.countMin; changed = true; }
+                if (e.weight < 0) { e.weight = 0; changed = true; }
+            }
         }
+        if (cfg.spawns == null || cfg.spawns.isEmpty()) {
+            cfg.spawns = new java.util.ArrayList<>(java.util.List.of(AmbushConfig.SpawnEntry.defaultPillager()));
+            changed = true;
+        }
+        if (changed) holder.save();
         REConfigHolder.set(new Impl(holder));
     }
 
@@ -35,8 +44,14 @@ public final class FabricREConfigBridge {
         @Override public int strideBlocks() { return holder.getConfig().strideBlocks; }
         @Override public int triggerRadius() { return holder.getConfig().triggerRadius; }
         @Override public int cooldownSeconds() { return holder.getConfig().cooldownSeconds; }
-        @Override public int mobsMin() { return holder.getConfig().mobsMin; }
-        @Override public int mobsMax() { return holder.getConfig().mobsMax; }
         @Override public int spawnOffset() { return holder.getConfig().spawnOffset; }
+        @Override public java.util.List<REConfig.SpawnSpec> spawnSpecs() {
+            var c = holder.getConfig();
+            java.util.ArrayList<REConfig.SpawnSpec> out = new java.util.ArrayList<>();
+            if (c.spawns != null) for (var e : c.spawns) {
+                out.add(new REConfig.SpawnSpec(e.entityId, e.weight, e.countMin, e.countMax));
+            }
+            return java.util.Collections.unmodifiableList(out);
+        }
     }
 }
