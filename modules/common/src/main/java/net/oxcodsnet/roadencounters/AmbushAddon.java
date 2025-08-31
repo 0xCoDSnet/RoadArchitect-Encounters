@@ -138,7 +138,7 @@ public final class AmbushAddon implements RoadAddon {
                 // fallback to pillager if invalid id
                 type = EntityType.PILLAGER;
             }
-            Entity e = type.create(world);
+            Entity e = type.create(world, SpawnReason.NATURAL);
             if (e == null) continue;
             if (e instanceof MobEntity me) {
                 me.initialize(world, world.getLocalDifficulty(spawn), SpawnReason.EVENT, null);
@@ -156,7 +156,7 @@ public final class AmbushAddon implements RoadAddon {
 
     private static EntityType<?> resolveEntityType(Identifier id) {
         if (id == null) return null;
-        return Registries.ENTITY_TYPE.getOrEmpty(id).orElse(null);
+        return Registries.ENTITY_TYPE.get(id);
     }
 
     private static REConfig.SpawnSpec pickSpawn(REConfig cfg, Random rnd) {
@@ -174,7 +174,7 @@ public final class AmbushAddon implements RoadAddon {
             acc += s.weight();
             if (r < acc) return s;
         }
-        return list.get(0);
+        return list.getFirst();
     }
 
     private static BlockPos findGround(ServerWorld world, BlockPos near) {
