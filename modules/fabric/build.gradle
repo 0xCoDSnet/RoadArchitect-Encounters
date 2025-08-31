@@ -1,0 +1,151 @@
+plugins {
+    id 'com.gradleup.shadow'
+}
+
+architectury {
+    platformSetupLoomIde()
+    fabric()
+}
+
+configurations {
+    common {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+    compileClasspath.extendsFrom common
+    runtimeClasspath.extendsFrom common
+    developmentFabric.extendsFrom common
+
+    // Files in this configuration will be bundled into your mod using the Shadow plugin.
+    // Don't use the `shadow` configuration from the plugin itself as it's meant for excluding files.
+    shadowBundle {
+        canBeResolved = true
+        canBeConsumed = false
+    }
+}
+
+fabricApi {
+    configureDataGeneration() {
+        client = true
+    }
+}
+
+// Loom already wires generated resources; no need to re-add src/main/generated
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+
+    // Fabric API. This is technically optional, but you probably want it anyway.
+    modImplementation "net.fabricmc.fabric-api:fabric-api:$rootProject.fabric_api_version"
+
+    // Architectury API. This is optional, and you can comment it out if you don't need it.
+    //modImplementation "dev.architectury:architectury-fabric:$rootProject.architectury_api_version"
+
+    // Cloth Config (runtime on Fabric for AutoConfig)
+    modImplementation "me.shedaniel.cloth:cloth-config-fabric:${rootProject.cloth_config_version}"
+
+    // Mod Menu (optional) for config screen discovery
+    modCompileOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
+    modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
+
+    common(project(path: ':modules:common', configuration: 'namedElements')) { transitive = false }
+    shadowBundle project(path: ':modules:common', configuration: 'transformProductionFabric')
+    // Compile-time access to RA API
+    modCompileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
+}
+
+// Limit Fabric datagen to this mod only (pass --mod MODID)
+tasks.matching { it.name == "runDatagen" }.configureEach {
+    // Ensure only this mod's datagen entrypoint runs
+    args '--mod', rootProject.findProperty('mod_id')
+}
+
+processResources {
+    def props = [
+            version              : project.version,
+            mod_id               : rootProject.findProperty('mod_id'),
+            mod_name             : rootProject.findProperty('mod_name'),
+            mod_description      : rootProject.findProperty('mod_description'),
+            mod_authors          : rootProject.findProperty('mod_authors'),
+            mod_homepage         : rootProject.findProperty('mod_homepage'),
+            mod_sources          : rootProject.findProperty('mod_sources'),
+            mod_license          : rootProject.findProperty('mod_license'),
+            minecraft_version    : rootProject.findProperty('minecraft_version'),
+            fabric_loader_version: rootProject.findProperty('fabric_loader_version'),
+
+            modmenu_version      : rootProject.findProperty('modmenu_version'),
+            cloth_config_version : rootProject.findProperty('cloth_config_version'),
+    ]
+    inputs.properties(props)
+
+    filesMatching('fabric.mod.json') {
+        expand(props)
+    }
+}
+
+shadowJar {
+    configurations = [project.configurations.shadowBundle]
+    archiveClassifier = 'dev-shadow'
+}
+
+remapJar {
+    inputFile.set shadowJar.archiveFile
+    archiveFileName.set("roadarchitect_encounters-${project.version}-fabric+${rootProject.minecraft_version}.jar")
+}
+
+
+dependencies {
+    // Dev-run: include RoadArchitect (Fabric) at runtime (datagen limited via modid filter above)
+    modRuntimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-fabric:${rootProject.roadarchitect_version}"
+}
+
+
+// =========== Modrith =========
+apply plugin: "com.modrinth.minotaur"
+def modrinth_token = rootProject.ext.resolveModrinthToken()
+if (!modrinth_token) throw new GradleException("Set MODRINTH_TOKEN env or in .env")
+
+modrinth {
+    token = modrinth_token
+    projectId = "XVknWoiY"
+    versionNumber = "${project.version}-fabric"
+    versionName   = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric]"
+    versionType   = "release"                 // или "beta"/"alpha"
+    gameVersions  = [ rootProject.minecraft_version ]
+    loaders       = [ "fabric" ]
+    uploadFile    = remapJar                   // из Loom
+    changelog     = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : ""
+    dependencies { required.project "cloth-config" }
+}
+
+// ====================== CurseForge ====================
+apply plugin: "net.darkhax.curseforgegradle"
+
+def curse_token = rootProject.ext.resolveCurseforgeToken()
+if (!curse_token) throw new GradleException("Set CURSEFORGE_TOKEN env or in .env/gradle.properties")
+
+
+def curse_project_id =
+        (findProperty("curseforge_project_fabric")
+                ?: System.getenv("CURSEFORGE_PROJECT_FABRIC")
+                ?: findProperty("curseforge_project")
+                ?: System.getenv("CURSEFORGE_PROJECT_ID")
+                ?: "1337294")
+
+tasks.register("curseforge", net.darkhax.curseforgegradle.TaskPublishCurseForge) {
+    apiToken = curse_token
+
+    disableVersionDetection()
+
+    dependsOn remapJar
+    def mainFile = upload(curse_project_id as String, remapJar)
+
+    mainFile.displayName = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric]"
+    mainFile.releaseType = "release"
+    mainFile.addModLoader("Fabric")
+    mainFile.addGameVersion("${rootProject.minecraft_version}")
+    mainFile.addJavaVersion("Java 21")
+    mainFile.addEnvironment("Client", "Server")
+    mainFile.changelog = rootProject.file("CHANGELOG.md"); mainFile.changelogType = "markdown"
+    mainFile.addRequirement("cloth-config")
+}
