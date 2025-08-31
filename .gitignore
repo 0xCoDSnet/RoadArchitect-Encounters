@@ -1,0 +1,99 @@
+# Emacs backup files
+*~
+*#
+.#*
+# Vim file artifacts
+.*.sw*
+.DS_Store
+.project
+# omit Go vendor directories
+vendor/
+.vscode
+.gradle
+.idea
+# Dependency directories
+node_modules/
+package-lock.json
+# Ignore Gradle build output directory
+build
+# Ignore Maven build output directory
+target
+
+# Eclipse
+.classpath
+.settings
+
+# installed Fabric binaries etc.
+/bin/
+builders/
+config/
+external-chaincode/
+install-fabric.sh
+
+# override the ignore of all config/ folders
+!full-stack-asset-transfer-guide/infrastructure/sample-network/config
+
+
+# Ignore everything
+/*
+
+# Folders
+!/gradle
+!/src-fabric
+!/src-fabric/main/java/net/oxcodsnet/roadarchitect/config/
+!/.github
+!/common/src
+!/neoforge
+!/fabric
+
+# Files
+!/.gitattributes
+!/.gitignore
+!/.editorconfig
+!/build.gradle
+!/checkstyle.xml
+!/gradle.properties
+!/gradlew
+!/gradlew.bat
+!/HEADER
+!/LICENSE
+!/README.md
+!/settings.gradle
+!/proguard.conf
+
+!/minecraft
+!/junit
+
+# MacOS junk files
+.DS_Store
+
+/.idea/
+/**/.gradle/
+/**/*.iml
+
+.idea/
+.cache/
+.env
+
+modules/build
+modules/.gradle
+
+modules/common/build/
+modules/common/.gradle/
+
+modules/fabric/build/
+modules/fabric/.gradle/
+
+modules/neoforge/build/
+modules/neoforge/.gradle/
+
+modules/quilt/build/
+modules/quilt/.gradle/
+
+modules/fabric/run/
+modules/quilt/run/
+modules/neoforge/run/
+
+modules/fabric/src/main/generated/.cache
+modules/quilt/src/main/generated/.cache
+modules/neoforge/src/main/generated/.cache
