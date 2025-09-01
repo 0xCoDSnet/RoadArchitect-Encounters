@@ -1,4 +1,3 @@
-# RoadArchitect: Encounters
 <p align="center">
   <img src="https://cdn.modrinth.com/data/cached_images/8df881c3bbe715dd7bbc198355ef952bd6d84a74.png" width="128" height="128" alt="RoadArchitect: Encounters">
 </p>
@@ -29,6 +28,8 @@
   <img alt="Boosty — Support" src="https://cdn.modrinth.com/data/cached_images/e5ac57a392801dee070cc961eb901e1379c945b6.webp">
 </a>
 </p>
+
+# RoadArchitect: Encounters
 
 **RoadArchitect: Encounters** is a **Fabric** / **Quilt** / **NeoForge** add-on for **Minecraft 1.21–1.21.2**.
 
