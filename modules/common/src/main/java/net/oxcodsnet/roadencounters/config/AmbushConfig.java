@@ -50,9 +50,6 @@ public class AmbushConfig implements ConfigData {
             SpawnEntry.defaultNone()
     ));
 
-    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
-    public EventKind testEnum = EventKind.AMBUSH;
-
     @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("types")
     @ConfigEntry.Gui.CollapsibleObject
