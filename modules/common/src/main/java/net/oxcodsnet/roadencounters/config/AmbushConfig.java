@@ -149,7 +149,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.MERCHANT; // Using MERCHANT as it's a non-hostile event
             e.weight = 5;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1))); // Spawns a generic villager, would need NBT for cleric
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1, "{VillagerData:{profession:\"minecraft:cleric\"}}")));
             return e;
         }
 
@@ -180,11 +180,19 @@ public class AmbushConfig implements ConfigData {
         @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
         public int countMax = 1;
 
+        @ConfigEntry.Gui.Tooltip
+        public String nbt = ""; // JSON string for NBT data
+
         public static Group of(String idOrTag, int min, int max) {
+            return of(idOrTag, min, max, "");
+        }
+
+        public static Group of(String idOrTag, int min, int max, String nbt) {
             var g = new Group();
             g.idOrTag = idOrTag;
             g.countMin = min;
             g.countMax = max;
+            g.nbt = nbt;
             return g;
         }
     }

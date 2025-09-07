@@ -1,10 +1,13 @@
 package net.oxcodsnet.roadencounters;
 
+import com.google.gson.JsonParser;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.PatrolEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.Registries;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
@@ -167,6 +170,20 @@ public final class AmbushAddon implements RoadAddon {
                 if (type == null) type = EntityType.PILLAGER;
                 Entity e = type.create(world);
                 if (e == null) continue;
+
+                // NBT processing
+                if (g.nbt() != null && !g.nbt().isBlank()) {
+                    try {
+                        var parsed = JsonParser.parseString(g.nbt());
+                        NbtCompound nbt = (NbtCompound) JsonOps.INSTANCE.convertTo(NbtOps.INSTANCE, parsed);
+                        NbtCompound existing = e.writeNbt(new NbtCompound());
+                        existing.copyFrom(nbt);
+                        e.readNbt(existing);
+                    } catch (Exception ex) {
+                        LOGGER.warn("Failed to apply NBT for encounter: {}", g.idOrTag(), ex);
+                    }
+                }
+
                 if (e instanceof MobEntity me) {
                     me.initialize(world, world.getLocalDifficulty(p), SpawnReason.EVENT, null);
                     me.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);

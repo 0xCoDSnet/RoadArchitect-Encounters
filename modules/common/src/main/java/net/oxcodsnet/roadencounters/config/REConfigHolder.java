@@ -38,7 +38,7 @@ public final class REConfigHolder {
                     new REConfig.EncounterSpec(
                             EventKind.AMBUSH,
                             100,
-                            java.util.List.of(new REConfig.Group("minecraft:pillager", 4, 5))
+                            java.util.List.of(new REConfig.Group("minecraft:pillager", 4, 5, ""))
                     ),
                     new REConfig.EncounterSpec(EventKind.NONE, 2, java.util.List.of())
             );

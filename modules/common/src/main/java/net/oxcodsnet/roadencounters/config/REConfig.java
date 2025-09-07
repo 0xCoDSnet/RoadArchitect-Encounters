@@ -47,5 +47,5 @@ public interface REConfig {
     }
 
     /** One group within an encounter: entity id or tag, and per-group count. */
-    record Group(String idOrTag, int countMin, int countMax) {}
+    record Group(String idOrTag, int countMin, int countMax, String nbt) {}
 }
