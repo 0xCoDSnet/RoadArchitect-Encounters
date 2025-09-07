@@ -1,5 +1,5 @@
 architectury {
-    common(["fabric", "neoforge", "quilt"])
+    common(["fabric", "neoforge"])
 }
 
 dependencies {
@@ -11,10 +11,7 @@ dependencies {
 
     // Architectury API common
     //implementation "dev.architectury:architectury:${rootProject.architectury_api_version}"
-}
 
-
-dependencies {
-    // Compile against RoadArchitect common API from mavenLocal with remapping
+    // Use Loom's remapping for mod dependencies to match Yarn named namespace
     modCompileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
 }

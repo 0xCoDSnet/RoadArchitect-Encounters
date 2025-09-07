@@ -53,5 +53,10 @@ public final class NeoForgeREConfigBridge {
             }
             return java.util.Collections.unmodifiableList(out);
         }
+        @Override public REConfig.EventWeights eventWeights() {
+            var e = holder.getConfig().events;
+            if (e == null) e = new AmbushConfig.Events();
+            return new REConfig.EventWeights(e.ambush, e.merchant, e.patrol, e.wildlife, e.treasure, e.none);
+        }
     }
 }

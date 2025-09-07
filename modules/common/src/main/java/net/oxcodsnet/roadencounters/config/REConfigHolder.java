@@ -35,5 +35,16 @@ public final class REConfigHolder {
         @Override public java.util.List<REConfig.SpawnSpec> spawnSpecs() {
             return java.util.List.of(new REConfig.SpawnSpec("minecraft:pillager", 100, 4, 5));
         }
+        @Override public REConfig.EventWeights eventWeights() {
+            // Reasonable defaults for variety while keeping danger primary
+            return new REConfig.EventWeights(
+                    40, // ambush
+                    15, // merchant
+                    15, // patrol
+                    20, // wildlife
+                    8,  // treasure
+                    2   // none
+            );
+        }
     }
 }

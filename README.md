@@ -45,6 +45,18 @@ It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and bring
 > **Current version:** `v1.0.0`
 
 ---
+## 🚧 Encounters Variety
+
+Roads can now trigger a balanced mix of events:
+- Ambush: configurable hostile mobs (e.g., pillagers)
+- Traveling merchants: wandering trader with llamas
+- Patrol: villagers escorted by an iron golem
+- Wildlife: small packs of wolves or horse herds
+- Stash: a small roadside chest with modest supplies
+
+You can control encounter weights in the config (per-loader config screen). Default values keep danger meaningful without overwhelming peaceful encounters.
+
+---
 ## 📥 Installation (Minecraft 1.21.x)
 
 **Loaders:** Fabric / Quilt / NeoForge

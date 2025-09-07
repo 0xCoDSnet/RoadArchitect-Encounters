@@ -28,5 +28,19 @@
   "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks.@Tooltip": "Через какое расстояние вдоль пути ставить следующий маркер.",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius": "Радиус срабатывания (блоки)",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius.@Tooltip": "Расстояние, на котором игрок активирует засаду.",
-  "text.autoconfig.roadarchitect_roadencounters.title": "RoadArchitect: Encounters: Настройки"
+  "text.autoconfig.roadarchitect_roadencounters.title": "RoadArchitect: Encounters: Настройки",
+  "text.autoconfig.roadarchitect_roadencounters.option.events": "Типы событий (вес)",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.@Tooltip": "Относительные вероятности разных встреч на дороге.",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.ambush": "Засада",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.merchant": "Торговцы",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.patrol": "Патруль",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.wildlife": "Дикая природа",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.treasure": "Тайник",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.none": "Без события",
+  "message.roadarchitect_roadencounters.ambush": "Опасность! Впереди засада.",
+  "message.roadarchitect_roadencounters.merchant": "На дороге встречены торговцы.",
+  "message.roadarchitect_roadencounters.patrol": "Мимо проходит патруль.",
+  "message.roadarchitect_roadencounters.wildlife": "Поблизости замечены животные.",
+  "message.roadarchitect_roadencounters.treasure": "Вы нашли тайник у дороги.",
+  "message.roadarchitect_roadencounters.none": "Спокойно. Вроде ничего особенного."
 }

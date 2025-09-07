@@ -28,6 +28,9 @@ public class AmbushConfig implements ConfigData {
     public int spawnOffset = 6;
 
     @ConfigEntry.Gui.Tooltip
+    public Events events = new Events();
+
+    @ConfigEntry.Gui.Tooltip
     public java.util.List<SpawnEntry> spawns = new java.util.ArrayList<>(java.util.List.of(
             SpawnEntry.defaultPillager()
     ));
@@ -57,4 +60,30 @@ public class AmbushConfig implements ConfigData {
     }
 
     // Data class only; platform bridges register and expose via REConfigHolder
+
+    public static class Events {
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+        @ConfigEntry.Gui.Tooltip
+        public int ambush = 40;
+
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+        @ConfigEntry.Gui.Tooltip
+        public int merchant = 15;
+
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+        @ConfigEntry.Gui.Tooltip
+        public int patrol = 15;
+
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+        @ConfigEntry.Gui.Tooltip
+        public int wildlife = 20;
+
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+        @ConfigEntry.Gui.Tooltip
+        public int treasure = 8;
+
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+        @ConfigEntry.Gui.Tooltip
+        public int none = 2;
+    }
 }

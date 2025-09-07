@@ -28,5 +28,19 @@
   "text.autoconfig.roadarchitect_roadencounters.option.strideBlocks.@Tooltip": "Distance along the path between placed markers.",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius": "Trigger radius (blocks)",
   "text.autoconfig.roadarchitect_roadencounters.option.triggerRadius.@Tooltip": "Player proximity distance to fire an ambush.",
-  "text.autoconfig.roadarchitect_roadencounters.title": "RoadArchitect: Encounters: Settings"
+  "text.autoconfig.roadarchitect_roadencounters.title": "RoadArchitect: Encounters: Settings",
+  "text.autoconfig.roadarchitect_roadencounters.option.events": "Event types (weights)",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.@Tooltip": "Relative probabilities of different roadside encounters.",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.ambush": "Ambush",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.merchant": "Merchants",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.patrol": "Patrol",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.wildlife": "Wildlife",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.treasure": "Stash",
+  "text.autoconfig.roadarchitect_roadencounters.option.events.none": "None",
+  "message.roadarchitect_roadencounters.ambush": "Danger! Ambush ahead.",
+  "message.roadarchitect_roadencounters.merchant": "You meet traveling merchants.",
+  "message.roadarchitect_roadencounters.patrol": "A patrol passes by.",
+  "message.roadarchitect_roadencounters.wildlife": "Wildlife nearby.",
+  "message.roadarchitect_roadencounters.treasure": "You found a roadside stash.",
+  "message.roadarchitect_roadencounters.none": "All clear. Nothing unusual."
 }
