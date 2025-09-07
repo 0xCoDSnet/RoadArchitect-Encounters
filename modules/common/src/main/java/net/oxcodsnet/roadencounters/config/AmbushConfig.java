@@ -28,62 +28,51 @@ public class AmbushConfig implements ConfigData {
     public int spawnOffset = 6;
 
     @ConfigEntry.Gui.Tooltip
-    public Events events = new Events();
+    public boolean debugActionbar = false;
 
     @ConfigEntry.Gui.Tooltip
     public java.util.List<SpawnEntry> spawns = new java.util.ArrayList<>(java.util.List.of(
-            SpawnEntry.defaultPillager()
+            SpawnEntry.defaultAmbush()
     ));
 
     public static class SpawnEntry {
         @ConfigEntry.Gui.Tooltip
-        public String entityId = "minecraft:pillager";
+        public String eventType = "ambush"; // ambush, merchant, patrol, wildlife, none
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int weight = 100;
+        public int weight = 100; // overall weight for this entry
 
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
-        public int countMin = 4;
+        @ConfigEntry.Gui.Tooltip
+        public java.util.List<Group> groups = new java.util.ArrayList<>(java.util.List.of(
+                Group.of("minecraft:pillager", 4, 5)
+        ));
 
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
-        public int countMax = 5;
-
-        public static SpawnEntry defaultPillager() {
+        public static SpawnEntry defaultAmbush() {
             var e = new SpawnEntry();
-            e.entityId = "minecraft:pillager";
+            e.eventType = "ambush";
             e.weight = 100;
-            e.countMin = 4;
-            e.countMax = 5;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:pillager", 4, 5)));
             return e;
         }
     }
 
-    // Data class only; platform bridges register and expose via REConfigHolder
-
-    public static class Events {
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
+    public static class Group {
         @ConfigEntry.Gui.Tooltip
-        public int ambush = 40;
+        public String idOrTag = "minecraft:pillager"; // supports '#namespace:tag' or direct entity id
 
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        @ConfigEntry.Gui.Tooltip
-        public int merchant = 15;
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
+        public int countMin = 1;
 
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        @ConfigEntry.Gui.Tooltip
-        public int patrol = 15;
+        @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
+        public int countMax = 1;
 
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        @ConfigEntry.Gui.Tooltip
-        public int wildlife = 20;
-
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        @ConfigEntry.Gui.Tooltip
-        public int treasure = 8;
-
-        @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        @ConfigEntry.Gui.Tooltip
-        public int none = 2;
+        public static Group of(String idOrTag, int min, int max) {
+            var g = new Group();
+            g.idOrTag = idOrTag;
+            g.countMin = min;
+            g.countMax = max;
+            return g;
+        }
     }
 }

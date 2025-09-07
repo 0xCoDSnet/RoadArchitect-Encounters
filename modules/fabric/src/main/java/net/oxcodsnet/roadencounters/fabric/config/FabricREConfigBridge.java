@@ -27,12 +27,20 @@ public final class FabricREConfigBridge {
         boolean changed = false;
         if (cfg.spawns != null) {
             for (var e : cfg.spawns) {
-                if (e.countMax < e.countMin) { e.countMax = e.countMin; changed = true; }
                 if (e.weight < 0) { e.weight = 0; changed = true; }
+                if (e.groups == null || e.groups.isEmpty()) {
+                    e.groups = new java.util.ArrayList<>(java.util.List.of(AmbushConfig.Group.of("minecraft:pillager", 4, 5)));
+                    changed = true;
+                } else {
+                    for (var g : e.groups) {
+                        if (g.countMax < g.countMin) { g.countMax = g.countMin; changed = true; }
+                        if (g.countMin < 0) { g.countMin = 0; changed = true; }
+                    }
+                }
             }
         }
         if (cfg.spawns == null || cfg.spawns.isEmpty()) {
-            cfg.spawns = new java.util.ArrayList<>(java.util.List.of(AmbushConfig.SpawnEntry.defaultPillager()));
+            cfg.spawns = new java.util.ArrayList<>(java.util.List.of(AmbushConfig.SpawnEntry.defaultAmbush()));
             changed = true;
         }
         if (changed) holder.save();
@@ -45,18 +53,18 @@ public final class FabricREConfigBridge {
         @Override public int triggerRadius() { return holder.getConfig().triggerRadius; }
         @Override public int cooldownSeconds() { return holder.getConfig().cooldownSeconds; }
         @Override public int spawnOffset() { return holder.getConfig().spawnOffset; }
-        @Override public java.util.List<REConfig.SpawnSpec> spawnSpecs() {
+        @Override public boolean debugActionbar() { return holder.getConfig().debugActionbar; }
+        @Override public java.util.List<REConfig.EncounterSpec> encounterSpecs() {
             var c = holder.getConfig();
-            java.util.ArrayList<REConfig.SpawnSpec> out = new java.util.ArrayList<>();
+            java.util.ArrayList<REConfig.EncounterSpec> out = new java.util.ArrayList<>();
             if (c.spawns != null) for (var e : c.spawns) {
-                out.add(new REConfig.SpawnSpec(e.entityId, e.weight, e.countMin, e.countMax));
+                java.util.ArrayList<REConfig.Group> groups = new java.util.ArrayList<>();
+                if (e.groups != null) for (var g : e.groups) {
+                    groups.add(new REConfig.Group(g.idOrTag, g.countMin, g.countMax));
+                }
+                out.add(new REConfig.EncounterSpec(e.eventType, e.weight, java.util.Collections.unmodifiableList(groups)));
             }
             return java.util.Collections.unmodifiableList(out);
-        }
-        @Override public REConfig.EventWeights eventWeights() {
-            var e = holder.getConfig().events;
-            if (e == null) e = new AmbushConfig.Events();
-            return new REConfig.EventWeights(e.ambush, e.merchant, e.patrol, e.wildlife, e.treasure, e.none);
         }
     }
 }

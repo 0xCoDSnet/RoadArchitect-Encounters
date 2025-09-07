@@ -5,11 +5,6 @@ import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.PatrolEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PillagerEntity;
-import net.minecraft.entity.passive.HorseEntity;
-import net.minecraft.entity.passive.VillagerEntity;
-import net.minecraft.entity.passive.WanderingTraderEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
@@ -21,11 +16,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.ServerWorldAccess;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.ChestBlockEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -134,225 +124,110 @@ public final class AmbushAddon implements RoadAddon {
 
     private void handleTrigger(ServerWorld world, BlockPos pos, ServerPlayerEntity player) {
         Random rnd = world.getRandom();
-        EncounterType type = pickEncounter(config.eventWeights(), rnd);
+        var spec = pickEncounterSpec(config.encounterSpecs(), rnd);
+        String type = spec == null ? "ambush" : spec.eventType();
         switch (type) {
-            case NONE -> sendActionbar(player, "message.roadarchitect_roadencounters.none");
-            case AMBUSH -> {
+            case "none" -> { if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.none"); }
+            case "ambush" -> {
                 if (world.getDifficulty() != Difficulty.PEACEFUL) {
-                    handleAmbush(world, pos);
-                    sendActionbar(player, "message.roadarchitect_roadencounters.ambush");
+                    handleEncounter(world, pos, spec);
+                    if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.ambush");
                     world.playSound(null, pos, SoundEvents.ENTITY_PILLAGER_AMBIENT, SoundCategory.HOSTILE, 1f, 1f);
                 }
             }
-            case MERCHANT -> {
-                spawnMerchant(world, pos, rnd);
-                sendActionbar(player, "message.roadarchitect_roadencounters.merchant");
+            case "merchant" -> {
+                handleEncounter(world, pos, spec);
+                if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.merchant");
                 world.playSound(null, pos, SoundEvents.ENTITY_VILLAGER_YES, SoundCategory.NEUTRAL, 0.8f, 1.1f);
             }
-            case PATROL -> {
-                spawnPatrol(world, pos, rnd);
-                sendActionbar(player, "message.roadarchitect_roadencounters.patrol");
+            case "patrol" -> {
+                handleEncounter(world, pos, spec);
+                if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.patrol");
                 world.playSound(null, pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR, SoundCategory.NEUTRAL, 0.8f, 1.0f);
             }
-            case WILDLIFE -> {
-                spawnWildlife(world, pos, rnd);
-                sendActionbar(player, "message.roadarchitect_roadencounters.wildlife");
+            case "wildlife" -> {
+                handleEncounter(world, pos, spec);
+                if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.wildlife");
             }
-            case TREASURE -> {
-                placeTreasure(world, pos, rnd);
-                sendActionbar(player, "message.roadarchitect_roadencounters.treasure");
-                world.playSound(null, pos, SoundEvents.BLOCK_CHEST_OPEN, SoundCategory.BLOCKS, 0.9f, 1.0f);
-            }
-        }
-    }
-
-    private void spawnMerchant(ServerWorld world, BlockPos pos, Random rnd) {
-        BlockPos base = findGround(world, pos);
-        WanderingTraderEntity trader = EntityType.WANDERING_TRADER.create(world);
-        if (trader != null) {
-            trader.initialize(world, world.getLocalDifficulty(base), SpawnReason.EVENT, null);
-            trader.refreshPositionAndAngles(base, rnd.nextFloat() * 360f, 0);
-            world.spawnEntity(trader);
-        }
-        int llamas = 1 + rnd.nextInt(2);
-        for (int i = 0; i < llamas; i++) {
-            int r = Math.max(2, config.spawnOffset());
-            BlockPos p = findGround(world, base.add(rnd.nextInt(r * 2 + 1) - r, 0, rnd.nextInt(r * 2 + 1) - r));
-            EntityType<?> et = Registries.ENTITY_TYPE.getOrEmpty(Identifier.of("minecraft", "trader_llama")).orElse(null);
-            Entity e = et == null ? null : et.create(world);
-            if (e instanceof MobEntity me) {
-                me.initialize(world, world.getLocalDifficulty(p), SpawnReason.EVENT, null);
-                me.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);
-                world.spawnEntity(me);
+            default -> {
+                // unknown -> treat as ambush-like spawn
+                handleEncounter(world, pos, spec);
             }
         }
     }
 
-    private void spawnPatrol(ServerWorld world, BlockPos pos, Random rnd) {
-        BlockPos base = findGround(world, pos);
-        Entity golem = EntityType.IRON_GOLEM.create(world);
-        if (golem instanceof MobEntity me) {
-            me.initialize(world, world.getLocalDifficulty(base), SpawnReason.EVENT, null);
-            me.refreshPositionAndAngles(base, rnd.nextFloat() * 360f, 0);
-            world.spawnEntity(me);
-        }
-        int villagers = 1 + rnd.nextInt(2);
-        for (int i = 0; i < villagers; i++) {
-            int r = Math.max(2, config.spawnOffset());
-            BlockPos p = findGround(world, base.add(rnd.nextInt(r * 2 + 1) - r, 0, rnd.nextInt(r * 2 + 1) - r));
-            VillagerEntity v = EntityType.VILLAGER.create(world);
-            if (v != null) {
-                v.initialize(world, world.getLocalDifficulty(p), SpawnReason.EVENT, null);
-                v.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);
-                world.spawnEntity(v);
-            }
-        }
-    }
-
-    private void spawnWildlife(ServerWorld world, BlockPos pos, Random rnd) {
-        BlockPos base = findGround(world, pos);
-        boolean wolves = rnd.nextInt(100) < 45;
-        if (wolves) {
-            int pack = 2 + rnd.nextInt(3);
-            for (int i = 0; i < pack; i++) {
+    // generic encounter spawner using EncounterSpec groups
+    private void handleEncounter(ServerWorld world, BlockPos pos, REConfig.EncounterSpec spec) {
+        if (spec == null) return;
+        Random rnd = world.getRandom();
+        for (var g : spec.groups()) {
+            int count = Math.max(0, g.countMin()) + rnd.nextInt(Math.max(1, g.countMax() - g.countMin() + 1));
+            for (int i = 0; i < count; i++) {
                 int r = Math.max(2, config.spawnOffset());
-                BlockPos p = findGround(world, base.add(rnd.nextInt(r * 2 + 1) - r, 0, rnd.nextInt(r * 2 + 1) - r));
-                WolfEntity w = EntityType.WOLF.create(world);
-                if (w != null) {
-                    w.initialize(world, world.getLocalDifficulty(p), SpawnReason.EVENT, null);
-                    w.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);
-                    world.spawnEntity(w);
+                BlockPos p = findGround(world, pos.add(rnd.nextInt(r * 2 + 1) - r, 0, rnd.nextInt(r * 2 + 1) - r));
+                EntityType<?> type = pickTypeFromIdOrTag(world, g.idOrTag(), rnd);
+                if (type == null) type = EntityType.PILLAGER;
+                Entity e = type.create(world);
+                if (e == null) continue;
+                if (e instanceof MobEntity me) {
+                    me.initialize(world, world.getLocalDifficulty(p), SpawnReason.EVENT, null);
+                    me.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);
+                    world.spawnEntity(me);
+                } else {
+                    e.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);
+                    world.spawnEntity(e);
                 }
             }
-            world.playSound(null, base, SoundEvents.ENTITY_WOLF_HOWL, SoundCategory.NEUTRAL, 0.6f, 1.0f);
-        } else {
-            int herd = 2 + rnd.nextInt(3);
-            for (int i = 0; i < herd; i++) {
-                int r = Math.max(2, config.spawnOffset());
-                BlockPos p = findGround(world, base.add(rnd.nextInt(r * 2 + 1) - r, 0, rnd.nextInt(r * 2 + 1) - r));
-                HorseEntity h = EntityType.HORSE.create(world);
-                if (h != null) {
-                    h.initialize(world, world.getLocalDifficulty(p), SpawnReason.EVENT, null);
-                    h.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);
-                    world.spawnEntity(h);
-                }
-            }
-            world.playSound(null, base, SoundEvents.ENTITY_HORSE_AMBIENT, SoundCategory.NEUTRAL, 0.6f, 1.0f);
         }
     }
 
-    private void placeTreasure(ServerWorld world, BlockPos pos, Random rnd) {
-        BlockPos ground = findGround(world, pos);
-        BlockPos chestPos = ground.getY() >= world.getBottomY() ? ground : pos;
-        if (!world.getBlockState(ground).isAir()) {
-            BlockPos above = ground.up();
-            if (world.getBlockState(above).isAir()) chestPos = above;
-        }
-        if (!world.getBlockState(chestPos).isAir()) return;
-        world.setBlockState(chestPos, Blocks.CHEST.getDefaultState());
-        BlockEntity be = world.getBlockEntity(chestPos);
-        if (be instanceof ChestBlockEntity chest) {
-            addRandomLoot(chest, rnd, 3 + rnd.nextInt(3));
-            chest.markDirty();
-        }
-    }
-
-    private static void addRandomLoot(ChestBlockEntity chest, Random rnd, int items) {
-        ItemStack[] pool = new ItemStack[] {
-                new ItemStack(Items.BREAD, 2 + rnd.nextInt(3)),
-                new ItemStack(Items.TORCH, 6 + rnd.nextInt(8)),
-                new ItemStack(Items.ARROW, 6 + rnd.nextInt(12)),
-                new ItemStack(Items.IRON_INGOT, 1 + rnd.nextInt(3)),
-                new ItemStack(Items.GOLD_NUGGET, 4 + rnd.nextInt(8)),
-                new ItemStack(Items.APPLE, 1 + rnd.nextInt(3)),
-                new ItemStack(Items.LEATHER, 2 + rnd.nextInt(4))
-        };
-        int size = chest.size();
-        for (int i = 0; i < items; i++) {
-            ItemStack pick = pool[rnd.nextInt(pool.length)].copy();
-            int slot = rnd.nextInt(size);
-            chest.setStack(slot, pick);
-        }
-    }
+    // treasure event removed
 
     private static void sendActionbar(ServerPlayerEntity player, String key) {
         player.sendMessage(Text.translatable(key), true);
     }
 
-    private enum EncounterType { NONE, AMBUSH, MERCHANT, PATROL, WILDLIFE, TREASURE }
-
-    private static EncounterType pickEncounter(REConfig.EventWeights w, Random rnd) {
-        if (w == null) return EncounterType.AMBUSH;
-        int[] weights = new int[]{ w.none(), w.ambush(), w.merchant(), w.patrol(), w.wildlife(), w.treasure() };
-        EncounterType[] types = new EncounterType[]{ EncounterType.NONE, EncounterType.AMBUSH, EncounterType.MERCHANT, EncounterType.PATROL, EncounterType.WILDLIFE, EncounterType.TREASURE };
+    private static REConfig.EncounterSpec pickEncounterSpec(java.util.List<REConfig.EncounterSpec> list, Random rnd) {
+        if (list == null || list.isEmpty()) return null;
         int total = 0;
-        for (int x : weights) if (x > 0) total += x;
-        if (total <= 0) return EncounterType.AMBUSH;
+        for (var e : list) if (e.weight() > 0) total += e.weight();
+        if (total <= 0) return list.get(0);
         int r = rnd.nextInt(total);
         int acc = 0;
-        for (int i = 0; i < weights.length; i++) {
-            if (weights[i] <= 0) continue;
-            acc += weights[i];
-            if (r < acc) return types[i];
+        for (var e : list) {
+            if (e.weight() <= 0) continue;
+            acc += e.weight();
+            if (r < acc) return e;
         }
-        return EncounterType.AMBUSH;
+        return list.get(0);
     }
 
-    private void handleAmbush(ServerWorld world, BlockPos pos) {
-        if (world.getDifficulty() == Difficulty.PEACEFUL) return;
-        Random rnd = world.getRandom();
-        // decide what to spawn via weighted list; ensure non-null fallback
-        REConfig.SpawnSpec picked = pickSpawn(config, rnd);
-        int count = picked.countMin() + rnd.nextInt(Math.max(1, (picked.countMax() - picked.countMin() + 1)));
-        Identifier chosenId = Identifier.tryParse(picked.entityId());
-
-        for (int i = 0; i < count; i++) {
-            int r = config.spawnOffset();
-            int ox = rnd.nextInt(r * 2 + 1) - r;
-            int oz = rnd.nextInt(r * 2 + 1) - r;
-            BlockPos spawn = findGround(world, pos.add(ox, 0, oz));
-            EntityType<?> type = resolveEntityType(chosenId);
-            if (type == null) {
-                // fallback to pillager if invalid id
-                type = EntityType.PILLAGER;
-            }
-            Entity e = type.create(world);
-            if (e == null) continue;
-            if (e instanceof MobEntity me) {
-                me.initialize(world, world.getLocalDifficulty(spawn), SpawnReason.EVENT, null);
-                me.refreshPositionAndAngles(spawn, rnd.nextFloat() * 360f, 0);
-                world.spawnEntity(me);
-                if (i == 0 && me instanceof PatrolEntity pe) {
-                    pe.setPatrolLeader(true);
-                }
-            } else {
-                e.refreshPositionAndAngles(spawn, rnd.nextFloat() * 360f, 0);
-                world.spawnEntity(e);
-            }
-        }
-    }
+    // kept for compatibility in case spec falls back; currently unused
+    private void handleAmbush(ServerWorld world, BlockPos pos) {}
 
     private static EntityType<?> resolveEntityType(Identifier id) {
         if (id == null) return null;
         return Registries.ENTITY_TYPE.getOrEmpty(id).orElse(null);
     }
 
-    private static REConfig.SpawnSpec pickSpawn(REConfig cfg, Random rnd) {
-        var list = cfg.spawnSpecs();
-        if (list == null || list.isEmpty()) return new REConfig.SpawnSpec("minecraft:pillager", 100, 4, 5);
-        int total = 0;
-        for (var s : list) {
-            if (s.weight() > 0) total += s.weight();
+    private static EntityType<?> pickTypeFromIdOrTag(ServerWorld world, String idOrTag, Random rnd) {
+        if (idOrTag == null || idOrTag.isEmpty()) return null;
+        if (idOrTag.startsWith("#")) {
+            try {
+                var tagId = Identifier.tryParse(idOrTag.substring(1));
+                if (tagId != null) {
+                    var key = net.minecraft.registry.tag.TagKey.of(net.minecraft.registry.RegistryKeys.ENTITY_TYPE, tagId);
+                    var list = Registries.ENTITY_TYPE.getEntryList(key).orElse(null);
+                    if (list != null && !list.isEmpty()) {
+                        var chosen = list.get(rnd.nextInt(list.size()));
+                        return chosen.value();
+                    }
+                }
+            } catch (Throwable ignored) { }
+            return null;
+        } else {
+            return resolveEntityType(Identifier.tryParse(idOrTag));
         }
-        if (total <= 0) return list.get(0);
-        int r = rnd.nextInt(total);
-        int acc = 0;
-        for (var s : list) {
-            if (s.weight() <= 0) continue;
-            acc += s.weight();
-            if (r < acc) return s;
-        }
-        return list.get(0);
     }
 
     private static BlockPos findGround(ServerWorld world, BlockPos near) {

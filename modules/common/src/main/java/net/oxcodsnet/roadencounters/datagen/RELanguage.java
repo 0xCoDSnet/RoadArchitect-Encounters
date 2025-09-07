@@ -13,6 +13,9 @@ public final class RELanguage {
         switch (code) {
             case "es_es": {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Configuración");
+                // debug toggle
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Mostrar mensajes de eventos");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Alternar mensajes en la barra de acción en la parte inferior.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers", "Máximo de marcadores por ruta");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip", "Cuántos desencadenadores colocar a lo largo de una ruta finalizada.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.strideBlocks", "Paso a lo largo de la ruta (bloques)");
@@ -27,11 +30,16 @@ public final class RELanguage {
                 // event weights (fallback to English if untranslated)
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events", "Tipo de evento (pesos)");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.@Tooltip", "Probabilidades relativas de distintos encuentros.");
+                // list entry for events
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry", "Entrada de evento");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type", "Tipo");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "Uno de: ambush, merchant, patrol, wildlife, none.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "Peso de probabilidad");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "Mayor peso = mayor probabilidad.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.ambush", "Emboscada");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.merchant", "Comerciantes");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.patrol", "Patrulla");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.wildlife", "Fauna");
-                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.treasure", "Tesoro");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.none", "Без события");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns", "Opciones de aparición");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.@Tooltip", "Lista de posibles entidades con peso y cantidad.");
@@ -52,6 +60,9 @@ public final class RELanguage {
             }
             case "fr_fr": {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters : Paramètres");
+                // debug toggle
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Afficher les messages d'événement");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Activer/désactiver les messages en bas de l'écran.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers", "Marqueurs max par route");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip", "Nombre de déclencheurs à placer le long d’une route finalisée.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.strideBlocks", "Pas le long de la route (blocs)");
@@ -78,10 +89,19 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.weight.@Tooltip", "Plus le poids est élevé, plus la probabilité est grande.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMin", "Nombre min");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMax", "Nombre max");
+                // list entry for events
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry", "Entrée d'événement");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type", "Type");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "Parmi: ambush, merchant, patrol, wildlife, none.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "Poids de chance");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "Plus le poids est élevé, plus la probabilité est grande.");
                 break;
             }
             case "de_de": {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Einstellungen");
+                // debug toggle
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Ereignismeldungen anzeigen");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Ein-/Ausblenden der Meldungen unten am Bildschirm.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers", "Max. Markierungen pro Route");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip", "Wie viele Trigger entlang einer finalisierten Route platziert werden.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.strideBlocks", "Schritt entlang der Route (Blöcke)");
@@ -108,10 +128,19 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.weight.@Tooltip", "Höheres Gewicht = höhere Wahrscheinlichkeit.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMin", "Min. Anzahl");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMax", "Max. Anzahl");
+                // list entry for events
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry", "Ereignis-Eintrag");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type", "Typ");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "Eines von: ambush, merchant, patrol, wildlife, none.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "Chancen-Gewicht");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "Höheres Gewicht = höhere Wahrscheinlichkeit.");
                 break;
             }
             case "zh_cn": {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters：设置");
+                // debug toggle
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "显示事件消息");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "切换底部行动栏消息。");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers", "每条路径的最大标记数");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip", "沿已完成的路径放置多少个触发标记。");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.strideBlocks", "沿路径的步进（方块）");
@@ -138,10 +167,19 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.weight.@Tooltip", "权重越高，概率越大。");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMin", "最小数量");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.countMax", "最大数量");
+                // list entry for events
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry", "事件条目");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type", "类型");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "可选：ambush、merchant、patrol、wildlife、none。");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "概率权重");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "权重越高，概率越大。");
                 break;
             }
             case "uk_ua": {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Налаштування");
+                // debug toggle
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Показувати повідомлення подій");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Увімк./вимк. повідомлення внизу екрана.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers", "Макс. міток на маршрут");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip", "Скільки тригерів розміщувати вздовж завершеного маршруту.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.strideBlocks", "Крок уздовж маршруту (блоки)");
@@ -172,6 +210,9 @@ public final class RELanguage {
             }
             case "ru_ru": {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Настройки");
+                // debug toggle
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Подписи событий на экране");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Показывать/скрывать сообщения о событиях внизу экрана.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers", "Макс. маркеров на путь");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip", "Сколько триггеров ставить вдоль одного финализированного пути.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.strideBlocks", "Шаг по пути (блоки)");
@@ -185,11 +226,22 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawnOffset.@Tooltip", "Случайное смещение по X/Z вокруг центра маркера.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events", "Типы событий (вес)");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.@Tooltip", "Относительные вероятности разных встреч на дороге.");
+                // list entry for events
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry", "Запись события");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type", "Тип");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "ambush, merchant, patrol, wildlife, none");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "Вес шанса");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "Больше вес — выше вероятность выбора.");
+                // unified spawns (per-entry event + groups)
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.eventType", "Тип события");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups", "Группы");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.@Tooltip", "Список id или тегов сущностей с количеством для каждой группы.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag", "ID или тег");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag.@Tooltip", "Идентификатор (minecraft:pillager) или тег (#namespace:tag).");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.ambush", "Засада");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.merchant", "Торговцы");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.patrol", "Патруль");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.wildlife", "Дикая природа");
-                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.treasure", "Тайник");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.none", "Без события");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns", "Список спавна");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.@Tooltip", "Сущности, которые могут появиться, с весом и количеством.");
@@ -211,13 +263,15 @@ public final class RELanguage {
                 add.accept("message.roadarchitect_roadencounters.merchant", "На дороге встречены торговцы.");
                 add.accept("message.roadarchitect_roadencounters.patrol", "Мимо проходит патруль.");
                 add.accept("message.roadarchitect_roadencounters.wildlife", "Поблизости замечены животные.");
-                add.accept("message.roadarchitect_roadencounters.treasure", "Вы нашли тайник у дороги.");
                 add.accept("message.roadarchitect_roadencounters.none", "Спокойно. Вроде ничего особенного.");
                 break;
             }
             case "en_us":
             default: {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Settings");
+                // debug toggle
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Show event messages");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Toggle actionbar messages at the bottom of the screen.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers", "Max markers per path");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.maxMarkers.@Tooltip", "How many triggers to place along a finalized path.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.strideBlocks", "Stride along path (blocks)");
@@ -231,11 +285,22 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawnOffset.@Tooltip", "Random X/Z offset around marker center for spawns.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events", "Event types (weights)");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.@Tooltip", "Relative probabilities of different roadside encounters.");
+                // list entry for events
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry", "Event entry");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type", "Type");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "One of: ambush, merchant, patrol, wildlife, none.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "Chance weight");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "Higher weight = higher pick probability.");
+                // unified spawns (per-entry event + groups)
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.eventType", "Event type");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups", "Groups");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.@Tooltip", "List of entity ids or tags with per-group counts.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag", "ID or tag");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag.@Tooltip", "Entity id (e.g. minecraft:pillager) or #namespace:tag.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.ambush", "Ambush");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.merchant", "Merchants");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.patrol", "Patrol");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.wildlife", "Wildlife");
-                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.treasure", "Stash");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.none", "None");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns", "Spawn options");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.@Tooltip", "List of possible entities with weight and per-entry count.");
@@ -257,7 +322,6 @@ public final class RELanguage {
                 add.accept("message.roadarchitect_roadencounters.merchant", "You meet traveling merchants.");
                 add.accept("message.roadarchitect_roadencounters.patrol", "A patrol passes by.");
                 add.accept("message.roadarchitect_roadencounters.wildlife", "Wildlife nearby.");
-                add.accept("message.roadarchitect_roadencounters.treasure", "You found a roadside stash.");
                 add.accept("message.roadarchitect_roadencounters.none", "All clear. Nothing unusual.");
                 break;
             }

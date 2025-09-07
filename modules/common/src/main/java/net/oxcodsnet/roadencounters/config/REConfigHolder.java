@@ -32,18 +32,15 @@ public final class REConfigHolder {
         @Override public int triggerRadius() { return 75; }
         @Override public int cooldownSeconds() { return 300; }
         @Override public int spawnOffset() { return 6; }
-        @Override public java.util.List<REConfig.SpawnSpec> spawnSpecs() {
-            return java.util.List.of(new REConfig.SpawnSpec("minecraft:pillager", 100, 4, 5));
-        }
-        @Override public REConfig.EventWeights eventWeights() {
-            // Reasonable defaults for variety while keeping danger primary
-            return new REConfig.EventWeights(
-                    40, // ambush
-                    15, // merchant
-                    15, // patrol
-                    20, // wildlife
-                    8,  // treasure
-                    2   // none
+        @Override public boolean debugActionbar() { return false; }
+        @Override public java.util.List<REConfig.EncounterSpec> encounterSpecs() {
+            return java.util.List.of(
+                    new REConfig.EncounterSpec(
+                            "ambush",
+                            100,
+                            java.util.List.of(new REConfig.Group("minecraft:pillager", 4, 5))
+                    ),
+                    new REConfig.EncounterSpec("none", 2, java.util.List.of())
             );
         }
     }
