@@ -6,6 +6,7 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.oxcodsnet.roadencounters.config.AmbushConfig;
 import net.oxcodsnet.roadencounters.config.REConfig;
 import net.oxcodsnet.roadencounters.config.REConfigHolder;
+import net.oxcodsnet.roadencounters.config.EventKind;
 
 public final class FabricREConfigBridge {
     private FabricREConfigBridge() {}
@@ -73,7 +74,7 @@ public final class FabricREConfigBridge {
             }
             return java.util.Collections.unmodifiableList(out);
         }
-        @Override public java.util.List<String> eventSounds(REConfig.EventKind kind) {
+        @Override public java.util.List<String> eventSounds(EventKind kind) {
             var t = holder.getConfig().types;
             if (t == null) return java.util.List.of();
             return switch (kind) {

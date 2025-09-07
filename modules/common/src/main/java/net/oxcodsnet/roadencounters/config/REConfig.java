@@ -5,7 +5,6 @@ package net.oxcodsnet.roadencounters.config;
  * based on Cloth Config (AutoConfig) data.
  */
 public interface REConfig {
-    enum EventKind { AMBUSH, MERCHANT, PATROL, WILDLIFE, NONE }
     int maxMarkers();
     int strideBlocks();
     int triggerRadius();

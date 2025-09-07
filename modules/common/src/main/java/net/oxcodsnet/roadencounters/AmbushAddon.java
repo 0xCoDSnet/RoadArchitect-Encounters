@@ -23,6 +23,7 @@ import net.oxcodsnet.roadarchitect.api.addon.AddonContext;
 import net.oxcodsnet.roadarchitect.api.addon.RoadAddon;
 import net.oxcodsnet.roadencounters.storage.TriggerStorage;
 import net.oxcodsnet.roadencounters.config.REConfig;
+import net.oxcodsnet.roadencounters.config.EventKind;
 import net.oxcodsnet.roadencounters.config.REConfigHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -125,30 +126,30 @@ public final class AmbushAddon implements RoadAddon {
     private void handleTrigger(ServerWorld world, BlockPos pos, ServerPlayerEntity player) {
         Random rnd = world.getRandom();
         var spec = pickEncounterSpec(config.encounterSpecs(), rnd);
-        REConfig.EventKind type = spec == null ? REConfig.EventKind.AMBUSH : spec.eventType();
+        EventKind type = spec == null ? EventKind.AMBUSH : spec.eventType();
         switch (type) {
             case NONE -> { if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.none"); }
             case AMBUSH -> {
                 if (world.getDifficulty() != Difficulty.PEACEFUL) {
                     handleEncounter(world, pos, spec);
                     if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.ambush");
-                    playConfiguredSound(world, pos, REConfig.EventKind.AMBUSH);
+                    playConfiguredSound(world, pos, EventKind.AMBUSH);
                 }
             }
             case MERCHANT -> {
                 handleEncounter(world, pos, spec);
                 if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.merchant");
-                playConfiguredSound(world, pos, REConfig.EventKind.MERCHANT);
+                playConfiguredSound(world, pos, EventKind.MERCHANT);
             }
             case PATROL -> {
                 handleEncounter(world, pos, spec);
                 if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.patrol");
-                playConfiguredSound(world, pos, REConfig.EventKind.PATROL);
+                playConfiguredSound(world, pos, EventKind.PATROL);
             }
             case WILDLIFE -> {
                 handleEncounter(world, pos, spec);
                 if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.wildlife");
-                playConfiguredSound(world, pos, REConfig.EventKind.WILDLIFE);
+                playConfiguredSound(world, pos, EventKind.WILDLIFE);
             }
         }
     }
@@ -231,7 +232,7 @@ public final class AmbushAddon implements RoadAddon {
         }
     }
 
-    private void playConfiguredSound(ServerWorld world, BlockPos pos, REConfig.EventKind kind) {
+    private void playConfiguredSound(ServerWorld world, BlockPos pos, EventKind kind) {
         var list = config.eventSounds(kind);
         if (list == null || list.isEmpty()) {
             // fallback legacy
