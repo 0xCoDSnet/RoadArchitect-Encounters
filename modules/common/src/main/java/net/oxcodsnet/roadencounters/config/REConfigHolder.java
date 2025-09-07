@@ -38,9 +38,11 @@ public final class REConfigHolder {
                     new REConfig.EncounterSpec(
                             EventKind.AMBUSH,
                             100,
-                            java.util.List.of(new REConfig.Group("minecraft:pillager", 4, 5, new java.util.ArrayList<>()))
+                            java.util.List.of(new REConfig.Group("minecraft:pillager", 4, 5, new java.util.ArrayList<>())),
+                            new java.util.ArrayList<>(),
+                            new java.util.ArrayList<>()
                     ),
-                    new REConfig.EncounterSpec(EventKind.NONE, 2, java.util.List.of())
+                    new REConfig.EncounterSpec(EventKind.NONE, 2, java.util.List.of(), new java.util.ArrayList<>(), new java.util.ArrayList<>())
             );
         }
         @Override public java.util.List<String> eventSounds(EventKind kind) {

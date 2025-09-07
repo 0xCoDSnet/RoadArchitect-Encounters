@@ -128,7 +128,27 @@ public final class AmbushAddon implements RoadAddon {
 
     private void handleTrigger(ServerWorld world, BlockPos pos, ServerPlayerEntity player) {
         Random rnd = world.getRandom();
-        var spec = pickEncounterSpec(config.encounterSpecs(), rnd);
+
+        // Get the biome's ID at the trigger position
+        Identifier biomeId = world.getRegistryManager().get(net.minecraft.registry.RegistryKeys.BIOME).getId(world.getBiome(pos).value());
+        if (biomeId == null) {
+            LOGGER.warn("Could not determine biome at {}", pos);
+            return;
+        }
+        String biomeIdString = biomeId.toString();
+
+        // Filter the encounter specs based on the biome
+        java.util.List<REConfig.EncounterSpec> allowedSpecs = new java.util.ArrayList<>();
+        for (var spec : config.encounterSpecs()) {
+            boolean whitelisted = spec.biomeWhitelist() == null || spec.biomeWhitelist().isEmpty() || spec.biomeWhitelist().contains(biomeIdString);
+            boolean blacklisted = spec.biomeBlacklist() != null && !spec.biomeBlacklist().isEmpty() && spec.biomeBlacklist().contains(biomeIdString);
+
+            if (whitelisted && !blacklisted) {
+                allowedSpecs.add(spec);
+            }
+        }
+
+        var spec = pickEncounterSpec(allowedSpecs, rnd);
         EventKind type = spec == null ? EventKind.AMBUSH : spec.eventType();
         switch (type) {
             case NONE -> { if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.none"); }

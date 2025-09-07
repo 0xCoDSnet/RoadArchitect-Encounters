@@ -100,6 +100,12 @@ public class AmbushConfig implements ConfigData {
                 Group.of("minecraft:pillager", 4, 5)
         ));
 
+        @ConfigEntry.Gui.Tooltip
+        public java.util.List<String> biomeWhitelist = new java.util.ArrayList<>();
+
+        @ConfigEntry.Gui.Tooltip
+        public java.util.List<String> biomeBlacklist = new java.util.ArrayList<>();
+
         public static SpawnEntry defaultAmbush() {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
@@ -168,8 +174,9 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry strayAmbush() {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
-            e.weight = 1;
+            e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:stray", 3, 4)));
+            e.biomeWhitelist = new java.util.ArrayList<>(java.util.List.of("minecraft:snowy_plains", "minecraft:ice_spikes", "minecraft:snowy_taiga", "minecraft:snowy_beach", "minecraft:grove", "minecraft:snowy_slopes", "minecraft:frozen_peaks", "minecraft:jagged_peaks"));
             return e;
         }
 
@@ -193,7 +200,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1,tag:{Enchantments:[{id:\"minecraft:power\",lvl:1}]}}],ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1},{id:\"minecraft:chainmail_leggings\",Count:1},{id:\"minecraft:chainmail_chestplate\",Count:1},{id:\"minecraft:chainmail_helmet\",Count:1}]}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1,tag:{Enchantments:[{id:\"minecraft:power\",lvl:1}]}},{id:\"minecraft:chainmail_boots\",Count:1},{id:\"minecraft:chainmail_leggings\",Count:1},{id:\"minecraft:chainmail_chestplate\",Count:1},{id:\"minecraft:chainmail_helmet\",Count:1}]}"))));
             return e;
         }
 
@@ -226,6 +233,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:drowned", 2, 4, java.util.List.of("{HandItems:[{id:\"minecraft:trident\",Count:1}]}"))));
+            e.biomeWhitelist = new java.util.ArrayList<>(java.util.List.of("minecraft:river", "minecraft:frozen_river", "minecraft:ocean", "minecraft:deep_ocean", "minecraft:cold_ocean", "minecraft:deep_cold_ocean", "minecraft:lukewarm_ocean", "minecraft:deep_lukewarm_ocean", "minecraft:warm_ocean", "minecraft:deep_warm_ocean", "minecraft:frozen_ocean", "minecraft:deep_frozen_ocean"));
             return e;
         }
 
@@ -234,6 +242,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:husk", 3, 4)));
+            e.biomeWhitelist = new java.util.ArrayList<>(java.util.List.of("minecraft:desert"));
             return e;
         }
 
@@ -327,7 +336,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}],Arrow: {Potion:\"minecraft:poison\"}}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}]}"))));
             return e;
         }
 
@@ -335,7 +344,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}],Arrow: {Potion:\"minecraft:slowness\"}}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}]}"))));
             return e;
         }
 
@@ -343,7 +352,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}],Arrow: {Potion:\"minecraft:weakness\"}}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}]}"))));
             return e;
         }
 

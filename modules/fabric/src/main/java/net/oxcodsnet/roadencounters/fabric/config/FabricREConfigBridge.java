@@ -74,7 +74,7 @@ public final class FabricREConfigBridge {
                     }
                     groups.add(new REConfig.Group(g.idOrTag, g.countMin, g.countMax, nbtList));
                 }
-                out.add(new REConfig.EncounterSpec(e.eventType, e.weight, java.util.Collections.unmodifiableList(groups)));
+                out.add(new REConfig.EncounterSpec(e.eventType, e.weight, java.util.Collections.unmodifiableList(groups), e.biomeWhitelist, e.biomeBlacklist));
             }
             return java.util.Collections.unmodifiableList(out);
         }

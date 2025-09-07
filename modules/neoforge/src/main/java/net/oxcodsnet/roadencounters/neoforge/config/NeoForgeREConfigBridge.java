@@ -70,7 +70,7 @@ public final class NeoForgeREConfigBridge {
                 if (e.groups != null) for (var g : e.groups) {
                     groups.add(new REConfig.Group(g.idOrTag, g.countMin, g.countMax, g.nbt));
                 }
-                out.add(new REConfig.EncounterSpec(e.eventType, e.weight, java.util.Collections.unmodifiableList(groups)));
+                out.add(new REConfig.EncounterSpec(e.eventType, e.weight, java.util.Collections.unmodifiableList(groups), e.biomeWhitelist, e.biomeBlacklist));
             }
             return java.util.Collections.unmodifiableList(out);
         }

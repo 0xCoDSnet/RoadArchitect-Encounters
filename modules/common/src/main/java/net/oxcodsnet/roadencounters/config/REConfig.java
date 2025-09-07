@@ -42,7 +42,7 @@ public interface REConfig {
     /**
      * New unified spec driving both event type selection and spawned mobs.
      */
-    record EncounterSpec(EventKind eventType, int weight, java.util.List<Group> groups) {
+    record EncounterSpec(EventKind eventType, int weight, java.util.List<Group> groups, java.util.List<String> biomeWhitelist, java.util.List<String> biomeBlacklist) {
         public EventKind eventType() { return eventType == null ? EventKind.AMBUSH : eventType; }
     }
 
