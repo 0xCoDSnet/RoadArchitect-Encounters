@@ -33,12 +33,43 @@ public class AmbushConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip
     public java.util.List<SpawnEntry> spawns = new java.util.ArrayList<>(java.util.List.of(
-            // --- Ambushes: 45% total weight ---
+            // --- Ambushes: 60% total weight ---
             SpawnEntry.defaultAmbush(),
             SpawnEntry.defaultZombieAmbush(),
             SpawnEntry.defaultSkeletonAmbush(),
             SpawnEntry.defaultBanditAmbush(),
-            // --- Peaceful Encounters: 35% total weight ---
+            SpawnEntry.ironcladZombieAmbush(),
+            SpawnEntry.pillagerCaptainAmbush(),
+            SpawnEntry.witchEscortAmbush(),
+            SpawnEntry.strayAmbush(),
+            SpawnEntry.hostileWolvesAmbush(),
+            SpawnEntry.potionInfusedZombies(),
+            SpawnEntry.wellEquippedSkeletons(),
+            SpawnEntry.minerZombieAmbush(),
+            SpawnEntry.farmerZombieAmbush(),
+            SpawnEntry.caveSpiderAmbush(),
+            SpawnEntry.drownedAmbush(),
+            SpawnEntry.huskAmbush(),
+            SpawnEntry.illusionerAmbush(),
+            SpawnEntry.evokerAmbush(),
+            SpawnEntry.speedyZombies(),
+            SpawnEntry.tankyZombies(),
+            SpawnEntry.chainmailZombies(),
+            SpawnEntry.sharpnessZombies(),
+            SpawnEntry.punchSkeletons(),
+            SpawnEntry.flameSkeletons(),
+            SpawnEntry.chainmailSkeletons(),
+            SpawnEntry.meleeSkeletons(),
+            SpawnEntry.poisonSkeletons(),
+            SpawnEntry.slownessSkeletons(),
+            SpawnEntry.weaknessSkeletons(),
+            SpawnEntry.speedySpiders(),
+            SpawnEntry.strengthSpiders(),
+            SpawnEntry.invisibleSpiders(),
+            // --- Action Events: 10% total weight ---
+            SpawnEntry.golemVsPillagers(),
+            SpawnEntry.zombieVillagerRescue(),
+            // --- Peaceful Encounters: 15% total weight ---
             SpawnEntry.defaultMerchant(),
             SpawnEntry.defaultPatrol(),
             SpawnEntry.defaultWildlife(),
@@ -46,7 +77,7 @@ public class AmbushConfig implements ConfigData {
             SpawnEntry.defaultWanderingHealer(),
             // --- Other: 5% total weight ---
             SpawnEntry.defaultGraveyard(),
-            // --- Nothing: 15% total weight ---
+            // --- Nothing: 10% total weight ---
             SpawnEntry.defaultNone()
     ));
 
@@ -72,7 +103,7 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultAmbush() {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
-            e.weight = 15;
+            e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:pillager", 2, 4)));
             return e;
         }
@@ -80,15 +111,15 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultZombieAmbush() {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
-            e.weight = 10;
+            e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 4, 6)));
             return e;
         }
 
-                public static SpawnEntry defaultSkeletonAmbush() {
+        public static SpawnEntry defaultSkeletonAmbush() {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
-            e.weight = 10;
+            e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 3, 5, java.util.List.of("{ArmorItems:[{},{},{},{id:\"minecraft:iron_helmet\",Count:1}]}"))));
             return e;
         }
@@ -96,7 +127,7 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultBanditAmbush() {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
-            e.weight = 10;
+            e.weight = 3;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
                     Group.of("minecraft:zombie", 2, 3),
                     Group.of("minecraft:skeleton", 2, 3)
@@ -104,10 +135,268 @@ public class AmbushConfig implements ConfigData {
             return e;
         }
 
+        public static SpawnEntry ironcladZombieAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:iron_sword\",Count:1}],ArmorItems:[{id:\"minecraft:iron_boots\",Count:1},{id:\"minecraft:iron_leggings\",Count:1},{id:\"minecraft:iron_chestplate\",Count:1},{id:\"minecraft:iron_helmet\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry pillagerCaptainAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of("minecraft:pillager", 1, 1, java.util.List.of("{HandItems:[{id:\"minecraft:crossbow\",Count:1},{id:\"minecraft:ominous_banner\",Count:1}]}")),
+                    Group.of("minecraft:pillager", 2, 3)
+            ));
+            return e;
+        }
+
+        public static SpawnEntry witchEscortAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of("minecraft:witch", 1, 1),
+                    Group.of("minecraft:zombie", 2, 3)
+            ));
+            return e;
+        }
+
+        public static SpawnEntry strayAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:stray", 3, 4)));
+            return e;
+        }
+
+        public static SpawnEntry hostileWolvesAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:wolf", 3, 5, java.util.List.of("{Attributes:[{Name:\"generic.attack_damage\",Base:4.0}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry potionInfusedZombies() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:1,Amplifier:0,Duration:600},{Id:8,Amplifier:0,Duration:600}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry wellEquippedSkeletons() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1,tag:{Enchantments:[{id:\"minecraft:power\",lvl:1}]}}],ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1},{id:\"minecraft:chainmail_leggings\",Count:1},{id:\"minecraft:chainmail_chestplate\",Count:1},{id:\"minecraft:chainmail_helmet\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry minerZombieAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{HandItems:[{id:\"minecraft:iron_pickaxe\",Count:1}],ArmorItems:[{},{},{},{id:\"minecraft:iron_helmet\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry farmerZombieAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{HandItems:[{id:\"minecraft:iron_hoe\",Count:1}],ArmorItems:[{id:\"minecraft:leather_boots\",Count:1},{id:\"minecraft:leather_leggings\",Count:1},{id:\"minecraft:leather_chestplate\",Count:1},{id:\"minecraft:leather_helmet\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry caveSpiderAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:cave_spider", 3, 5)));
+            return e;
+        }
+
+        public static SpawnEntry drownedAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:drowned", 2, 4, java.util.List.of("{HandItems:[{id:\"minecraft:trident\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry huskAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:husk", 3, 4)));
+            return e;
+        }
+
+        public static SpawnEntry illusionerAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of("minecraft:illusioner", 1, 1),
+                    Group.of("minecraft:pillager", 2, 3)
+            ));
+            return e;
+        }
+
+        public static SpawnEntry evokerAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of("minecraft:evoker", 1, 1),
+                    Group.of("minecraft:vindicator", 1, 2)
+            ));
+            return e;
+        }
+
+        public static SpawnEntry speedyZombies() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:1,Amplifier:1,Duration:600}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry tankyZombies() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{ActiveEffects:[{Id:11,Amplifier:0,Duration:600}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry chainmailZombies() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1},{id:\"minecraft:chainmail_leggings\",Count:1},{id:\"minecraft:chainmail_chestplate\",Count:1},{id:\"minecraft:chainmail_helmet\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry sharpnessZombies() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:iron_sword\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry punchSkeletons() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry flameSkeletons() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry chainmailSkeletons() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1},{id:\"minecraft:chainmail_leggings\",Count:1},{id:\"minecraft:chainmail_chestplate\",Count:1},{id:\"minecraft:chainmail_helmet\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry meleeSkeletons() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:iron_sword\",Count:1}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry poisonSkeletons() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}],Arrow: {Potion:\"minecraft:poison\"}}"))));
+            return e;
+        }
+
+        public static SpawnEntry slownessSkeletons() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}],Arrow: {Potion:\"minecraft:slowness\"}}"))));
+            return e;
+        }
+
+        public static SpawnEntry weaknessSkeletons() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1}],Arrow: {Potion:\"minecraft:weakness\"}}"))));
+            return e;
+        }
+
+        public static SpawnEntry speedySpiders() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 2;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 3, 4, java.util.List.of("{ActiveEffects:[{Id:1,Amplifier:1,Duration:600}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry strengthSpiders() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:5,Amplifier:0,Duration:600}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry invisibleSpiders() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 1;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:14,Amplifier:0,Duration:600}]}"))));
+            return e;
+        }
+
+        public static SpawnEntry golemVsPillagers() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.PATROL;
+            e.weight = 5;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of("minecraft:iron_golem", 1, 1, java.util.List.of("{Health:25f}")),
+                    Group.of("minecraft:vindicator", 2, 2)
+            ));
+            return e;
+        }
+
+        public static SpawnEntry zombieVillagerRescue() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 5;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of("minecraft:zombie_villager", 1, 1),
+                    Group.of("minecraft:zombie", 3, 4)
+            ));
+            return e;
+        }
+
         public static SpawnEntry defaultMerchant() {
             var e = new SpawnEntry();
             e.eventType = EventKind.MERCHANT;
-            e.weight = 10;
+            e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
                     Group.of("minecraft:wandering_trader", 1, 1),
                     Group.of("minecraft:trader_llama", 2, 2)
@@ -118,7 +407,7 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultPatrol() {
             var e = new SpawnEntry();
             e.eventType = EventKind.PATROL;
-            e.weight = 10;
+            e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
                     Group.of("minecraft:iron_golem", 1, 1),
                     Group.of("minecraft:villager", 2, 3)
@@ -129,7 +418,7 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultWildlife() {
             var e = new SpawnEntry();
             e.eventType = EventKind.WILDLIFE;
-            e.weight = 5;
+            e.weight = 3;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:wolf", 3, 5)));
             return e;
         }
@@ -137,7 +426,7 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultLostTraveler() {
             var e = new SpawnEntry();
             e.eventType = EventKind.PATROL; // Using PATROL as it's a non-hostile event
-            e.weight = 5;
+            e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1)));
             return e;
         }
@@ -145,7 +434,7 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultWanderingHealer() {
             var e = new SpawnEntry();
             e.eventType = EventKind.MERCHANT; // Using MERCHANT as it's a non-hostile event
-            e.weight = 5;
+            e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1, java.util.List.of("{VillagerData:{profession:\"minecraft:cleric\"}}"))));
             return e;
         }
@@ -161,7 +450,7 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultNone() {
             var e = new SpawnEntry();
             e.eventType = EventKind.NONE;
-            e.weight = 15;
+            e.weight = 10;
             e.groups = new java.util.ArrayList<>();
             return e;
         }
