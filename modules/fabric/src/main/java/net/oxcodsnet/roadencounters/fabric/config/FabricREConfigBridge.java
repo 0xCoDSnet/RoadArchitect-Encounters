@@ -68,7 +68,11 @@ public final class FabricREConfigBridge {
             if (c.spawns != null) for (var e : c.spawns) {
                 java.util.ArrayList<REConfig.Group> groups = new java.util.ArrayList<>();
                 if (e.groups != null) for (var g : e.groups) {
-                    groups.add(new REConfig.Group(g.idOrTag, g.countMin, g.countMax, g.nbt));
+                    java.util.List<String> nbtList = new java.util.ArrayList<>();
+                    if (g.nbt != null) {
+                        nbtList.addAll(g.nbt);
+                    }
+                    groups.add(new REConfig.Group(g.idOrTag, g.countMin, g.countMax, nbtList));
                 }
                 out.add(new REConfig.EncounterSpec(e.eventType, e.weight, java.util.Collections.unmodifiableList(groups)));
             }

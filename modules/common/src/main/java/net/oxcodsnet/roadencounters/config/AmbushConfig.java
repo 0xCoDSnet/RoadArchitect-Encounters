@@ -89,7 +89,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 10;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 3, 5, new java.util.ArrayList<>(java.util.List.of("{ArmorItems:[{},{},{},{id:\"minecraft:iron_helmet\",Count:1}]}")))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 3, 5, java.util.List.of("{ArmorItems:[{},{},{},{id:\"minecraft:iron_helmet\",Count:1}]}"))));
             return e;
         }
 
@@ -146,7 +146,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.MERCHANT; // Using MERCHANT as it's a non-hostile event
             e.weight = 5;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1, new java.util.ArrayList<>(java.util.List.of("{VillagerData:{profession:\"minecraft:cleric\"}}")))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1, java.util.List.of("{VillagerData:{profession:\"minecraft:cleric\"}}"))));
             return e;
         }
 
@@ -178,10 +178,10 @@ public class AmbushConfig implements ConfigData {
         public int countMax = 1;
 
         @ConfigEntry.Gui.Tooltip
-        public String nbt = ""; // JSON string for NBT data
+        public java.util.List<String> nbt = new java.util.ArrayList<>(); // JSON string for NBT data
 
         public static Group of(String idOrTag, int min, int max) {
-            return of(idOrTag, min, max, "");
+            return of(idOrTag, min, max, new java.util.ArrayList<>());
         }
 
         public static Group of(String idOrTag, int min, int max, String nbt) {
@@ -189,7 +189,19 @@ public class AmbushConfig implements ConfigData {
             g.idOrTag = idOrTag;
             g.countMin = min;
             g.countMax = max;
-            g.nbt = nbt;
+            g.nbt = new java.util.ArrayList<>();
+            if (nbt != null && !nbt.isEmpty()) {
+                g.nbt.add(nbt);
+            }
+            return g;
+        }
+
+        public static Group of(String idOrTag, int min, int max, java.util.List<String> nbt) {
+            var g = new Group();
+            g.idOrTag = idOrTag;
+            g.countMin = min;
+            g.countMax = max;
+            g.nbt = new java.util.ArrayList<>(nbt);
             return g;
         }
     }
