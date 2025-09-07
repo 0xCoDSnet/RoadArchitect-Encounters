@@ -85,11 +85,11 @@ public class AmbushConfig implements ConfigData {
             return e;
         }
 
-        public static SpawnEntry defaultSkeletonAmbush() {
+                public static SpawnEntry defaultSkeletonAmbush() {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 10;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 3, 5)));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 3, 5, new java.util.ArrayList<>(java.util.List.of("{ArmorItems:[{},{},{},{id:\"minecraft:iron_helmet\",Count:1}]}")))));
             return e;
         }
 
@@ -146,7 +146,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.MERCHANT; // Using MERCHANT as it's a non-hostile event
             e.weight = 5;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1, "{VillagerData:{profession:\"minecraft:cleric\"}}")));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1, new java.util.ArrayList<>(java.util.List.of("{VillagerData:{profession:\"minecraft:cleric\"}}")))));
             return e;
         }
 

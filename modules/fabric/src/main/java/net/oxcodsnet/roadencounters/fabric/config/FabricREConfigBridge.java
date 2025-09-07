@@ -30,7 +30,7 @@ public final class FabricREConfigBridge {
             for (var e : cfg.spawns) {
                 if (e.weight < 0) { e.weight = 0; changed = true; }
                 if (e.groups == null || e.groups.isEmpty()) {
-                    e.groups = new java.util.ArrayList<>(java.util.List.of(AmbushConfig.Group.of("minecraft:pillager", 4, 5)));
+                    e.groups = new java.util.ArrayList<>(java.util.List.of(AmbushConfig.Group.of("minecraft:pillager", 4, 5, new java.util.ArrayList<>())));
                     changed = true;
                 } else {
                     for (var g : e.groups) {

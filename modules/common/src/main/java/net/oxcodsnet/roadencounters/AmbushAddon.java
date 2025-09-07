@@ -172,9 +172,9 @@ public final class AmbushAddon implements RoadAddon {
                 if (e == null) continue;
 
                 // NBT processing
-                if (g.nbt() != null && !g.nbt().isBlank()) {
+                if (g.nbt() != null && !g.nbt().isEmpty()) {
                     try {
-                        var parsed = JsonParser.parseString(g.nbt());
+                        var parsed = JsonParser.parseString(String.join("\n", g.nbt()));
                         NbtCompound nbt = (NbtCompound) JsonOps.INSTANCE.convertTo(NbtOps.INSTANCE, parsed);
                         NbtCompound existing = e.writeNbt(new NbtCompound());
                         existing.copyFrom(nbt);
