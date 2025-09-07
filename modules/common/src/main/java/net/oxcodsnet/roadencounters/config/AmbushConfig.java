@@ -33,7 +33,21 @@ public class AmbushConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip
     public java.util.List<SpawnEntry> spawns = new java.util.ArrayList<>(java.util.List.of(
-            SpawnEntry.defaultAmbush()
+            // --- Ambushes: 45% total weight ---
+            SpawnEntry.defaultAmbush(),
+            SpawnEntry.defaultZombieAmbush(),
+            SpawnEntry.defaultSkeletonAmbush(),
+            SpawnEntry.defaultBanditAmbush(),
+            // --- Peaceful Encounters: 35% total weight ---
+            SpawnEntry.defaultMerchant(),
+            SpawnEntry.defaultPatrol(),
+            SpawnEntry.defaultWildlife(),
+            SpawnEntry.defaultLostTraveler(),
+            SpawnEntry.defaultWanderingHealer(),
+            // --- Other: 5% total weight ---
+            SpawnEntry.defaultGraveyard(),
+            // --- Nothing: 15% total weight ---
+            SpawnEntry.defaultNone()
     ));
 
     @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
@@ -61,8 +75,97 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultAmbush() {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
-            e.weight = 100;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:pillager", 4, 5)));
+            e.weight = 15;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:pillager", 2, 4)));
+            return e;
+        }
+
+        public static SpawnEntry defaultZombieAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 10;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 4, 6)));
+            return e;
+        }
+
+        public static SpawnEntry defaultSkeletonAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 10;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 3, 5)));
+            return e;
+        }
+
+        public static SpawnEntry defaultBanditAmbush() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 10;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of("minecraft:zombie", 2, 3),
+                    Group.of("minecraft:skeleton", 2, 3)
+            ));
+            return e;
+        }
+
+        public static SpawnEntry defaultMerchant() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.MERCHANT;
+            e.weight = 10;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of("minecraft:wandering_trader", 1, 1),
+                    Group.of("minecraft:trader_llama", 2, 2)
+            ));
+            return e;
+        }
+
+        public static SpawnEntry defaultPatrol() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.PATROL;
+            e.weight = 10;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of("minecraft:iron_golem", 1, 1),
+                    Group.of("minecraft:villager", 2, 3)
+            ));
+            return e;
+        }
+
+        public static SpawnEntry defaultWildlife() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.WILDLIFE;
+            e.weight = 5;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:wolf", 3, 5)));
+            return e;
+        }
+
+        public static SpawnEntry defaultLostTraveler() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.PATROL; // Using PATROL as it's a non-hostile event
+            e.weight = 5;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1)));
+            return e;
+        }
+
+        public static SpawnEntry defaultWanderingHealer() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.MERCHANT; // Using MERCHANT as it's a non-hostile event
+            e.weight = 5;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1))); // Spawns a generic villager, would need NBT for cleric
+            return e;
+        }
+
+        public static SpawnEntry defaultGraveyard() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.AMBUSH;
+            e.weight = 5;
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4)));
+            return e;
+        }
+
+        public static SpawnEntry defaultNone() {
+            var e = new SpawnEntry();
+            e.eventType = EventKind.NONE;
+            e.weight = 15;
+            e.groups = new java.util.ArrayList<>();
             return e;
         }
     }
