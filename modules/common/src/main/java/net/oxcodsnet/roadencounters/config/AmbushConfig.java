@@ -3,6 +3,7 @@ package net.oxcodsnet.roadencounters.config;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
+import net.oxcodsnet.roadencounters.config.REConfig.EventKind;
 
 @Config(name = "roadarchitect_roadencounters")
 public class AmbushConfig implements ConfigData {
@@ -35,9 +36,13 @@ public class AmbushConfig implements ConfigData {
             SpawnEntry.defaultAmbush()
     ));
 
+    @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("types")
+    public Types types = new Types();
+
     public static class SpawnEntry {
         @ConfigEntry.Gui.Tooltip
-        public String eventType = "ambush"; // ambush, merchant, patrol, wildlife, none
+        public EventKind eventType = EventKind.AMBUSH; // selectable enum
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
@@ -50,7 +55,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultAmbush() {
             var e = new SpawnEntry();
-            e.eventType = "ambush";
+            e.eventType = EventKind.AMBUSH;
             e.weight = 100;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:pillager", 4, 5)));
             return e;
@@ -73,6 +78,30 @@ public class AmbushConfig implements ConfigData {
             g.countMin = min;
             g.countMax = max;
             return g;
+        }
+    }
+
+    public static class Types {
+        @ConfigEntry.Gui.Tooltip
+        public TypeEntry ambush = TypeEntry.of(java.util.List.of("minecraft:entity.pillager.ambient"));
+        @ConfigEntry.Gui.Tooltip
+        public TypeEntry merchant = TypeEntry.of(java.util.List.of("minecraft:entity.villager.yes"));
+        @ConfigEntry.Gui.Tooltip
+        public TypeEntry patrol = TypeEntry.of(java.util.List.of("minecraft:entity.iron_golem.repair"));
+        @ConfigEntry.Gui.Tooltip
+        public TypeEntry wildlife = TypeEntry.of(java.util.List.of("minecraft:entity.wolf.howl"));
+        @ConfigEntry.Gui.Tooltip
+        public TypeEntry none = TypeEntry.of(java.util.List.of());
+    }
+
+    public static class TypeEntry {
+        @ConfigEntry.Gui.Tooltip
+        public java.util.List<String> sounds = new java.util.ArrayList<>();
+
+        public static TypeEntry of(java.util.List<String> ids) {
+            var t = new TypeEntry();
+            t.sounds = new java.util.ArrayList<>(ids);
+            return t;
         }
     }
 }

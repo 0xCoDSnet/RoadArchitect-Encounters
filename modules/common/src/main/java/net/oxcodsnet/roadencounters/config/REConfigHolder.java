@@ -36,12 +36,21 @@ public final class REConfigHolder {
         @Override public java.util.List<REConfig.EncounterSpec> encounterSpecs() {
             return java.util.List.of(
                     new REConfig.EncounterSpec(
-                            "ambush",
+                            EventKind.AMBUSH,
                             100,
                             java.util.List.of(new REConfig.Group("minecraft:pillager", 4, 5))
                     ),
-                    new REConfig.EncounterSpec("none", 2, java.util.List.of())
+                    new REConfig.EncounterSpec(EventKind.NONE, 2, java.util.List.of())
             );
+        }
+        @Override public java.util.List<String> eventSounds(EventKind kind) {
+            return switch (kind) {
+                case AMBUSH -> java.util.List.of("minecraft:entity.pillager.ambient");
+                case MERCHANT -> java.util.List.of("minecraft:entity.villager.yes");
+                case PATROL -> java.util.List.of("minecraft:entity.iron_golem.repair");
+                case WILDLIFE -> java.util.List.of("minecraft:entity.wolf.howl");
+                case NONE -> java.util.List.of();
+            };
         }
     }
 }

@@ -125,33 +125,30 @@ public final class AmbushAddon implements RoadAddon {
     private void handleTrigger(ServerWorld world, BlockPos pos, ServerPlayerEntity player) {
         Random rnd = world.getRandom();
         var spec = pickEncounterSpec(config.encounterSpecs(), rnd);
-        String type = spec == null ? "ambush" : spec.eventType();
+        REConfig.EventKind type = spec == null ? REConfig.EventKind.AMBUSH : spec.eventType();
         switch (type) {
-            case "none" -> { if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.none"); }
-            case "ambush" -> {
+            case NONE -> { if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.none"); }
+            case AMBUSH -> {
                 if (world.getDifficulty() != Difficulty.PEACEFUL) {
                     handleEncounter(world, pos, spec);
                     if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.ambush");
-                    world.playSound(null, pos, SoundEvents.ENTITY_PILLAGER_AMBIENT, SoundCategory.HOSTILE, 1f, 1f);
+                    playConfiguredSound(world, pos, REConfig.EventKind.AMBUSH);
                 }
             }
-            case "merchant" -> {
+            case MERCHANT -> {
                 handleEncounter(world, pos, spec);
                 if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.merchant");
-                world.playSound(null, pos, SoundEvents.ENTITY_VILLAGER_YES, SoundCategory.NEUTRAL, 0.8f, 1.1f);
+                playConfiguredSound(world, pos, REConfig.EventKind.MERCHANT);
             }
-            case "patrol" -> {
+            case PATROL -> {
                 handleEncounter(world, pos, spec);
                 if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.patrol");
-                world.playSound(null, pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR, SoundCategory.NEUTRAL, 0.8f, 1.0f);
+                playConfiguredSound(world, pos, REConfig.EventKind.PATROL);
             }
-            case "wildlife" -> {
+            case WILDLIFE -> {
                 handleEncounter(world, pos, spec);
                 if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.wildlife");
-            }
-            default -> {
-                // unknown -> treat as ambush-like spawn
-                handleEncounter(world, pos, spec);
+                playConfiguredSound(world, pos, REConfig.EventKind.WILDLIFE);
             }
         }
     }
@@ -218,9 +215,13 @@ public final class AmbushAddon implements RoadAddon {
                 if (tagId != null) {
                     var key = net.minecraft.registry.tag.TagKey.of(net.minecraft.registry.RegistryKeys.ENTITY_TYPE, tagId);
                     var list = Registries.ENTITY_TYPE.getEntryList(key).orElse(null);
-                    if (list != null && !list.isEmpty()) {
-                        var chosen = list.get(rnd.nextInt(list.size()));
-                        return chosen.value();
+                    if (list != null) {
+                        java.util.ArrayList<net.minecraft.registry.entry.RegistryEntry<EntityType<?>>> entries = new java.util.ArrayList<>();
+                        for (var it = list.iterator(); it.hasNext(); ) entries.add(it.next());
+                        if (!entries.isEmpty()) {
+                            var chosen = entries.get(rnd.nextInt(entries.size()));
+                            return chosen.value();
+                        }
                     }
                 }
             } catch (Throwable ignored) { }
@@ -228,6 +229,32 @@ public final class AmbushAddon implements RoadAddon {
         } else {
             return resolveEntityType(Identifier.tryParse(idOrTag));
         }
+    }
+
+    private void playConfiguredSound(ServerWorld world, BlockPos pos, REConfig.EventKind kind) {
+        var list = config.eventSounds(kind);
+        if (list == null || list.isEmpty()) {
+            // fallback legacy
+            switch (kind) {
+                case AMBUSH -> world.playSound(null, pos, SoundEvents.ENTITY_PILLAGER_AMBIENT, SoundCategory.HOSTILE, 1f, 1f);
+                case MERCHANT -> world.playSound(null, pos, SoundEvents.ENTITY_VILLAGER_YES, SoundCategory.NEUTRAL, 0.8f, 1.1f);
+                case PATROL -> world.playSound(null, pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR, SoundCategory.NEUTRAL, 0.8f, 1.0f);
+                case WILDLIFE -> world.playSound(null, pos, SoundEvents.ENTITY_WOLF_HOWL, SoundCategory.NEUTRAL, 0.6f, 1.0f);
+                default -> {}
+            }
+            return;
+        }
+        Random rnd = world.getRandom();
+        String id = list.get(rnd.nextInt(list.size()));
+        try {
+            var soundId = Identifier.tryParse(id);
+            if (soundId != null) {
+                var sound = Registries.SOUND_EVENT.getOrEmpty(soundId).orElse(null);
+                if (sound != null) {
+                    world.playSound(null, pos, sound, SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                }
+            }
+        } catch (Throwable ignored) {}
     }
 
     private static BlockPos findGround(ServerWorld world, BlockPos near) {

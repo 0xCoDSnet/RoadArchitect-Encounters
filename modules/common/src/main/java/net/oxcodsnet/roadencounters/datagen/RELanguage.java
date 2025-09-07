@@ -210,6 +210,7 @@ public final class RELanguage {
             }
             case "ru_ru": {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Настройки");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.category.types", "Список типов");
                 // debug toggle
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Подписи событий на экране");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Показывать/скрывать сообщения о событиях внизу экрана.");
@@ -238,6 +239,14 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.@Tooltip", "Список id или тегов сущностей с количеством для каждой группы.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag", "ID или тег");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag.@Tooltip", "Идентификатор (minecraft:pillager) или тег (#namespace:tag).");
+                // type sounds
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush", "Засада");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant", "Торговцы");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.patrol", "Патруль");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.wildlife", "Дикая природа");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.none", "Без события");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds", "Звуки");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds.@Tooltip", "Список id звуков для проигрывания.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.ambush", "Засада");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.merchant", "Торговцы");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.patrol", "Патруль");
@@ -269,6 +278,7 @@ public final class RELanguage {
             case "en_us":
             default: {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Settings");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.category.types", "Event Types");
                 // debug toggle
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Show event messages");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Toggle actionbar messages at the bottom of the screen.");
@@ -297,6 +307,14 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.@Tooltip", "List of entity ids or tags with per-group counts.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag", "ID or tag");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag.@Tooltip", "Entity id (e.g. minecraft:pillager) or #namespace:tag.");
+                // type sounds
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush", "Ambush");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant", "Merchants");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.patrol", "Patrol");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.wildlife", "Wildlife");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.none", "None");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds", "Sounds");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds.@Tooltip", "List of sound ids to play.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.ambush", "Ambush");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.merchant", "Merchants");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.patrol", "Patrol");

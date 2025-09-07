@@ -5,6 +5,7 @@ package net.oxcodsnet.roadencounters.config;
  * based on Cloth Config (AutoConfig) data.
  */
 public interface REConfig {
+    enum EventKind { AMBUSH, MERCHANT, PATROL, WILDLIFE, NONE }
     int maxMarkers();
     int strideBlocks();
     int triggerRadius();
@@ -16,9 +17,10 @@ public interface REConfig {
     @Deprecated
     default EventWeights eventWeights() { return new EventWeights(0,0,0,0,0,100); }
 
-    // New unified encounter specs: each entry selects an event type and a list of entity/tag groups with counts,
+    // New unified encounter specs: each entry selects an event kind and a list of entity/tag groups with counts,
     // and a single weight for the whole entry.
     java.util.List<EncounterSpec> encounterSpecs();
+    java.util.List<String> eventSounds(EventKind kind);
     boolean debugActionbar();
 
     default long cooldownTicks() { return (long) cooldownSeconds() * 20L; }
@@ -41,8 +43,8 @@ public interface REConfig {
     /**
      * New unified spec driving both event type selection and spawned mobs.
      */
-    record EncounterSpec(String eventType, int weight, java.util.List<Group> groups) {
-        public String eventType() { return eventType == null ? "ambush" : eventType; }
+    record EncounterSpec(EventKind eventType, int weight, java.util.List<Group> groups) {
+        public EventKind eventType() { return eventType == null ? EventKind.AMBUSH : eventType; }
     }
 
     /** One group within an encounter: entity id or tag, and per-group count. */

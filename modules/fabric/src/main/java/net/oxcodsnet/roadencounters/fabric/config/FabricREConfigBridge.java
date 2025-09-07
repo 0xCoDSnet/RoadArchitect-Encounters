@@ -43,6 +43,13 @@ public final class FabricREConfigBridge {
             cfg.spawns = new java.util.ArrayList<>(java.util.List.of(AmbushConfig.SpawnEntry.defaultAmbush()));
             changed = true;
         }
+        // sanitize types
+        if (cfg.types == null) { cfg.types = new AmbushConfig.Types(); changed = true; }
+        if (cfg.types.ambush == null) { cfg.types.ambush = AmbushConfig.TypeEntry.of(java.util.List.of("minecraft:entity.pillager.ambient")); changed = true; }
+        if (cfg.types.merchant == null) { cfg.types.merchant = AmbushConfig.TypeEntry.of(java.util.List.of("minecraft:entity.villager.yes")); changed = true; }
+        if (cfg.types.patrol == null) { cfg.types.patrol = AmbushConfig.TypeEntry.of(java.util.List.of("minecraft:entity.iron_golem.repair")); changed = true; }
+        if (cfg.types.wildlife == null) { cfg.types.wildlife = AmbushConfig.TypeEntry.of(java.util.List.of("minecraft:entity.wolf.howl")); changed = true; }
+        if (cfg.types.none == null) { cfg.types.none = AmbushConfig.TypeEntry.of(java.util.List.of()); changed = true; }
         if (changed) holder.save();
         REConfigHolder.set(new Impl(holder));
     }
@@ -65,6 +72,17 @@ public final class FabricREConfigBridge {
                 out.add(new REConfig.EncounterSpec(e.eventType, e.weight, java.util.Collections.unmodifiableList(groups)));
             }
             return java.util.Collections.unmodifiableList(out);
+        }
+        @Override public java.util.List<String> eventSounds(REConfig.EventKind kind) {
+            var t = holder.getConfig().types;
+            if (t == null) return java.util.List.of();
+            return switch (kind) {
+                case AMBUSH -> t.ambush == null || t.ambush.sounds == null ? java.util.List.of() : java.util.List.copyOf(t.ambush.sounds);
+                case MERCHANT -> t.merchant == null || t.merchant.sounds == null ? java.util.List.of() : java.util.List.copyOf(t.merchant.sounds);
+                case PATROL -> t.patrol == null || t.patrol.sounds == null ? java.util.List.of() : java.util.List.copyOf(t.patrol.sounds);
+                case WILDLIFE -> t.wildlife == null || t.wildlife.sounds == null ? java.util.List.of() : java.util.List.copyOf(t.wildlife.sounds);
+                case NONE -> t.none == null || t.none.sounds == null ? java.util.List.of() : java.util.List.copyOf(t.none.sounds);
+            };
         }
     }
 }
