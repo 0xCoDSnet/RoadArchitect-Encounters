@@ -41,7 +41,7 @@ public final class FabricREConfigBridge {
             }
         }
         if (cfg.spawns == null || cfg.spawns.isEmpty()) {
-            cfg.spawns = new java.util.ArrayList<>(java.util.List.of(AmbushConfig.SpawnEntry.defaultAmbush()));
+            cfg.spawns = new AmbushConfig().spawns;
             changed = true;
         }
         // sanitize types
