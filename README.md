@@ -1,32 +1,83 @@
+<p align="center">
+  <img src="https://cdn.modrinth.com/data/cached_images/8df881c3bbe715dd7bbc198355ef952bd6d84a74.png" width="128" height="128" alt="RoadArchitect: Encounters">
+</p>
+
+<p align="center">
+  <a href="https://modrinth.com/mod/roadarchitect-encounters">
+    <img alt="Modrinth Downloads" src="https://img.shields.io/modrinth/dt/XVknWoiY?style=flat&logo=modrinth">
+  </a>
+  <a href="https://www.curseforge.com/minecraft/mc-mods/roadarchitect-encounters">
+    <img alt="CurseForge Downloads" src="https://img.shields.io/curseforge/dt/1337294?style=flat&logo=curseforge">
+  </a>
+</p>
+
+<p align="center" style="display: flex; justify-content: center; gap: 6px;">
+    <a href="https://modrinth.com/mod/roadarchitect-encounters/versions?l=fabric">
+        <img src="https://cdn.modrinth.com/data/cached_images/d8a8d9852fb6e55292d6f5ecc1842fd7bc8c3c9e.webp" alt="Available on Fabric">
+    </a>
+    <a href="https://modrinth.com/mod/roadarchitect-encounters/versions?l=quilt">
+        <img src="https://cdn.modrinth.com/data/cached_images/77e67c2eae40b638430d5959e9a0d0ef60f76f41.webp" alt="Available on Quilt">
+    </a>
+   <a href="https://modrinth.com/mod/roadarchitect-encounters/versions?l=neoforge">
+    <img src="https://cdn.modrinth.com/data/cached_images/ecbd0303728027761730760800f9354e14f38d31.webp" alt="Available on NeoForge">
+  </a>
+</p>
+
+   <p align="center" style="display:flex;justify-content:center;gap:8px;margin:6px 0;">
+<a href="https://boosty.to/0xcodsnet" target="_blank" rel="noopener">
+  <img alt="Boosty — Support" src="https://cdn.modrinth.com/data/cached_images/e5ac57a392801dee070cc961eb901e1379c945b6.webp">
+</a>
+</p>
+
+<p align="center" style="display:flex;justify-content:center;gap:8px;margin:6px 0;">
+  <a href="https://discord.gg/9JRb3JMAD3" target="_blank" rel="noopener">
+    <img alt="discord-plural" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/social/discord-plural_vector.svg">
+  </a>
+</p>
+
+
 # RoadArchitect: Encounters
 
-- Mod ID: `roadarchitect_roadencounters`
-- Minecraft: 1.21.x
-- Loaders: Fabric, NeoForge, Quilt (Architectury)
+**RoadArchitect: Encounters** is a **Fabric** / **Quilt** / **NeoForge** add-on for **Minecraft 1.21–1.21.2**.
 
-This is an addon to Roadarchitect, which adds more life to the road. Along the way, robbers, merchants and other random meetings may meet you.
-Key points:
-- Uses the official RoadArchitect addon API (no core patches).
-- Markers are stored as PersistentState; each marker fires once.
-- All proximity and chunk checks run server‑side; no blocking I/O.
-- Configurable spawn list: entity, weight and count per entry.
-- Fully deterministic with Minecraft random per world tick.
+It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and brings your roads to life with random roadside encounters — bandits, traveling merchants, and more you may encounter as you travel.
 
-Requirements:
-- Java 21.
-- RoadArchitect installed in the same instance (all loaders supported).
+> **Current version:** `v1.0.0`
 
-Build & Dev:
-1) Publish RoadArchitect locally once: `./gradlew publishToMavenLocal` in the RA repo.
-2) Build this addon: `./gradlew build`.
-3) Dev‑run with RoadArchitect on classpath:
-   - Fabric: `./gradlew :modules:fabric:runClient`
-   - Quilt: `./gradlew :modules:quilt:runClient`
-   - NeoForge: `./gradlew :modules:neoforge:runClient`
+---
+## 📥 Installation (Minecraft 1.21.x)
 
-Defaults:
-- Trigger radius: 75 blocks.
-- Ambush size: 4–5 pillagers.
-- Markers per path: up to 3; ~160 block stride.
+**Loaders:** Fabric / Quilt / NeoForge
 
-Config is available in-game (Cloth Config/Mod Menu) and via file.
+1. Install a **loader** compatible with your game:
+   - **Fabric**
+   - **Quilt**
+   - **NeoForge**
+2. **Required dependency (all loaders):**
+   - **Cloth Config** *(mandatory on Fabric / Quilt / NeoForge)*
+3. Download the mod:
+   <p align="center" style="display:flex;justify-content:center;gap:8px;margin:6px 0;">
+     <a href="https://modrinth.com/mod/roadarchitect-encounters">
+       <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg" alt="Available on Modrinth">
+     </a>
+     <a href="https://www.curseforge.com/minecraft/mc-mods/roadarchitect-encounters">
+       <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/curseforge_vector.svg" alt="Available on CurseForge">
+     </a>
+   </p>
+4. Place the `.jar` file in your `mods` folder.
+5. *(Optional)*
+   - **Mod Menu** (Fabric/Quilt) for quick access to settings.
+   - **Catalogue** by MrCrayfish (NeoForge)
+     > Settings are also available from the mods list
+
+
+---
+
+## 📜 License
+
+This project is licensed under the **Apache License 2.0** — see the [LICENSE](LICENSE) file for details.  
+Full license text: [Apache 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
+<p align="center">
+  <sub>Crafted with ❤️ for the Minecraft community</sub>
+</p>
