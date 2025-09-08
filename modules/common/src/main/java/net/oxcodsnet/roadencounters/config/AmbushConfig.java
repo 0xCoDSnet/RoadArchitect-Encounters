@@ -95,6 +95,12 @@ public class AmbushConfig implements ConfigData {
     public Types types = new Types();
 
     public static class SpawnEntry {
+        @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
+        public Preset preset = Preset.DEFAULT_AMBUSH;
+
+        @ConfigEntry.Gui.Tooltip
+        public boolean applyPreset = false; // set true and save to reapply preset
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
@@ -102,11 +108,11 @@ public class AmbushConfig implements ConfigData {
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.BoundedDiscrete(min = 0, max = 100)
-        public int weight = 100; // overall weight for this entry
+        public int weight = 4; // overall weight for this entry (align with defaultAmbush)
 
         @ConfigEntry.Gui.Tooltip
         public java.util.List<Group> groups = new java.util.ArrayList<>(java.util.List.of(
-                Group.of("minecraft:pillager", 4, 5)
+                Group.of("minecraft:pillager", 2, 4)
         ));
 
         @ConfigEntry.Gui.Tooltip
@@ -117,6 +123,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:pillager", 2, 4)));
@@ -126,6 +133,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultZombieAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_ZOMBIE_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 4, 6)));
@@ -135,6 +143,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultSkeletonAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_SKELETON_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 3, 5, java.util.List.of("{ArmorItems:[{},{},{},{id:\"minecraft:iron_helmet\",Count:1b}]}"))));
@@ -144,6 +153,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultBanditAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_BANDIT_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 3;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
@@ -156,6 +166,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry ironcladZombieAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.IRONCLAD_ZOMBIE_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:iron_sword\",Count:1b}],ArmorItems:[{id:\"minecraft:iron_boots\",Count:1b},{id:\"minecraft:iron_leggings\",Count:1b},{id:\"minecraft:iron_chestplate\",Count:1b},{id:\"minecraft:iron_helmet\",Count:1b}]}"))));
@@ -165,6 +176,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry pillagerCaptainAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.PILLAGER_CAPTAIN_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
@@ -177,6 +189,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry witchEscortAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.WITCH_ESCORT_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
@@ -189,6 +202,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry strayAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.STRAY_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:stray", 3, 4)));
@@ -198,6 +212,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry hostileWolvesAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.HOSTILE_WOLVES_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:wolf", 3, 5, java.util.List.of("{Attributes:[{Name:\"generic.attack_damage\",Base:4.0d}]}"))));
@@ -207,6 +222,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry potionInfusedZombies() {
             var e = new SpawnEntry();
+            e.preset = Preset.POTION_INFUSED_ZOMBIES;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:0b,Duration:600},{Id:\"minecraft:jump_boost\",Amplifier:0b,Duration:600}]}"))));
@@ -216,6 +232,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry wellEquippedSkeletons() {
             var e = new SpawnEntry();
+            e.preset = Preset.WELL_EQUIPPED_SKELETONS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b,tag:{Enchantments:[{id:\"minecraft:power\",lvl:1s}]}}],ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1b},{id:\"minecraft:chainmail_leggings\",Count:1b},{id:\"minecraft:chainmail_chestplate\",Count:1b},{id:\"minecraft:chainmail_helmet\",Count:1b}]}"))));
@@ -225,6 +242,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry minerZombieAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.MINER_ZOMBIE_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{HandItems:[{id:\"minecraft:iron_pickaxe\",Count:1b}],ArmorItems:[{},{},{},{id:\"minecraft:iron_helmet\",Count:1b}]}"))));
@@ -234,6 +252,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry farmerZombieAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.FARMER_ZOMBIE_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{HandItems:[{id:\"minecraft:iron_hoe\",Count:1b}],ArmorItems:[{id:\"minecraft:leather_boots\",Count:1b},{id:\"minecraft:leather_leggings\",Count:1b},{id:\"minecraft:leather_chestplate\",Count:1b},{id:\"minecraft:leather_helmet\",Count:1b}]}"))));
@@ -243,6 +262,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry caveSpiderAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.CAVE_SPIDER_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:cave_spider", 3, 5)));
@@ -252,6 +272,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry drownedAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.DROWNED_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:drowned", 2, 4, java.util.List.of("{HandItems:[{id:\"minecraft:trident\",Count:1b}]}"))));
@@ -261,6 +282,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry huskAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.HUSK_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:husk", 3, 4)));
@@ -270,6 +292,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry illusionerAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.ILLUSIONER_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
@@ -282,6 +305,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry evokerAmbush() {
             var e = new SpawnEntry();
+            e.preset = Preset.EVOKER_AMBUSH;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
@@ -294,6 +318,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry speedyZombies() {
             var e = new SpawnEntry();
+            e.preset = Preset.SPEEDY_ZOMBIES;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:1b,Duration:600}]}"))));
@@ -303,6 +328,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry tankyZombies() {
             var e = new SpawnEntry();
+            e.preset = Preset.TANKY_ZOMBIES;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:resistance\",Amplifier:0b,Duration:600}]}"))));
@@ -312,6 +338,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry chainmailZombies() {
             var e = new SpawnEntry();
+            e.preset = Preset.CHAINMAIL_ZOMBIES;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1b},{id:\"minecraft:chainmail_leggings\",Count:1b},{id:\"minecraft:chainmail_chestplate\",Count:1b},{id:\"minecraft:chainmail_helmet\",Count:1b}]}"))));
@@ -321,6 +348,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry sharpnessZombies() {
             var e = new SpawnEntry();
+            e.preset = Preset.SHARPNESS_ZOMBIES;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:iron_sword\",Count:1b,tag:{Enchantments:[{id:\"minecraft:sharpness\",lvl:1s}]}}]}"))));
@@ -330,6 +358,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry punchSkeletons() {
             var e = new SpawnEntry();
+            e.preset = Preset.PUNCH_SKELETONS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b,tag:{Enchantments:[{id:\"minecraft:punch\",lvl:2s}]}}]}"))));
@@ -339,6 +368,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry flameSkeletons() {
             var e = new SpawnEntry();
+            e.preset = Preset.FLAME_SKELETONS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b,tag:{Enchantments:[{id:\"minecraft:flame\",lvl:1s}]}}]}"))));
@@ -348,6 +378,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry chainmailSkeletons() {
             var e = new SpawnEntry();
+            e.preset = Preset.CHAINMAIL_SKELETONS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1b},{id:\"minecraft:chainmail_leggings\",Count:1b},{id:\"minecraft:chainmail_chestplate\",Count:1b},{id:\"minecraft:chainmail_helmet\",Count:1b}]}"))));
@@ -357,6 +388,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry meleeSkeletons() {
             var e = new SpawnEntry();
+            e.preset = Preset.MELEE_SKELETONS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:iron_sword\",Count:1b}]}"))));
@@ -366,6 +398,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry poisonSkeletons() {
             var e = new SpawnEntry();
+            e.preset = Preset.POISON_SKELETONS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b},{id:\"minecraft:tipped_arrow\",Count:64b,tag:{Potion:\"minecraft:poison\"}}]}"))));
@@ -375,6 +408,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry slownessSkeletons() {
             var e = new SpawnEntry();
+            e.preset = Preset.SLOWNESS_SKELETONS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b},{id:\"minecraft:tipped_arrow\",Count:64b,tag:{Potion:\"minecraft:slowness\"}}]}"))));
@@ -384,6 +418,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry weaknessSkeletons() {
             var e = new SpawnEntry();
+            e.preset = Preset.WEAKNESS_SKELETONS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b},{id:\"minecraft:tipped_arrow\",Count:64b,tag:{Potion:\"minecraft:weakness\"}}]}"))));
@@ -393,6 +428,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry speedySpiders() {
             var e = new SpawnEntry();
+            e.preset = Preset.SPEEDY_SPIDERS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 3, 4, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:1b,Duration:600}]}"))));
@@ -402,6 +438,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry strengthSpiders() {
             var e = new SpawnEntry();
+            e.preset = Preset.STRENGTH_SPIDERS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:strength\",Amplifier:0b,Duration:600}]}"))));
@@ -411,6 +448,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry invisibleSpiders() {
             var e = new SpawnEntry();
+            e.preset = Preset.INVISIBLE_SPIDERS;
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:invisibility\",Amplifier:0b,Duration:600}]}"))));
@@ -420,6 +458,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry golemVsPillagers() {
             var e = new SpawnEntry();
+            e.preset = Preset.GOLEM_VS_PILLAGERS;
             e.eventType = EventKind.PATROL;
             e.weight = 5;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
@@ -432,6 +471,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry zombieVillagerRescue() {
             var e = new SpawnEntry();
+            e.preset = Preset.ZOMBIE_VILLAGER_RESCUE;
             e.eventType = EventKind.AMBUSH;
             e.weight = 5;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
@@ -444,6 +484,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultMerchant() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_MERCHANT;
             e.eventType = EventKind.MERCHANT;
             e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
@@ -456,6 +497,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultPatrol() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_PATROL;
             e.eventType = EventKind.PATROL;
             e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
@@ -468,6 +510,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultWildlife() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_WILDLIFE;
             e.eventType = EventKind.WILDLIFE;
             e.weight = 3;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:wolf", 3, 5)));
@@ -477,6 +520,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultLostTraveler() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_LOST_TRAVELER;
             e.eventType = EventKind.PATROL; // Using PATROL as it"s a non-hostile event
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1)));
@@ -486,6 +530,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultWanderingHealer() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_WANDERING_HEALER;
             e.eventType = EventKind.MERCHANT; // Using MERCHANT as it"s a non-hostile event
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1, java.util.List.of("{VillagerData:{profession:\"minecraft:cleric\"}}"))));
@@ -495,6 +540,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultGraveyard() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_GRAVEYARD;
             e.eventType = EventKind.AMBUSH;
             e.weight = 5;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4)));
@@ -504,10 +550,113 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultNone() {
             var e = new SpawnEntry();
+            e.preset = Preset.DEFAULT_NONE;
             e.eventType = EventKind.NONE;
             e.weight = 10;
             e.groups = new java.util.ArrayList<>();
             return e;
+        }
+
+        public void applyPresetNow() {
+            var src = fromPreset(this.preset);
+            if (src == null) return;
+            this.eventType = src.eventType;
+            this.weight = src.weight;
+            this.groups = src.groups == null ? new java.util.ArrayList<>() : new java.util.ArrayList<>(src.groups);
+            this.biomeWhitelist = src.biomeWhitelist == null ? new java.util.ArrayList<>() : new java.util.ArrayList<>(src.biomeWhitelist);
+            this.biomeBlacklist = src.biomeBlacklist == null ? new java.util.ArrayList<>() : new java.util.ArrayList<>(src.biomeBlacklist);
+            this.applyPreset = false;
+        }
+
+        public static SpawnEntry fromPreset(Preset p) {
+            if (p == null) return null;
+            return switch (p) {
+                case DEFAULT_AMBUSH -> defaultAmbush();
+                case DEFAULT_ZOMBIE_AMBUSH -> defaultZombieAmbush();
+                case DEFAULT_SKELETON_AMBUSH -> defaultSkeletonAmbush();
+                case DEFAULT_BANDIT_AMBUSH -> defaultBanditAmbush();
+                case IRONCLAD_ZOMBIE_AMBUSH -> ironcladZombieAmbush();
+                case PILLAGER_CAPTAIN_AMBUSH -> pillagerCaptainAmbush();
+                case WITCH_ESCORT_AMBUSH -> witchEscortAmbush();
+                case STRAY_AMBUSH -> strayAmbush();
+                case HOSTILE_WOLVES_AMBUSH -> hostileWolvesAmbush();
+                case POTION_INFUSED_ZOMBIES -> potionInfusedZombies();
+                case WELL_EQUIPPED_SKELETONS -> wellEquippedSkeletons();
+                case MINER_ZOMBIE_AMBUSH -> minerZombieAmbush();
+                case FARMER_ZOMBIE_AMBUSH -> farmerZombieAmbush();
+                case CAVE_SPIDER_AMBUSH -> caveSpiderAmbush();
+                case DROWNED_AMBUSH -> drownedAmbush();
+                case HUSK_AMBUSH -> huskAmbush();
+                case ILLUSIONER_AMBUSH -> illusionerAmbush();
+                case EVOKER_AMBUSH -> evokerAmbush();
+                case SPEEDY_ZOMBIES -> speedyZombies();
+                case TANKY_ZOMBIES -> tankyZombies();
+                case CHAINMAIL_ZOMBIES -> chainmailZombies();
+                case SHARPNESS_ZOMBIES -> sharpnessZombies();
+                case PUNCH_SKELETONS -> punchSkeletons();
+                case FLAME_SKELETONS -> flameSkeletons();
+                case CHAINMAIL_SKELETONS -> chainmailSkeletons();
+                case MELEE_SKELETONS -> meleeSkeletons();
+                case POISON_SKELETONS -> poisonSkeletons();
+                case SLOWNESS_SKELETONS -> slownessSkeletons();
+                case WEAKNESS_SKELETONS -> weaknessSkeletons();
+                case SPEEDY_SPIDERS -> speedySpiders();
+                case STRENGTH_SPIDERS -> strengthSpiders();
+                case INVISIBLE_SPIDERS -> invisibleSpiders();
+                case GOLEM_VS_PILLAGERS -> golemVsPillagers();
+                case ZOMBIE_VILLAGER_RESCUE -> zombieVillagerRescue();
+                case DEFAULT_MERCHANT -> defaultMerchant();
+                case DEFAULT_PATROL -> defaultPatrol();
+                case DEFAULT_WILDLIFE -> defaultWildlife();
+                case DEFAULT_LOST_TRAVELER -> defaultLostTraveler();
+                case DEFAULT_WANDERING_HEALER -> defaultWanderingHealer();
+                case DEFAULT_GRAVEYARD -> defaultGraveyard();
+                case DEFAULT_NONE -> defaultNone();
+            };
+        }
+
+        public enum Preset {
+            DEFAULT_AMBUSH,
+            DEFAULT_ZOMBIE_AMBUSH,
+            DEFAULT_SKELETON_AMBUSH,
+            DEFAULT_BANDIT_AMBUSH,
+            IRONCLAD_ZOMBIE_AMBUSH,
+            PILLAGER_CAPTAIN_AMBUSH,
+            WITCH_ESCORT_AMBUSH,
+            STRAY_AMBUSH,
+            HOSTILE_WOLVES_AMBUSH,
+            POTION_INFUSED_ZOMBIES,
+            WELL_EQUIPPED_SKELETONS,
+            MINER_ZOMBIE_AMBUSH,
+            FARMER_ZOMBIE_AMBUSH,
+            CAVE_SPIDER_AMBUSH,
+            DROWNED_AMBUSH,
+            HUSK_AMBUSH,
+            ILLUSIONER_AMBUSH,
+            EVOKER_AMBUSH,
+            SPEEDY_ZOMBIES,
+            TANKY_ZOMBIES,
+            CHAINMAIL_ZOMBIES,
+            SHARPNESS_ZOMBIES,
+            PUNCH_SKELETONS,
+            FLAME_SKELETONS,
+            CHAINMAIL_SKELETONS,
+            MELEE_SKELETONS,
+            POISON_SKELETONS,
+            SLOWNESS_SKELETONS,
+            WEAKNESS_SKELETONS,
+            SPEEDY_SPIDERS,
+            STRENGTH_SPIDERS,
+            INVISIBLE_SPIDERS,
+            GOLEM_VS_PILLAGERS,
+            ZOMBIE_VILLAGER_RESCUE,
+            DEFAULT_MERCHANT,
+            DEFAULT_PATROL,
+            DEFAULT_WILDLIFE,
+            DEFAULT_LOST_TRAVELER,
+            DEFAULT_WANDERING_HEALER,
+            DEFAULT_GRAVEYARD,
+            DEFAULT_NONE
         }
     }
 
