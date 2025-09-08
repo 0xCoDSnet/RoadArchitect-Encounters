@@ -31,6 +31,13 @@ public class AmbushConfig implements ConfigData {
     @ConfigEntry.Gui.Tooltip
     public boolean debugActionbar = false;
 
+    private static final java.util.List<String> WATER_BIOMES = java.util.List.of(
+            "minecraft:river", "minecraft:frozen_river", "minecraft:ocean", "minecraft:deep_ocean",
+            "minecraft:cold_ocean", "minecraft:deep_cold_ocean", "minecraft:lukewarm_ocean",
+            "minecraft:deep_lukewarm_ocean", "minecraft:warm_ocean", "minecraft:deep_warm_ocean",
+            "minecraft:frozen_ocean", "minecraft:deep_frozen_ocean"
+    );
+
     @ConfigEntry.Gui.Tooltip
     public java.util.List<SpawnEntry> spawns = new java.util.ArrayList<>(java.util.List.of(
             // --- Ambushes: 60% total weight ---
@@ -87,6 +94,7 @@ public class AmbushConfig implements ConfigData {
     public Types types = new Types();
 
     public static class SpawnEntry {
+
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
         public EventKind eventType = EventKind.AMBUSH; // selectable enum
@@ -111,6 +119,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:pillager", 2, 4)));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -119,6 +128,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 4, 6)));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -127,6 +137,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 4;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 3, 5, java.util.List.of("{ArmorItems:[{},{},{},{id:\"minecraft:iron_helmet\",Count:1b}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -138,6 +149,7 @@ public class AmbushConfig implements ConfigData {
                     Group.of("minecraft:zombie", 2, 3),
                     Group.of("minecraft:skeleton", 2, 3)
             ));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -146,6 +158,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:iron_sword\",Count:1b}],ArmorItems:[{id:\"minecraft:iron_boots\",Count:1b},{id:\"minecraft:iron_leggings\",Count:1b},{id:\"minecraft:iron_chestplate\",Count:1b},{id:\"minecraft:iron_helmet\",Count:1b}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -157,6 +170,7 @@ public class AmbushConfig implements ConfigData {
                     Group.of("minecraft:pillager", 1, 1, java.util.List.of("{HandItems:[{id:\"minecraft:crossbow\",Count:1b},{id:\"minecraft:ominous_banner\",Count:1b}]}")),
                     Group.of("minecraft:pillager", 2, 3)
             ));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -168,6 +182,7 @@ public class AmbushConfig implements ConfigData {
                     Group.of("minecraft:witch", 1, 1),
                     Group.of("minecraft:zombie", 2, 3)
             ));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -185,6 +200,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:wolf", 3, 5, java.util.List.of("{Attributes:[{Name:\"generic.attack_damage\",Base:4.0d}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -193,6 +209,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:0b,Duration:600},{Id:\"minecraft:jump_boost\",Amplifier:0b,Duration:600}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -201,6 +218,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b,tag:{Enchantments:[{id:\"minecraft:power\",lvl:1s}]}}],ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1b},{id:\"minecraft:chainmail_leggings\",Count:1b},{id:\"minecraft:chainmail_chestplate\",Count:1b},{id:\"minecraft:chainmail_helmet\",Count:1b}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -209,6 +227,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{HandItems:[{id:\"minecraft:iron_pickaxe\",Count:1b}],ArmorItems:[{},{},{},{id:\"minecraft:iron_helmet\",Count:1b}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -217,6 +236,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{HandItems:[{id:\"minecraft:iron_hoe\",Count:1b}],ArmorItems:[{id:\"minecraft:leather_boots\",Count:1b},{id:\"minecraft:leather_leggings\",Count:1b},{id:\"minecraft:leather_chestplate\",Count:1b},{id:\"minecraft:leather_helmet\",Count:1b}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -225,6 +245,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:cave_spider", 3, 5)));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -254,6 +275,7 @@ public class AmbushConfig implements ConfigData {
                     Group.of("minecraft:illusioner", 1, 1),
                     Group.of("minecraft:pillager", 2, 3)
             ));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -265,6 +287,7 @@ public class AmbushConfig implements ConfigData {
                     Group.of("minecraft:evoker", 1, 1),
                     Group.of("minecraft:vindicator", 1, 2)
             ));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -273,6 +296,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:1b,Duration:600}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -281,6 +305,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:resistance\",Amplifier:0b,Duration:600}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -289,6 +314,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1b},{id:\"minecraft:chainmail_leggings\",Count:1b},{id:\"minecraft:chainmail_chestplate\",Count:1b},{id:\"minecraft:chainmail_helmet\",Count:1b}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -297,6 +323,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:iron_sword\",Count:1b,tag:{Enchantments:[{id:\"minecraft:sharpness\",lvl:1s}]}}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -305,6 +332,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b,tag:{Enchantments:[{id:\"minecraft:punch\",lvl:2s}]}}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -313,6 +341,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b,tag:{Enchantments:[{id:\"minecraft:flame\",lvl:1s}]}}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -321,6 +350,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{ArmorItems:[{id:\"minecraft:chainmail_boots\",Count:1b},{id:\"minecraft:chainmail_leggings\",Count:1b},{id:\"minecraft:chainmail_chestplate\",Count:1b},{id:\"minecraft:chainmail_helmet\",Count:1b}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -329,6 +359,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:iron_sword\",Count:1b}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -337,6 +368,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b},{id:\"minecraft:tipped_arrow\",Count:64b,tag:{Potion:\"minecraft:poison\"}}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -345,6 +377,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b},{id:\"minecraft:tipped_arrow\",Count:64b,tag:{Potion:\"minecraft:slowness\"}}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -353,6 +386,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:skeleton", 2, 3, java.util.List.of("{HandItems:[{id:\"minecraft:bow\",Count:1b},{id:\"minecraft:tipped_arrow\",Count:64b,tag:{Potion:\"minecraft:weakness\"}}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -361,6 +395,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 3, 4, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:1b,Duration:600}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -369,6 +404,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:strength\",Amplifier:0b,Duration:600}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -377,6 +413,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:invisibility\",Amplifier:0b,Duration:600}]}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -388,6 +425,7 @@ public class AmbushConfig implements ConfigData {
                     Group.of("minecraft:iron_golem", 1, 1, java.util.List.of("{Health:25f}")),
                     Group.of("minecraft:vindicator", 2, 2)
             ));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -399,6 +437,7 @@ public class AmbushConfig implements ConfigData {
                     Group.of("minecraft:zombie_villager", 1, 1),
                     Group.of("minecraft:zombie", 3, 4)
             ));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -410,6 +449,7 @@ public class AmbushConfig implements ConfigData {
                     Group.of("minecraft:wandering_trader", 1, 1),
                     Group.of("minecraft:trader_llama", 2, 2)
             ));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -421,6 +461,7 @@ public class AmbushConfig implements ConfigData {
                     Group.of("minecraft:iron_golem", 1, 1),
                     Group.of("minecraft:villager", 2, 3)
             ));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -429,6 +470,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.WILDLIFE;
             e.weight = 3;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:wolf", 3, 5)));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -437,6 +479,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.PATROL; // Using PATROL as it"s a non-hostile event
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1)));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -445,6 +488,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.MERCHANT; // Using MERCHANT as it"s a non-hostile event
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1, java.util.List.of("{VillagerData:{profession:\"minecraft:cleric\"}}"))));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
@@ -453,6 +497,7 @@ public class AmbushConfig implements ConfigData {
             e.eventType = EventKind.AMBUSH;
             e.weight = 5;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4)));
+            e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
 
