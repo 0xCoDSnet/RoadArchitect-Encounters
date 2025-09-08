@@ -192,7 +192,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:1b,Amplifier:0b,Duration:600},{Id:8b,Amplifier:0b,Duration:600}]}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:0b,Duration:600},{Id:\"minecraft:jump_boost\",Amplifier:0b,Duration:600}]}"))));
             return e;
         }
 
@@ -272,7 +272,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:1b,Amplifier:1b,Duration:600}]}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:1b,Duration:600}]}"))));
             return e;
         }
 
@@ -280,7 +280,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{ActiveEffects:[{Id:11b,Amplifier:0b,Duration:600}]}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 2, 3, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:resistance\",Amplifier:0b,Duration:600}]}"))));
             return e;
         }
 
@@ -360,7 +360,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 2;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 3, 4, java.util.List.of("{ActiveEffects:[{Id:1b,Amplifier:1b,Duration:600}]}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 3, 4, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:1b,Duration:600}]}"))));
             return e;
         }
 
@@ -368,7 +368,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:5b,Amplifier:0b,Duration:600}]}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:strength\",Amplifier:0b,Duration:600}]}"))));
             return e;
         }
 
@@ -376,7 +376,7 @@ public class AmbushConfig implements ConfigData {
             var e = new SpawnEntry();
             e.eventType = EventKind.AMBUSH;
             e.weight = 1;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:14b,Amplifier:0b,Duration:600}]}"))));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:spider", 2, 3, java.util.List.of("{ActiveEffects:[{Id:\"minecraft:invisibility\",Amplifier:0b,Duration:600}]}"))));
             return e;
         }
 
@@ -434,7 +434,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultLostTraveler() {
             var e = new SpawnEntry();
-            e.eventType = EventKind.PATROL; // Using PATROL as it's a non-hostile event
+            e.eventType = EventKind.PATROL; // Using PATROL as it"s a non-hostile event
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1)));
             return e;
@@ -442,7 +442,7 @@ public class AmbushConfig implements ConfigData {
 
         public static SpawnEntry defaultWanderingHealer() {
             var e = new SpawnEntry();
-            e.eventType = EventKind.MERCHANT; // Using MERCHANT as it's a non-hostile event
+            e.eventType = EventKind.MERCHANT; // Using MERCHANT as it"s a non-hostile event
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1, java.util.List.of("{VillagerData:{profession:\"minecraft:cleric\"}}"))));
             return e;
@@ -467,7 +467,7 @@ public class AmbushConfig implements ConfigData {
 
     public static class Group {
         @ConfigEntry.Gui.Tooltip
-        public String idOrTag = "minecraft:pillager"; // supports '#namespace:tag' or direct entity id
+        public String idOrTag = "minecraft:pillager"; // supports "#namespace:tag" or direct entity id
 
         @ConfigEntry.BoundedDiscrete(min = 0, max = 50)
         public int countMin = 1;
