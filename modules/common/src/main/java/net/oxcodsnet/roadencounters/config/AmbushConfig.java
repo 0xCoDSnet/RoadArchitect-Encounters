@@ -9,6 +9,9 @@ import net.oxcodsnet.roadencounters.config.EventKind;
 public class AmbushConfig implements ConfigData {
 
     @ConfigEntry.Gui.Tooltip
+    public boolean debugActionbar = false;
+
+    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.BoundedDiscrete(min = 0, max = 32)
     public int maxMarkers = 3;
 
@@ -28,9 +31,7 @@ public class AmbushConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(min = 0, max = 32)
     public int spawnOffset = 6;
 
-    @ConfigEntry.Gui.Tooltip
-    public boolean debugActionbar = false;
-
+    @ConfigEntry.Gui.Excluded
     private static final java.util.List<String> WATER_BIOMES = java.util.List.of(
             "minecraft:river", "minecraft:frozen_river", "minecraft:ocean", "minecraft:deep_ocean",
             "minecraft:cold_ocean", "minecraft:deep_cold_ocean", "minecraft:lukewarm_ocean",
