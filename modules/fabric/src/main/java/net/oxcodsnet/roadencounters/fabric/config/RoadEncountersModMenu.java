@@ -41,6 +41,29 @@ public final class RoadEncountersModMenu implements ModMenuApi {
                         .build();
                 return java.util.List.of(entry);
             }, EventKind.class);
+
+            registry.registerTypeProvider((i18n, field, config, defaults, gui) -> {
+                var eb = ConfigEntryBuilder.create();
+                AmbushConfig.SpawnEntry.Preset current;
+                try {
+                    current = (AmbushConfig.SpawnEntry.Preset) field.get(config);
+                } catch (IllegalAccessException e) {
+                    current = AmbushConfig.SpawnEntry.Preset.DEFAULT_AMBUSH;
+                }
+                var entry = eb.startEnumSelector(
+                                Text.translatable(i18n),
+                                AmbushConfig.SpawnEntry.Preset.class,
+                                current == null ? AmbushConfig.SpawnEntry.Preset.DEFAULT_AMBUSH : current)
+                        .setDefaultValue(AmbushConfig.SpawnEntry.Preset.DEFAULT_AMBUSH)
+                        .setSaveConsumer(v -> {
+                            try { field.set(config, v); } catch (IllegalAccessException ignored) {}
+                            if (config instanceof AmbushConfig.SpawnEntry se) {
+                                se.applyPresetNow();
+                            }
+                        })
+                        .build();
+                return java.util.List.of(entry);
+            }, AmbushConfig.SpawnEntry.Preset.class);
             return AutoConfig.getConfigScreen(AmbushConfig.class, parent).get();
         };
     }

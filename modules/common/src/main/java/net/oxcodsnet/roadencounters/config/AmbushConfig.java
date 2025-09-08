@@ -95,12 +95,8 @@ public class AmbushConfig implements ConfigData {
     public Types types = new Types();
 
     public static class SpawnEntry {
-        @ConfigEntry.Gui.Tooltip
-        @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
+        @ConfigEntry.Gui.Excluded
         public Preset preset = Preset.DEFAULT_AMBUSH;
-
-        @ConfigEntry.Gui.Tooltip
-        public boolean applyPreset = false; // set true and save to reapply preset
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
@@ -565,7 +561,6 @@ public class AmbushConfig implements ConfigData {
             this.groups = src.groups == null ? new java.util.ArrayList<>() : new java.util.ArrayList<>(src.groups);
             this.biomeWhitelist = src.biomeWhitelist == null ? new java.util.ArrayList<>() : new java.util.ArrayList<>(src.biomeWhitelist);
             this.biomeBlacklist = src.biomeBlacklist == null ? new java.util.ArrayList<>() : new java.util.ArrayList<>(src.biomeBlacklist);
-            this.applyPreset = false;
         }
 
         public static SpawnEntry fromPreset(Preset p) {
