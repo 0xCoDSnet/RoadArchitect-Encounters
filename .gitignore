@@ -25,3 +25,4 @@ runs
 .env
 /modules/fabric/src/main/generated/.cache/
 /.architectury-transformer/
+/.gemini/

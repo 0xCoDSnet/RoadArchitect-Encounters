@@ -40,6 +40,7 @@ public class AmbushConfig implements ConfigData {
     );
 
     @ConfigEntry.Gui.Tooltip
+    @ConfigEntry.Category("spawns")
     public java.util.List<SpawnEntry> spawns = new java.util.ArrayList<>(java.util.List.of(
             // --- Ambushes: 60% total weight ---
             SpawnEntry.defaultAmbush(),
