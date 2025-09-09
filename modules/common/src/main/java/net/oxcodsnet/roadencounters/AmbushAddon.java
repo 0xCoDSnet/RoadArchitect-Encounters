@@ -4,7 +4,6 @@ import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.mob.PatrolEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.nbt.NbtOps;
@@ -18,7 +17,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
-import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
@@ -130,7 +128,7 @@ public final class AmbushAddon implements RoadAddon {
         Random rnd = world.getRandom();
 
         // Get the biome's ID at the trigger position
-        Identifier biomeId = world.getRegistryManager().get(net.minecraft.registry.RegistryKeys.BIOME).getId(world.getBiome(pos).value());
+        Identifier biomeId = world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.BIOME).getId(world.getBiome(pos).value());
         if (biomeId == null) {
             LOGGER.warn("Could not determine biome at {}", pos);
             return;
@@ -188,7 +186,7 @@ public final class AmbushAddon implements RoadAddon {
                 BlockPos p = findGround(world, pos.add(rnd.nextInt(r * 2 + 1) - r, 0, rnd.nextInt(r * 2 + 1) - r));
                 EntityType<?> type = pickTypeFromIdOrTag(world, g.idOrTag(), rnd);
                 if (type == null) type = EntityType.PILLAGER;
-                Entity e = type.create(world);
+                Entity e = type.create(world, SpawnReason.EVENT);
                 if (e == null) continue;
 
                 // NBT processing
@@ -242,7 +240,7 @@ public final class AmbushAddon implements RoadAddon {
 
     private static EntityType<?> resolveEntityType(Identifier id) {
         if (id == null) return null;
-        return Registries.ENTITY_TYPE.getOrEmpty(id).orElse(null);
+        return Registries.ENTITY_TYPE.get(id);
     }
 
     private static EntityType<?> pickTypeFromIdOrTag(ServerWorld world, String idOrTag, Random rnd) {
@@ -252,7 +250,7 @@ public final class AmbushAddon implements RoadAddon {
                 var tagId = Identifier.tryParse(idOrTag.substring(1));
                 if (tagId != null) {
                     var key = net.minecraft.registry.tag.TagKey.of(net.minecraft.registry.RegistryKeys.ENTITY_TYPE, tagId);
-                    var list = Registries.ENTITY_TYPE.getEntryList(key).orElse(null);
+                    var list = world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.ENTITY_TYPE).getOptional(key).orElse(null);
                     if (list != null) {
                         java.util.ArrayList<net.minecraft.registry.entry.RegistryEntry<EntityType<?>>> entries = new java.util.ArrayList<>();
                         for (var it = list.iterator(); it.hasNext(); ) entries.add(it.next());
@@ -287,7 +285,7 @@ public final class AmbushAddon implements RoadAddon {
         try {
             var soundId = Identifier.tryParse(id);
             if (soundId != null) {
-                var sound = Registries.SOUND_EVENT.getOrEmpty(soundId).orElse(null);
+                var sound = world.getRegistryManager().getOrThrow(net.minecraft.registry.RegistryKeys.SOUND_EVENT).get(soundId);
                 if (sound != null) {
                     world.playSound(null, pos, sound, SoundCategory.NEUTRAL, 1.0f, 1.0f);
                 }
