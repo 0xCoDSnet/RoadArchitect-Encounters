@@ -89,7 +89,6 @@ public class AmbushConfig implements ConfigData {
             SpawnEntry.defaultNone()
     ));
 
-    @ConfigEntry.Gui.Tooltip
     @ConfigEntry.Category("types")
     @ConfigEntry.Gui.CollapsibleObject
     public Types types = new Types();
@@ -752,19 +751,19 @@ public class AmbushConfig implements ConfigData {
     }
 
     public static class Types {
-        @ConfigEntry.Gui.Tooltip
+
         @ConfigEntry.Gui.CollapsibleObject
         public TypeEntry ambush = TypeEntry.of(java.util.List.of("minecraft:entity.pillager.ambient"));
-        @ConfigEntry.Gui.Tooltip
+
         @ConfigEntry.Gui.CollapsibleObject
         public TypeEntry merchant = TypeEntry.of(java.util.List.of("minecraft:entity.villager.yes"));
-        @ConfigEntry.Gui.Tooltip
+
         @ConfigEntry.Gui.CollapsibleObject
         public TypeEntry patrol = TypeEntry.of(java.util.List.of("minecraft:entity.iron_golem.repair"));
-        @ConfigEntry.Gui.Tooltip
+
         @ConfigEntry.Gui.CollapsibleObject
         public TypeEntry wildlife = TypeEntry.of(java.util.List.of("minecraft:entity.wolf.howl"));
-        @ConfigEntry.Gui.Tooltip
+
         @ConfigEntry.Gui.CollapsibleObject
         public TypeEntry none = TypeEntry.of(java.util.List.of());
     }
