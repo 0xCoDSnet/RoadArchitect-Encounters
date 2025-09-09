@@ -44,6 +44,62 @@ It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and bring
 
 > **Current version:** `v1.1.0`
 
+<details>
+<summary>Possible Encounters</summary>
+
+### Ambushes (60% chance)
+*   Pillager Ambush
+*   Zombie Ambush
+*   Skeleton Ambush
+*   Bandit Ambush (Zombies and Skeletons)
+*   Ironclad Zombie Ambush
+*   Pillager Captain Ambush
+*   Witch Escort Ambush
+*   Stray Ambush
+*   Hostile Wolves Ambush
+*   Potion-Infused Zombies Ambush
+*   Well-Equipped Skeletons Ambush
+*   Miner Zombie Ambush
+*   Farmer Zombie Ambush
+*   Cave Spider Ambush
+*   Drowned Ambush
+*   Husk Ambush
+*   Illusioner Ambush
+*   Evoker Ambush
+*   Speedy Zombies Ambush
+*   Tanky Zombies Ambush
+*   Chainmail Zombies Ambush
+*   Zombies with Sharpness Ambush
+*   Skeletons with Punch Bows Ambush
+*   Skeletons with Flame Bows Ambush
+*   Chainmail Skeletons Ambush
+*   Melee Skeletons Ambush
+*   Skeletons with Poison Arrows Ambush
+*   Skeletons with Slowness Arrows Ambush
+*   Skeletons with Weakness Arrows Ambush
+*   Speedy Spiders Ambush
+*   Spiders with Strength Ambush
+*   Invisible Spiders Ambush
+
+### Action Events (10% chance)
+*   Iron Golem vs. Pillagers
+*   Zombie Villager Rescue
+
+### Peaceful Encounters (15% chance)
+*   Wandering Trader
+*   Friendly Patrol (Iron Golem and Villagers)
+*   Wildlife (Wolves)
+*   Lost Traveler
+*   Wandering Healer
+
+### Other (5% chance)
+*   Graveyard
+
+### Nothing (10% chance)
+*   Nothing happens.
+
+</details>
+
 ---
 ## 📥 Installation (Minecraft 1.21.x)
 
