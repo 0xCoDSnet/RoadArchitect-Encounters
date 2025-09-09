@@ -44,8 +44,24 @@ It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and bring
 
 > **Current version:** `v1.1.0`
 
+
+## 📷 Showcase
+
+![Wandering Trader](https://cdn.modrinth.com/data/cached_images/f30b8056c4326844cc9529faa3b260a7770664fb_0.webp)
+
+![Pillager Ambush](https://cdn.modrinth.com/data/cached_images/cfa8f47a6e7d0404f71dd3e455e901c33182151e_0.webp)
+
+![Spiders Ambush](https://cdn.modrinth.com/data/cached_images/de6d7425569b880dd4d37f6caf873902d7506af9.jpeg)
+
+![Well-Equipped Skeletons Ambush](https://cdn.modrinth.com/data/cached_images/f713c1b33eb4ac65857dcb4033af8b7cc2a2ce82.jpeg)
+
+![Skeletons Ambush 2](https://cdn.modrinth.com/data/cached_images/38b23114f9962954c61a4cfa24d09a3175273e38.jpeg)
+
+![Pillager Ambush](https://cdn.modrinth.com/data/cached_images/ab6e17df397ba0a1d93491aa4a46a759b3046330.jpeg)
+
+## 🧩 Possible Encounters
 <details>
-<summary>Possible Encounters</summary>
+<summary>Full sheet</summary>
 
 ### Ambushes (60% chance)
 *   Pillager Ambush
