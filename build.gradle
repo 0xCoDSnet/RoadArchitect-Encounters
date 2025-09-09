@@ -40,7 +40,6 @@ tasks.register("publishCurseForgeAll") {
     dependsOn(
             ":modules:fabric:curseforge",
             ":modules:neoforge:curseforge",
-            ":modules:quilt:curseforge",
     )
 }
 // ====================================================
@@ -70,7 +69,6 @@ tasks.register("publishModrinthAll") {
     dependsOn(
             ":modules:fabric:modrinth",
             ":modules:neoforge:modrinth",
-            ":modules:quilt:modrinth",
     )
 }
 

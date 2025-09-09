@@ -11,6 +11,5 @@ rootProject.name = 'road-encounters'
 include(
         ":modules:common",
         ":modules:fabric",
-        ":modules:quilt",
         ":modules:neoforge"
 )
