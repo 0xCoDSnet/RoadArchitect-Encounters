@@ -96,7 +96,7 @@ public class AmbushConfig implements ConfigData {
 
     public static class SpawnEntry {
         @ConfigEntry.Gui.Excluded
-        public Preset preset = Preset.DEFAULT_AMBUSH;
+        public transient Preset preset = Preset.DEFAULT_AMBUSH;
 
         @ConfigEntry.Gui.Tooltip
         @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.DROPDOWN)
