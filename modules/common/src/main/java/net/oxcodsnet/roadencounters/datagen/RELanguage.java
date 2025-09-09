@@ -15,6 +15,7 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Configuración");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.default", "Ajustes generales");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.spawns", "Entradas de Aparición");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.category.types", "Tipos de evento");
                 // debug toggle
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Mostrar mensajes de eventos");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Alternar mensajes en la barra de acción en la parte inferior.");
@@ -69,6 +70,11 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.biomeWhitelist.@Tooltip", "Biomas donde puede aparecer este encuentro.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.biomeBlacklist", "Lista negra de biomas");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.SpawnEntry.biomeBlacklist.@Tooltip", "Biomas donde este encuentro no aparecerá.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag", "ID o etiqueta");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag.@Tooltip", "ID de entidad (p. ej. minecraft:pillager) o #namespace:tag.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups", "Grupos");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.@Tooltip", "Lista de IDs de entidades o etiquetas con cantidades por grupo.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.eventType", "Tipo de evento");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.nbt", "Datos NBT para el mob, en formato JSON. Se recomienda usar un editor externo para escribir el JSON y luego pegarlo aquí.");
                 // encounter messages
                 add.accept("message.roadarchitect_roadencounters.ambush", "¡Peligro! Emboscada más adelante.");
@@ -78,6 +84,13 @@ public final class RELanguage {
                 add.accept("message.roadarchitect_roadencounters.none", "Todo despejado. Nada inusual.");
                 // types root label + per-type sounds
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types", "Tipos de evento");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush", "Emboscada");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant", "Comerciantes");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.patrol", "Patrulla");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.wildlife", "Fauna");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.none", "Ninguno");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds", "Sonidos");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds.@Tooltip", "Lista de IDs de sonido para reproducir.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds", "Sonidos");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds.@Tooltip", "Lista de IDs de sonido para reproducir.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant.sounds", "Sonidos");
@@ -104,6 +117,7 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters : Paramètres");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.default", "Paramètres généraux");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.spawns", "Entrées d'apparition");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.category.types", "Types d'événements");
                 // debug toggle
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Afficher les messages d'événement");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Activer/désactiver les messages en bas de l'écran.");
@@ -150,11 +164,18 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "Parmi: ambush, merchant, patrol, wildlife, none.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "Poids de chance");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "Plus le poids est élevé, plus la probabilité est grande.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events", "Types d'événements (pondérations)");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.@Tooltip", "Probabilités relatives des différentes rencontres en bord de route.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.ambush", "Embuscade");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.merchant", "Marchands");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.patrol", "Patrouille");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.wildlife", "Faune");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.none", "Aucun");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups", "Groupes");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.@Tooltip", "Liste d’IDs d’entités ou de tags avec des quantités par groupe.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag", "ID ou tag");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag.@Tooltip", "ID d’entité (p. ex. minecraft:pillager) ou #namespace:tag.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.eventType", "Type d’événement");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.nbt", "Données NBT pour le mob, au format JSON. Il est recommandé d'utiliser un éditeur externe pour écrire le JSON, puis de le coller ici.");
                 // encounter messages
                 add.accept("message.roadarchitect_roadencounters.ambush", "Danger ! Embuscade droit devant.");
@@ -164,6 +185,13 @@ public final class RELanguage {
                 add.accept("message.roadarchitect_roadencounters.none", "Rien à signaler. Rien d'inhabituel.");
                 // types root label + per-type sounds
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types", "Types d'événements");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush", "Embuscade");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant", "Marchands");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.patrol", "Patrouille");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.wildlife", "Faune");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.none", "Aucun");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds", "Sons");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds.@Tooltip", "Liste des IDs de sons à jouer.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds", "Sounds");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds.@Tooltip", "List of sound ids to play.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant.sounds", "Sounds");
@@ -190,6 +218,7 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Einstellungen");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.default", "Allgemeine Einstellungen");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.spawns", "Spawn-Einträge");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.category.types", "Ereignistypen");
                 // debug toggle
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Ereignismeldungen anzeigen");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Ein-/Ausblenden der Meldungen unten am Bildschirm.");
@@ -236,11 +265,18 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "Eines von: ambush, merchant, patrol, wildlife, none.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "Chancen-Gewicht");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "Höheres Gewicht = höhere Wahrscheinlichkeit.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events", "Ereignistypen (Gewichtungen)");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.@Tooltip", "Relative Wahrscheinlichkeiten verschiedener Begegnungen am Wegesrand.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.ambush", "Hinterhalt");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.merchant", "Händler");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.patrol", "Patrouille");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.wildlife", "Wildtiere");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.none", "Keine");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups", "Gruppen");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.@Tooltip", "Liste von Entitäts-IDs oder Tags mit Anzahlen pro Gruppe.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag", "ID oder Tag");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag.@Tooltip", "Entity-ID (z. B. minecraft:pillager) oder #namespace:tag.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.eventType", "Ereignistyp");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.nbt", "NBT-Daten für den Mob im JSON-Format. Es wird empfohlen, einen externen Editor zu verwenden, um das JSON zu schreiben und es dann hier einzufügen.");
                 // encounter messages
                 add.accept("message.roadarchitect_roadencounters.ambush", "Gefahr! Hinterhalt voraus.");
@@ -250,6 +286,13 @@ public final class RELanguage {
                 add.accept("message.roadarchitect_roadencounters.none", "Alles klar. Nichts Ungewöhnliches.");
                 // types root label + per-type sounds
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types", "Ereignistypen");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush", "Hinterhalt");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant", "Händler");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.patrol", "Patrouille");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.wildlife", "Wildtiere");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.none", "Keine");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds", "Klänge");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds.@Tooltip", "Liste der abzuspielenden Sound-IDs.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds", "Sounds");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds.@Tooltip", "List of sound ids to play.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant.sounds", "Sounds");
@@ -276,6 +319,7 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters：设置");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.default", "常规设置");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.spawns", "生成条目");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.category.types", "事件类型");
                 // debug toggle
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "显示事件消息");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "切换底部行动栏消息。");
@@ -322,11 +366,18 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "可选：ambush、merchant、patrol、wildlife、none。");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "概率权重");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "权重越高，概率越大。");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events", "事件类型（权重）");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.@Tooltip", "不同路边遭遇的相对概率。");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.ambush", "伏击");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.merchant", "商人");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.patrol", "巡逻");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.wildlife", "野生动物");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.none", "无");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups", "分组");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.@Tooltip", "实体ID或标签及各组数量的列表。");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag", "ID或标签");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag.@Tooltip", "实体ID（例如 minecraft:pillager）或 #namespace:tag。");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.eventType", "事件类型");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.nbt", "生物的 NBT 数据，JSON 格式。建议使用外部编辑器编写 JSON，然后粘贴到此处。");
                 // encounter messages
                 add.accept("message.roadarchitect_roadencounters.ambush", "危险！前方有埋伏。");
@@ -336,6 +387,13 @@ public final class RELanguage {
                 add.accept("message.roadarchitect_roadencounters.none", "一切正常。没什么特别的。");
                 // types root label + per-type sounds
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types", "事件类型");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush", "伏击");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant", "商人");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.patrol", "巡逻");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.wildlife", "野生动物");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.none", "无");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds", "声音");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds.@Tooltip", "要播放的声音ID列表。");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds", "Sounds");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds.@Tooltip", "List of sound ids to play.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant.sounds", "Sounds");
@@ -362,6 +420,7 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.title", "RoadArchitect: Encounters: Налаштування");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.default", "Основні налаштування");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.category.spawns", "Записи Спавну");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.category.types", "Типи подій");
                 // debug toggle
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar", "Показувати повідомлення подій");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.debugActionbar.@Tooltip", "Увімк./вимк. повідомлення внизу екрана.");
@@ -408,11 +467,18 @@ public final class RELanguage {
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.type.@Tooltip", "Одне з: ambush, merchant, patrol, wildlife, none.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight", "Вага шансу");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.EventEntry.weight.@Tooltip", "Більша вага = більша ймовірність.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events", "Типи подій (ваги)");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.@Tooltip", "Відносні ймовірності різних придорожніх зустрічей.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.ambush", "Засідка");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.merchant", "Торговці");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.patrol", "Патруль");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.wildlife", "Дика природа");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.events.none", "Нічого");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups", "Групи");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.@Tooltip", "Список ID сутностей або тегів з кількістю на групу.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag", "ID або тег");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.idOrTag.@Tooltip", "ID сутності (напр. minecraft:pillager) або #namespace:tag.");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.eventType", "Тип події");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.spawns.groups.nbt", "NBT-дані для моба, у форматі JSON. Рекомендується використовувати зовнішній редактор для написання JSON, а потім вставити його сюди.");
                 // encounter messages
                 add.accept("message.roadarchitect_roadencounters.ambush", "Небезпека! Попереду засідка.");
@@ -422,6 +488,13 @@ public final class RELanguage {
                 add.accept("message.roadarchitect_roadencounters.none", "Все чисто. Нічого незвичайного.");
                 // types root label + per-type sounds
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types", "Типи подій");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush", "Засідка");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant", "Торговці");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.patrol", "Патруль");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.wildlife", "Дика природа");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.none", "Нічого");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds", "Звуки");
+                add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.sounds.@Tooltip", "Список ID звуків для відтворення.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds", "Звуки");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.ambush.sounds.@Tooltip", "Список ID звуків для відтворення.");
                 add.accept("text.autoconfig.roadarchitect_roadencounters.option.types.merchant.sounds", "Звуки");
