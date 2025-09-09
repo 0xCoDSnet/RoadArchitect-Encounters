@@ -3,7 +3,6 @@ package net.oxcodsnet.roadencounters.config;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import net.oxcodsnet.roadencounters.config.EventKind;
 
 @Config(name = "roadarchitect_roadencounters")
 public class AmbushConfig implements ConfigData {
@@ -12,11 +11,11 @@ public class AmbushConfig implements ConfigData {
     public boolean debugActionbar = false;
 
     @ConfigEntry.Gui.Tooltip
-    @ConfigEntry.BoundedDiscrete(min = 0, max = 32)
+    @ConfigEntry.BoundedDiscrete(min = 0, max = 64)
     public int maxMarkers = 3;
 
     @ConfigEntry.Gui.Tooltip
-    @ConfigEntry.BoundedDiscrete(min = 16, max = 4096)
+    @ConfigEntry.BoundedDiscrete(min = 16, max = 6144)
     public int strideBlocks = 160;
 
     @ConfigEntry.Gui.Tooltip
