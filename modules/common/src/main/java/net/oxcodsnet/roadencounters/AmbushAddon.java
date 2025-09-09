@@ -1,11 +1,13 @@
 package net.oxcodsnet.roadencounters;
 
+import com.google.gson.JsonParser;
+import com.mojang.serialization.JsonOps;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.PatrolEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.PillagerEntity;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.Registries;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
@@ -17,10 +19,14 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.ServerWorldAccess;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.oxcodsnet.roadarchitect.api.addon.AddonContext;
 import net.oxcodsnet.roadarchitect.api.addon.RoadAddon;
 import net.oxcodsnet.roadencounters.storage.TriggerStorage;
 import net.oxcodsnet.roadencounters.config.REConfig;
+import net.oxcodsnet.roadencounters.config.EventKind;
 import net.oxcodsnet.roadencounters.config.REConfigHolder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -106,7 +112,7 @@ public final class AmbushAddon implements RoadAddon {
             List<UUID> toRemove = new ArrayList<>();
             for (TriggerStorage.Marker m : nearby) {
                 if (!world.isChunkLoaded(m.pos().getX() >> 4, m.pos().getZ() >> 4)) continue;
-                handleAmbush(world, m.pos());
+                handleTrigger(world, m.pos(), player);
                 toRemove.add(m.id());
             }
             if (!toRemove.isEmpty()) {
@@ -120,61 +126,173 @@ public final class AmbushAddon implements RoadAddon {
         // no-op; storage lookup is lazy on demand
     }
 
-    private void handleAmbush(ServerWorld world, BlockPos pos) {
-        if (world.getDifficulty() == Difficulty.PEACEFUL) return;
+    private void handleTrigger(ServerWorld world, BlockPos pos, ServerPlayerEntity player) {
         Random rnd = world.getRandom();
-        // decide what to spawn via weighted list; ensure non-null fallback
-        REConfig.SpawnSpec picked = pickSpawn(config, rnd);
-        int count = picked.countMin() + rnd.nextInt(Math.max(1, (picked.countMax() - picked.countMin() + 1)));
-        Identifier chosenId = Identifier.tryParse(picked.entityId());
 
-        for (int i = 0; i < count; i++) {
-            int r = config.spawnOffset();
-            int ox = rnd.nextInt(r * 2 + 1) - r;
-            int oz = rnd.nextInt(r * 2 + 1) - r;
-            BlockPos spawn = findGround(world, pos.add(ox, 0, oz));
-            EntityType<?> type = resolveEntityType(chosenId);
-            if (type == null) {
-                // fallback to pillager if invalid id
-                type = EntityType.PILLAGER;
+        // Get the biome's ID at the trigger position
+        Identifier biomeId = world.getRegistryManager().get(net.minecraft.registry.RegistryKeys.BIOME).getId(world.getBiome(pos).value());
+        if (biomeId == null) {
+            LOGGER.warn("Could not determine biome at {}", pos);
+            return;
+        }
+        String biomeIdString = biomeId.toString();
+
+        // Filter the encounter specs based on the biome
+        java.util.List<REConfig.EncounterSpec> allowedSpecs = new java.util.ArrayList<>();
+        for (var spec : config.encounterSpecs()) {
+            boolean whitelisted = spec.biomeWhitelist() == null || spec.biomeWhitelist().isEmpty() || spec.biomeWhitelist().contains(biomeIdString);
+            boolean blacklisted = spec.biomeBlacklist() != null && !spec.biomeBlacklist().isEmpty() && spec.biomeBlacklist().contains(biomeIdString);
+
+            if (whitelisted && !blacklisted) {
+                allowedSpecs.add(spec);
             }
-            Entity e = type.create(world);
-            if (e == null) continue;
-            if (e instanceof MobEntity me) {
-                me.initialize(world, world.getLocalDifficulty(spawn), SpawnReason.EVENT, null);
-                me.refreshPositionAndAngles(spawn, rnd.nextFloat() * 360f, 0);
-                world.spawnEntity(me);
-                if (i == 0 && me instanceof PatrolEntity pe) {
-                    pe.setPatrolLeader(true);
+        }
+
+        var spec = pickEncounterSpec(allowedSpecs, rnd);
+        EventKind type = spec == null ? EventKind.AMBUSH : spec.eventType();
+        switch (type) {
+            case NONE -> { if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.none"); }
+            case AMBUSH -> {
+                if (world.getDifficulty() != Difficulty.PEACEFUL) {
+                    handleEncounter(world, pos, spec);
+                    if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.ambush");
+                    playConfiguredSound(world, pos, EventKind.AMBUSH);
                 }
-            } else {
-                e.refreshPositionAndAngles(spawn, rnd.nextFloat() * 360f, 0);
-                world.spawnEntity(e);
+            }
+            case MERCHANT -> {
+                handleEncounter(world, pos, spec);
+                if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.merchant");
+                playConfiguredSound(world, pos, EventKind.MERCHANT);
+            }
+            case PATROL -> {
+                handleEncounter(world, pos, spec);
+                if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.patrol");
+                playConfiguredSound(world, pos, EventKind.PATROL);
+            }
+            case WILDLIFE -> {
+                handleEncounter(world, pos, spec);
+                if (config.debugActionbar()) sendActionbar(player, "message.roadarchitect_roadencounters.wildlife");
+                playConfiguredSound(world, pos, EventKind.WILDLIFE);
             }
         }
     }
+
+    // generic encounter spawner using EncounterSpec groups
+    private void handleEncounter(ServerWorld world, BlockPos pos, REConfig.EncounterSpec spec) {
+        if (spec == null) return;
+        Random rnd = world.getRandom();
+        for (var g : spec.groups()) {
+            int count = Math.max(0, g.countMin()) + rnd.nextInt(Math.max(1, g.countMax() - g.countMin() + 1));
+            for (int i = 0; i < count; i++) {
+                int r = Math.max(2, config.spawnOffset());
+                BlockPos p = findGround(world, pos.add(rnd.nextInt(r * 2 + 1) - r, 0, rnd.nextInt(r * 2 + 1) - r));
+                EntityType<?> type = pickTypeFromIdOrTag(world, g.idOrTag(), rnd);
+                if (type == null) type = EntityType.PILLAGER;
+                Entity e = type.create(world);
+                if (e == null) continue;
+
+                // NBT processing
+                if (g.nbt() != null && !g.nbt().isEmpty()) {
+                    try {
+                        var parsed = JsonParser.parseString(String.join("\n", g.nbt()));
+                        NbtCompound nbt = (NbtCompound) JsonOps.INSTANCE.convertTo(NbtOps.INSTANCE, parsed);
+                        NbtCompound existing = e.writeNbt(new NbtCompound());
+                        existing.copyFrom(nbt);
+                        e.readNbt(existing);
+                    } catch (Exception ex) {
+                        LOGGER.warn("Failed to apply NBT for encounter: {}", g.idOrTag(), ex);
+                    }
+                }
+
+                if (e instanceof MobEntity me) {
+                    me.initialize(world, world.getLocalDifficulty(p), SpawnReason.EVENT, null);
+                    me.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);
+                    world.spawnEntity(me);
+                } else {
+                    e.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);
+                    world.spawnEntity(e);
+                }
+            }
+        }
+    }
+
+    // treasure event removed
+
+    private static void sendActionbar(ServerPlayerEntity player, String key) {
+        player.sendMessage(Text.translatable(key), true);
+    }
+
+    private static REConfig.EncounterSpec pickEncounterSpec(java.util.List<REConfig.EncounterSpec> list, Random rnd) {
+        if (list == null || list.isEmpty()) return null;
+        int total = 0;
+        for (var e : list) if (e.weight() > 0) total += e.weight();
+        if (total <= 0) return list.get(0);
+        int r = rnd.nextInt(total);
+        int acc = 0;
+        for (var e : list) {
+            if (e.weight() <= 0) continue;
+            acc += e.weight();
+            if (r < acc) return e;
+        }
+        return list.get(0);
+    }
+
+    // kept for compatibility in case spec falls back; currently unused
+    private void handleAmbush(ServerWorld world, BlockPos pos) {}
 
     private static EntityType<?> resolveEntityType(Identifier id) {
         if (id == null) return null;
         return Registries.ENTITY_TYPE.getOrEmpty(id).orElse(null);
     }
 
-    private static REConfig.SpawnSpec pickSpawn(REConfig cfg, Random rnd) {
-        var list = cfg.spawnSpecs();
-        if (list == null || list.isEmpty()) return new REConfig.SpawnSpec("minecraft:pillager", 100, 4, 5);
-        int total = 0;
-        for (var s : list) {
-            if (s.weight() > 0) total += s.weight();
+    private static EntityType<?> pickTypeFromIdOrTag(ServerWorld world, String idOrTag, Random rnd) {
+        if (idOrTag == null || idOrTag.isEmpty()) return null;
+        if (idOrTag.startsWith("#")) {
+            try {
+                var tagId = Identifier.tryParse(idOrTag.substring(1));
+                if (tagId != null) {
+                    var key = net.minecraft.registry.tag.TagKey.of(net.minecraft.registry.RegistryKeys.ENTITY_TYPE, tagId);
+                    var list = Registries.ENTITY_TYPE.getEntryList(key).orElse(null);
+                    if (list != null) {
+                        java.util.ArrayList<net.minecraft.registry.entry.RegistryEntry<EntityType<?>>> entries = new java.util.ArrayList<>();
+                        for (var it = list.iterator(); it.hasNext(); ) entries.add(it.next());
+                        if (!entries.isEmpty()) {
+                            var chosen = entries.get(rnd.nextInt(entries.size()));
+                            return chosen.value();
+                        }
+                    }
+                }
+            } catch (Throwable ignored) { }
+            return null;
+        } else {
+            return resolveEntityType(Identifier.tryParse(idOrTag));
         }
-        if (total <= 0) return list.get(0);
-        int r = rnd.nextInt(total);
-        int acc = 0;
-        for (var s : list) {
-            if (s.weight() <= 0) continue;
-            acc += s.weight();
-            if (r < acc) return s;
+    }
+
+    private void playConfiguredSound(ServerWorld world, BlockPos pos, EventKind kind) {
+        var list = config.eventSounds(kind);
+        if (list == null || list.isEmpty()) {
+            // fallback legacy
+            switch (kind) {
+                case AMBUSH -> world.playSound(null, pos, SoundEvents.ENTITY_PILLAGER_AMBIENT, SoundCategory.HOSTILE, 1f, 1f);
+                case MERCHANT -> world.playSound(null, pos, SoundEvents.ENTITY_VILLAGER_YES, SoundCategory.NEUTRAL, 0.8f, 1.1f);
+                case PATROL -> world.playSound(null, pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR, SoundCategory.NEUTRAL, 0.8f, 1.0f);
+                case WILDLIFE -> world.playSound(null, pos, SoundEvents.ENTITY_WOLF_HOWL, SoundCategory.NEUTRAL, 0.6f, 1.0f);
+                default -> {}
+            }
+            return;
         }
-        return list.get(0);
+        Random rnd = world.getRandom();
+        String id = list.get(rnd.nextInt(list.size()));
+        try {
+            var soundId = Identifier.tryParse(id);
+            if (soundId != null) {
+                var sound = Registries.SOUND_EVENT.getOrEmpty(soundId).orElse(null);
+                if (sound != null) {
+                    world.playSound(null, pos, sound, SoundCategory.NEUTRAL, 1.0f, 1.0f);
+                }
+            }
+        } catch (Throwable ignored) {}
     }
 
     private static BlockPos findGround(ServerWorld world, BlockPos near) {

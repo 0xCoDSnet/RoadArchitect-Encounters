@@ -44,7 +44,8 @@ dependencies {
     shadowBundle project(path: ':modules:common', configuration: 'transformProductionNeoForge')
 
     // Compile-time access to RA API
-    compileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
+    compileOnly    "net.oxcodsnet.roadarchitect:roadarchitect-neoforge:${rootProject.roadarchitect_version}:dev-shadow"
+    modRuntimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-neoforge:${rootProject.roadarchitect_version}"
 }
 
 processResources {
@@ -76,14 +77,6 @@ shadowJar {
 remapJar {
     inputFile.set shadowJar.archiveFile
     archiveFileName.set("roadarchitect_encounters-${project.version}-neoforge+${rootProject.minecraft_version}.jar")
-}
-
-
-dependencies {
-    // Dev-run: include RoadArchitect (NeoForge) at runtime.
-    // Use dev-mapped artifact (Yarn) so it matches the project's mapping style
-    // and can be remapped by Loom for the NeoForge userdev.
-    modLocalRuntime "net.oxcodsnet.roadarchitect:roadarchitect-neoforge:${rootProject.roadarchitect_version}:dev-shadow"
 }
 
 // =========== Modrith =========

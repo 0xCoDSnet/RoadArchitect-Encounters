@@ -32,8 +32,27 @@ public final class REConfigHolder {
         @Override public int triggerRadius() { return 75; }
         @Override public int cooldownSeconds() { return 300; }
         @Override public int spawnOffset() { return 6; }
-        @Override public java.util.List<REConfig.SpawnSpec> spawnSpecs() {
-            return java.util.List.of(new REConfig.SpawnSpec("minecraft:pillager", 100, 4, 5));
+        @Override public boolean debugActionbar() { return false; }
+        @Override public java.util.List<REConfig.EncounterSpec> encounterSpecs() {
+            return java.util.List.of(
+                    new REConfig.EncounterSpec(
+                            EventKind.AMBUSH,
+                            100,
+                            java.util.List.of(new REConfig.Group("minecraft:pillager", 4, 5, new java.util.ArrayList<>())),
+                            new java.util.ArrayList<>(),
+                            new java.util.ArrayList<>()
+                    ),
+                    new REConfig.EncounterSpec(EventKind.NONE, 2, java.util.List.of(), new java.util.ArrayList<>(), new java.util.ArrayList<>())
+            );
+        }
+        @Override public java.util.List<String> eventSounds(EventKind kind) {
+            return switch (kind) {
+                case AMBUSH -> java.util.List.of("minecraft:entity.pillager.ambient");
+                case MERCHANT -> java.util.List.of("minecraft:entity.villager.yes");
+                case PATROL -> java.util.List.of("minecraft:entity.iron_golem.repair");
+                case WILDLIFE -> java.util.List.of("minecraft:entity.wolf.howl");
+                case NONE -> java.util.List.of();
+            };
         }
     }
 }

@@ -50,8 +50,9 @@ dependencies {
 
     common(project(path: ':modules:common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':modules:common', configuration: 'transformProductionFabric')
-    // Compile-time access to RA API
-    modCompileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
+
+    compileOnly    "net.oxcodsnet.roadarchitect:roadarchitect-fabric:${rootProject.roadarchitect_version}:dev-shadow"
+    modRuntimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-fabric:${rootProject.roadarchitect_version}"
 }
 
 // Limit Fabric datagen to this mod only (pass --mod MODID)
@@ -93,13 +94,6 @@ remapJar {
     archiveFileName.set("roadarchitect_encounters-${project.version}-fabric+${rootProject.minecraft_version}.jar")
 }
 
-
-dependencies {
-    // Dev-run: include RoadArchitect (Fabric) at runtime (datagen limited via modid filter above)
-    modRuntimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-fabric:${rootProject.roadarchitect_version}"
-}
-
-
 // =========== Modrith =========
 apply plugin: "com.modrinth.minotaur"
 def modrinth_token = rootProject.ext.resolveModrinthToken()
@@ -109,10 +103,10 @@ modrinth {
     token = modrinth_token
     projectId = "XVknWoiY"
     versionNumber = "${project.version}-fabric"
-    versionName   = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric]"
+    versionName   = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric/Quilt]"
     versionType   = "release"                 // или "beta"/"alpha"
     gameVersions  = [ rootProject.minecraft_version ]
-    loaders       = [ "fabric" ]
+    loaders       = [ "fabric","quilt" ]
     uploadFile    = remapJar                   // из Loom
     changelog     = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : ""
     dependencies { required.project "cloth-config" }
@@ -140,9 +134,10 @@ tasks.register("curseforge", net.darkhax.curseforgegradle.TaskPublishCurseForge)
     dependsOn remapJar
     def mainFile = upload(curse_project_id as String, remapJar)
 
-    mainFile.displayName = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric]"
+    mainFile.displayName = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric/Quilt]"
     mainFile.releaseType = "release"
     mainFile.addModLoader("Fabric")
+    mainFile.addModLoader("Quilt")
     mainFile.addGameVersion("${rootProject.minecraft_version}")
     mainFile.addJavaVersion("Java 21")
     mainFile.addEnvironment("Client", "Server")
