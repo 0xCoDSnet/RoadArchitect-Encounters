@@ -517,15 +517,15 @@ public class AmbushConfig implements ConfigData {
         public static SpawnEntry defaultLostTraveler() {
             var e = new SpawnEntry();
             e.preset = Preset.DEFAULT_LOST_TRAVELER;
-            e.eventType = EventKind.PATROL; // Using PATROL as it"s a non-hostile event
+            e.eventType = EventKind.MERCHANT;
             e.weight = 2;
             e.groups = new java.util.ArrayList<>(java.util.List.of(
                     Group.of(
-                            "minecraft:villager",
+                            "minecraft:wandering_trader",
                             1,
                             1,
                             java.util.List.of(
-                                    "{VillagerData:{profession:\"minecraft:none\",type:\"minecraft:plains\",level:1},CustomName:\"{\\\"text\\\":\\\"Lost Traveler\\\",\\\"color\\\":\\\"yellow\\\"}\",CustomNameVisible:1b,PersistenceRequired:1b}"
+                                    "{CustomName:\"{\\\"text\\\":\\\"Lost Traveler\\\",\\\"color\\\":\\\"gold\\\"}\",CustomNameVisible:1b,HandItems:[{id:\"minecraft:map\",Count:1b},{}],HandDropChances:[0.0f,0.0f],ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:0b,Duration:6000}],Offers:{Recipes:[{buy:{id:\"minecraft:emerald\",Count:20b},sell:{id:\"minecraft:name_tag\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.05f},{buy:{id:\"minecraft:emerald\",Count:24b},sell:{id:\"minecraft:saddle\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.1f},{buy:{id:\"minecraft:emerald\",Count:8b},sell:{id:\"minecraft:potion\",Count:1b,tag:{Potion:\"minecraft:night_vision\"}},maxUses:2,rewardExp:1b,priceMultiplier:0.05f},{buy:{id:\"minecraft:emerald\",Count:28b},sell:{id:\"minecraft:echo_shard\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.1f}]}}"
                             )
                     )
             ));
