@@ -9,6 +9,10 @@ import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.Registries;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.storage.NbtReadView;
+import net.minecraft.storage.NbtWriteView;
+import net.minecraft.storage.ReadView;
+import net.minecraft.util.ErrorReporter;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -194,9 +198,13 @@ public final class AmbushAddon implements RoadAddon {
                     try {
                         var parsed = JsonParser.parseString(String.join("\n", g.nbt()));
                         NbtCompound nbt = (NbtCompound) JsonOps.INSTANCE.convertTo(NbtOps.INSTANCE, parsed);
-                        NbtCompound existing = e.writeNbt(new NbtCompound());
+                        ErrorReporter.Logging logging = new ErrorReporter.Logging(e.getErrorReporterContext(), LOGGER);
+                        NbtWriteView nbtWriteView = NbtWriteView.create(logging, e.getRegistryManager());
+                        e.writeData(nbtWriteView);
+                        NbtCompound existing = nbtWriteView.getNbt();
                         existing.copyFrom(nbt);
-                        e.readNbt(existing);
+                        ReadView nbtReadView = NbtReadView.create(logging, e.getRegistryManager(), existing);
+                        e.readData(nbtReadView);
                     } catch (Exception ex) {
                         LOGGER.warn("Failed to apply NBT for encounter: {}", g.idOrTag(), ex);
                     }
