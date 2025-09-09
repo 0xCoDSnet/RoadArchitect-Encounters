@@ -103,10 +103,10 @@ modrinth {
     token = modrinth_token
     projectId = "XVknWoiY"
     versionNumber = "${project.version}-fabric"
-    versionName   = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric]"
+    versionName   = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric/Quilt]"
     versionType   = "release"                 // или "beta"/"alpha"
     gameVersions  = [ rootProject.minecraft_version ]
-    loaders       = [ "fabric" ]
+    loaders       = [ "fabric","quilt" ]
     uploadFile    = remapJar                   // из Loom
     changelog     = rootProject.file("CHANGELOG.md").exists() ? rootProject.file("CHANGELOG.md").text : ""
     dependencies { required.project "cloth-config" }
@@ -134,9 +134,10 @@ tasks.register("curseforge", net.darkhax.curseforgegradle.TaskPublishCurseForge)
     dependsOn remapJar
     def mainFile = upload(curse_project_id as String, remapJar)
 
-    mainFile.displayName = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric]"
+    mainFile.displayName = "RoadArchitect: Encounters v${project.version}+${rootProject.minecraft_version} [Fabric/Quilt]"
     mainFile.releaseType = "release"
     mainFile.addModLoader("Fabric")
+    mainFile.addModLoader("Quilt")
     mainFile.addGameVersion("${rootProject.minecraft_version}")
     mainFile.addJavaVersion("Java 21")
     mainFile.addEnvironment("Client", "Server")
