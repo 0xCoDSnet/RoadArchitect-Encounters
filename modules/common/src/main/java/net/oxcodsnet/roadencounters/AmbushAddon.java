@@ -275,7 +275,7 @@ public final class AmbushAddon implements RoadAddon {
                 case AMBUSH -> world.playSound(null, pos, SoundEvents.ENTITY_PILLAGER_AMBIENT, SoundCategory.HOSTILE, 1f, 1f);
                 case MERCHANT -> world.playSound(null, pos, SoundEvents.ENTITY_VILLAGER_YES, SoundCategory.NEUTRAL, 0.8f, 1.1f);
                 case PATROL -> world.playSound(null, pos, SoundEvents.ENTITY_IRON_GOLEM_REPAIR, SoundCategory.NEUTRAL, 0.8f, 1.0f);
-                case WILDLIFE -> world.playSound(null, pos, SoundEvents.ENTITY_WOLF_HOWL, SoundCategory.NEUTRAL, 0.6f, 1.0f);
+                case WILDLIFE -> world.playSound(null, pos, SoundEvents.ENTITY_POLAR_BEAR_AMBIENT, SoundCategory.NEUTRAL, 0.6f, 1.0f);
                 default -> {}
             }
             return;

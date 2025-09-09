@@ -58,15 +58,18 @@ public final class TriggerStorage {
         Optional<NbtCompound> opt = store.apply(world).get(storeKey);
         if (opt.isEmpty()) return s;
         NbtCompound tag = opt.get();
-        NbtList list = tag.getList(LIST, NbtElement.COMPOUND_TYPE);
+        NbtList list = tag.getList(LIST).orElse(new NbtList());
         for (int i = 0; i < list.size(); i++) {
-            NbtCompound e = list.getCompound(i);
-            UUID id = e.getUuid(ID);
-            BlockPos pos = BlockPos.fromLong(e.getLong(POS));
-            Identifier type = Identifier.tryParse(e.getString(TYPE));
-            int radius = e.getInt(RADIUS);
-            NbtCompound data = e.getCompound(DATA);
-            long nextReady = e.contains(NEXT_READY) ? e.getLong(NEXT_READY) : 0L;
+            var optEntry = list.getCompound(i);
+            if (optEntry.isEmpty()) continue;
+            NbtCompound e = optEntry.get();
+            UUID id = e.getString(ID).map(UUID::fromString).orElseGet(UUID::randomUUID);
+            long posLong = e.getLong(POS).orElse(0L);
+            BlockPos pos = BlockPos.fromLong(posLong);
+            Identifier type = e.getString(TYPE).map(Identifier::tryParse).orElse(null);
+            int radius = e.getInt(RADIUS).orElse(0);
+            NbtCompound data = e.getCompound(DATA).orElse(new NbtCompound());
+            long nextReady = e.getLong(NEXT_READY).orElse(0L);
             if (type == null) continue;
             index(s, new Marker(id, pos, type, radius, data.copy(), nextReady));
         }
@@ -77,14 +80,12 @@ public final class TriggerStorage {
         NbtList list = new NbtList();
         for (Marker m : s.byId.values()) {
             NbtCompound e = new NbtCompound();
-            e.putUuid(ID, m.id());
+            e.putString(ID, m.id().toString());
             e.putLong(POS, m.pos().asLong());
             e.putString(TYPE, m.type().toString());
             e.putInt(RADIUS, m.radius());
             e.put(DATA, m.data().copy());
-            if (m.nextReadyTick() > 0L) {
-                e.putLong(NEXT_READY, m.nextReadyTick());
-            }
+            if (m.nextReadyTick() > 0L) e.putLong(NEXT_READY, m.nextReadyTick());
             list.add(e);
         }
         NbtCompound root = new NbtCompound();
