@@ -525,7 +525,27 @@ public class AmbushConfig implements ConfigData {
                             1,
                             1,
                             java.util.List.of(
-                                    "{CustomName:\"{\\\"text\\\":\\\"Lost Traveler\\\",\\\"color\\\":\\\"gold\\\"}\",CustomNameVisible:1b,HandItems:[{id:\"minecraft:map\",Count:1b},{}],HandDropChances:[0.0f,0.0f],ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:0b,Duration:6000}],Offers:{Recipes:[{buy:{id:\"minecraft:emerald\",Count:20b},sell:{id:\"minecraft:name_tag\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.05f},{buy:{id:\"minecraft:emerald\",Count:24b},sell:{id:\"minecraft:saddle\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.1f},{buy:{id:\"minecraft:emerald\",Count:8b},sell:{id:\"minecraft:potion\",Count:1b,tag:{Potion:\"minecraft:night_vision\"}},maxUses:2,rewardExp:1b,priceMultiplier:0.05f},{buy:{id:\"minecraft:emerald\",Count:28b},sell:{id:\"minecraft:echo_shard\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.1f}]}}"
+                                    "{CustomName:\"{\\\"text\\\":\\\"Lost Traveler\\\",\\\"color\\\":\\\"gold\\\"}\",CustomNameVisible:1b,PersistenceRequired:1b,HandItems:[{id:\"minecraft:map\",Count:1b},{}],HandDropChances:[0.0f,0.0f],ActiveEffects:[{Id:\"minecraft:speed\",Amplifier:0b,Duration:6000}],Offers:{Recipes:["
+                                            + "{buy:{id:\"minecraft:emerald\",Count:6b},sell:{id:\"minecraft:name_tag\",Count:1b},maxUses:3,rewardExp:1b,priceMultiplier:0.05f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:9b},sell:{id:\"minecraft:saddle\",Count:1b},maxUses:2,rewardExp:1b,priceMultiplier:0.05f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:1b},sell:{id:\"minecraft:potion\",Count:1b,tag:{Potion:\"minecraft:night_vision\"}},maxUses:4,rewardExp:1b,priceMultiplier:0.05f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:15b},buyB:{id:\"minecraft:diamond\",Count:1b},sell:{id:\"minecraft:echo_shard\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:1b},sell:{id:\"minecraft:mycelium\",Count:2b},maxUses:3,rewardExp:1b,priceMultiplier:0.05f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:12b},sell:{id:\"minecraft:spore_blossom\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:1b},sell:{id:\"minecraft:pointed_dripstone\",Count:6b},maxUses:3,rewardExp:1b,priceMultiplier:0.05f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:16b},sell:{id:\"minecraft:sculk_sensor\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:20b},sell:{id:\"minecraft:sculk_shrieker\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:4b},sell:{id:\"minecraft:nautilus_shell\",Count:1b},maxUses:2,rewardExp:1b,priceMultiplier:0.05f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:15b},sell:{id:\"minecraft:goat_horn\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:28b},sell:{id:\"minecraft:sniffer_egg\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:9b},sell:{id:\"minecraft:torchflower_seeds\",Count:1b},maxUses:2,rewardExp:1b,priceMultiplier:0.05f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:9b},sell:{id:\"minecraft:pitcher_pod\",Count:1b},maxUses:2,rewardExp:1b,priceMultiplier:0.05f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:64b},buyB:{id:\"minecraft:diamond\",Count:5b},sell:{id:\"minecraft:trident\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:25b},sell:{id:\"minecraft:music_disc_pigstep\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:20b},sell:{id:\"minecraft:music_disc_otherside\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:10b},sell:{id:\"minecraft:snout_banner_pattern\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f},"
+                                            + "{buy:{id:\"minecraft:emerald\",Count:10b},sell:{id:\"minecraft:mojang_banner_pattern\",Count:1b},maxUses:1,rewardExp:1b,priceMultiplier:0.0f}"
+                                    + "]}}"
                             )
                     )
             ));
