@@ -520,7 +520,16 @@ public class AmbushConfig implements ConfigData {
             e.preset = Preset.DEFAULT_LOST_TRAVELER;
             e.eventType = EventKind.PATROL; // Using PATROL as it"s a non-hostile event
             e.weight = 2;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:villager", 1, 1)));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    Group.of(
+                            "minecraft:villager",
+                            1,
+                            1,
+                            java.util.List.of(
+                                    "{VillagerData:{profession:\"minecraft:none\",type:\"minecraft:plains\",level:1},CustomName:\"{\\\"text\\\":\\\"Lost Traveler\\\",\\\"color\\\":\\\"yellow\\\"}\",CustomNameVisible:1b,PersistenceRequired:1b}"
+                            )
+                    )
+            ));
             e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
@@ -540,7 +549,35 @@ public class AmbushConfig implements ConfigData {
             e.preset = Preset.DEFAULT_GRAVEYARD;
             e.eventType = EventKind.AMBUSH;
             e.weight = 5;
-            e.groups = new java.util.ArrayList<>(java.util.List.of(Group.of("minecraft:zombie", 3, 4)));
+            e.groups = new java.util.ArrayList<>(java.util.List.of(
+                    // Restless zombies with carved pumpkins, moving slowly
+                    Group.of(
+                            "minecraft:zombie",
+                            2,
+                            3,
+                            java.util.List.of(
+                                    "{ArmorItems:[{},{},{},{id:\"minecraft:carved_pumpkin\",Count:1b}],ActiveEffects:[{Id:\"minecraft:slowness\",Amplifier:0b,Duration:600}]}"
+                            )
+                    ),
+                    // Skeletons wandering the graveyard
+                    Group.of(
+                            "minecraft:skeleton",
+                            1,
+                            2,
+                            java.util.List.of(
+                                    "{ArmorItems:[{},{},{},{id:\"minecraft:carved_pumpkin\",Count:1b}],ActiveEffects:[{Id:\"minecraft:slowness\",Amplifier:0b,Duration:600}]}"
+                            )
+                    ),
+                    // One zombie villager among the graves
+                    Group.of(
+                            "minecraft:zombie_villager",
+                            1,
+                            1,
+                            java.util.List.of(
+                                    "{VillagerData:{profession:\"minecraft:none\"},ActiveEffects:[{Id:\"minecraft:slowness\",Amplifier:0b,Duration:600}]}"
+                            )
+                    )
+            ));
             e.biomeBlacklist = new java.util.ArrayList<>(WATER_BIOMES);
             return e;
         }
