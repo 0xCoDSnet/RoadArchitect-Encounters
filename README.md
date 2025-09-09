@@ -38,7 +38,7 @@
 
 # RoadArchitect: Encounters
 
-**RoadArchitect: Encounters** is a **Fabric** / **Quilt** / **NeoForge** add-on for **Minecraft 1.21–1.21.2**.
+**RoadArchitect: Encounters** is a **Fabric** / **Quilt** / **NeoForge** add-on for **Minecraft 1.21.x**.
 
 It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and brings your roads to life with random roadside encounters — bandits, traveling merchants, and more you may encounter as you travel.
 
