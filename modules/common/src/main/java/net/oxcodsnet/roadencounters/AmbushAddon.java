@@ -205,7 +205,7 @@ public final class AmbushAddon implements RoadAddon {
                 }
 
                 if (e instanceof MobEntity me) {
-                    me.initialize(world, world.getLocalDifficulty(p), SpawnReason.EVENT, null);
+                    me.initialize(world, world.getLocalDifficulty(p), SpawnReason.EVENT, null, null);
                     me.refreshPositionAndAngles(p, rnd.nextFloat() * 360f, 0);
                     world.spawnEntity(me);
                 } else {
