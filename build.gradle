@@ -161,9 +161,18 @@ subprojects {
     apply plugin: 'architectury-plugin'
     apply plugin: 'maven-publish'
 
+    // ---- groupId: добавляем сегмент по лоадеру (common/fabric/neoforge/quilt)
+    def baseGroup = rootProject.maven_group
+    def platforms = ["common", "fabric", "neoforge"]
+    if (platforms.contains(project.name)) {
+        group = "${baseGroup}.${project.name}"
+    }
+
     base {
+        // Имена JAR: beltborne_lanterns-<platform>
         archivesName = "$rootProject.archives_name-$project.name"
     }
+
 
     repositories {
         mavenLocal()
