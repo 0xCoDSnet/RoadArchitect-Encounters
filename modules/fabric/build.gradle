@@ -48,11 +48,11 @@ dependencies {
     modCompileOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
     modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
 
+    compileOnly    "net.oxcodsnet.roadarchitect.fabric:roadarchitect-fabric-mc${rootProject.minecraft_version}:${rootProject.roadarchitect_version}:dev"
+    modRuntimeOnly "net.oxcodsnet.roadarchitect.fabric:roadarchitect-fabric-mc${rootProject.minecraft_version}:${rootProject.roadarchitect_version}"
+
     common(project(path: ':modules:common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':modules:common', configuration: 'transformProductionFabric')
-
-    compileOnly    "net.oxcodsnet.roadarchitect:roadarchitect-fabric:${rootProject.roadarchitect_version}:dev-shadow"
-    modRuntimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-fabric:${rootProject.roadarchitect_version}"
 }
 
 // Limit Fabric datagen to this mod only (pass --mod MODID)

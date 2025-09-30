@@ -40,12 +40,12 @@ dependencies {
     // Cloth Config for NeoForge runtime
     modImplementation "me.shedaniel.cloth:cloth-config-neoforge:${rootProject.cloth_config_version}"
 
+    // Compile-time access to RA API
+    compileOnly    "net.oxcodsnet.roadarchitect.neoforge:roadarchitect-neoforge-mc${rootProject.minecraft_version}:${rootProject.roadarchitect_version}:dev"
+    modRuntimeOnly "net.oxcodsnet.roadarchitect.neoforge:roadarchitect-neoforge-mc${rootProject.minecraft_version}:${rootProject.roadarchitect_version}"
+
     common(project(path: ':modules:common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':modules:common', configuration: 'transformProductionNeoForge')
-
-    // Compile-time access to RA API
-    compileOnly    "net.oxcodsnet.roadarchitect:roadarchitect-neoforge:${rootProject.roadarchitect_version}:dev-shadow"
-    modRuntimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-neoforge:${rootProject.roadarchitect_version}"
 }
 
 processResources {
