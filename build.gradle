@@ -39,7 +39,6 @@ ext.resolveCurseforgeToken = {
 tasks.register("publishCurseForgeAll") {
     dependsOn(
             ":modules:fabric:curseforge",
-            ":modules:neoforge:curseforge",
     )
 }
 // ====================================================
@@ -68,7 +67,6 @@ ext.resolveModrinthToken = {
 tasks.register("publishModrinthAll") {
     dependsOn(
             ":modules:fabric:modrinth",
-            ":modules:neoforge:modrinth",
     )
 }
 
@@ -84,6 +82,7 @@ subprojects {
     repositories {
         mavenLocal()
 
+        maven { url = uri('https://packex.shadscure.com/releases') }
         maven { url = uri('https://maven.wispforest.io') }
         maven { url = uri('https://maven.terraformersmc.com/') }
         maven { url = uri('https://maven.shedaniel.me/') }
@@ -93,7 +92,7 @@ subprojects {
         minecraft "net.minecraft:minecraft:$rootProject.minecraft_version"
         mappings loom.layered {
             it.mappings("net.fabricmc:yarn:$rootProject.yarn_mappings:v2")
-            it.mappings("dev.architectury:yarn-mappings-patch-neoforge:$rootProject.yarn_mappings_patch_neoforge_version")
+            // it.mappings("dev.architectury:yarn-mappings-patch-neoforge:$rootProject.yarn_mappings_patch_neoforge_version")
         }
         testImplementation "org.junit.jupiter:junit-jupiter-api:5.10.2"
         testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.10.2"

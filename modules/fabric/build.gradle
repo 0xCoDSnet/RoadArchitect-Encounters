@@ -48,11 +48,11 @@ dependencies {
     modCompileOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
     modRuntimeOnly "com.terraformersmc:modmenu:${rootProject.modmenu_version}"
 
+    compileOnly    "net.oxcodsnet.roadarchitect.fabric:roadarchitect-fabric-mc${rootProject.minecraft_version}:${rootProject.roadarchitect_version}:dev"
+    modRuntimeOnly "net.oxcodsnet.roadarchitect.fabric:roadarchitect-fabric-mc${rootProject.minecraft_version}:${rootProject.roadarchitect_version}"
+
     common(project(path: ':modules:common', configuration: 'namedElements')) { transitive = false }
     shadowBundle project(path: ':modules:common', configuration: 'transformProductionFabric')
-
-    compileOnly    "net.oxcodsnet.roadarchitect:roadarchitect-fabric:${rootProject.roadarchitect_version}:dev-shadow"
-    modRuntimeOnly "net.oxcodsnet.roadarchitect:roadarchitect-fabric:${rootProject.roadarchitect_version}"
 }
 
 // Limit Fabric datagen to this mod only (pass --mod MODID)
@@ -139,7 +139,7 @@ tasks.register("curseforge", net.darkhax.curseforgegradle.TaskPublishCurseForge)
     mainFile.addModLoader("Fabric")
     mainFile.addModLoader("Quilt")
     mainFile.addGameVersion("${rootProject.minecraft_version}")
-    mainFile.addJavaVersion("Java 21")
+    mainFile.addJavaVersion("Java 17")
     mainFile.addEnvironment("Client", "Server")
     mainFile.changelog = rootProject.file("CHANGELOG.md"); mainFile.changelogType = "markdown"
     mainFile.addRequirement("cloth-config")
