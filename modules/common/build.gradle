@@ -13,5 +13,5 @@ dependencies {
     //implementation "dev.architectury:architectury:${rootProject.architectury_api_version}"
 
     // Use Loom's remapping for mod dependencies to match Yarn named namespace
-    modCompileOnly "net.oxcodsnet.roadarchitect:roadarchitect-common:${rootProject.roadarchitect_version}"
+    modCompileOnly "net.oxcodsnet.roadarchitect.common:roadarchitect-common-mc${rootProject.minecraft_version}:${rootProject.roadarchitect_version}"
 }
