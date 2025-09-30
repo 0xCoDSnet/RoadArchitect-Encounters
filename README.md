@@ -38,14 +38,31 @@
 
 # RoadArchitect: Encounters
 
-**RoadArchitect: Encounters** is a **Fabric** / **Quilt** / **NeoForge** add-on for **Minecraft 1.21.x**.
+**RoadArchitect: Encounters** is a **Fabric** / **Quilt** / **NeoForge** add-on for **Minecraft 1.21–1.21.2**.
 
 It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and brings your roads to life with random roadside encounters — bandits, traveling merchants, and more you may encounter as you travel.
 
 > **Current version:** `v1.1.0`
 
+> _For **Forge 1.20.1**, it works correctly through_ [**Sinytra Connector**](https://modrinth.com/mod/connector)
+
+## 📷 Showcase
+
+![Wandering Trader](https://cdn.modrinth.com/data/cached_images/f30b8056c4326844cc9529faa3b260a7770664fb_0.webp)
+
+![Pillager Ambush](https://cdn.modrinth.com/data/cached_images/cfa8f47a6e7d0404f71dd3e455e901c33182151e_0.webp)
+
+![Spiders Ambush](https://cdn.modrinth.com/data/cached_images/de6d7425569b880dd4d37f6caf873902d7506af9.jpeg)
+
+![Well-Equipped Skeletons Ambush](https://cdn.modrinth.com/data/cached_images/f713c1b33eb4ac65857dcb4033af8b7cc2a2ce82.jpeg)
+
+![Skeletons Ambush 2](https://cdn.modrinth.com/data/cached_images/38b23114f9962954c61a4cfa24d09a3175273e38.jpeg)
+
+![Pillager Ambush](https://cdn.modrinth.com/data/cached_images/ab6e17df397ba0a1d93491aa4a46a759b3046330.jpeg)
+
+## 🧩 Possible Encounters
 <details>
-<summary>Possible Encounters</summary>
+<summary>Full sheet</summary>
 
 ### Ambushes (60% chance)
 *   Pillager Ambush
@@ -99,6 +116,13 @@ It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and bring
 *   Nothing happens.
 
 </details>
+
+---
+## ⚙️ Configuration
+
+- Encounter tables are fully customizable via `config/roadarchitect_roadencounters.json` (or through Mod Menu/Catalogue on supported loaders).
+- Adjust spawn weights, biome filters, entity groups, NBT payloads, and event sounds to tailor roadside events to your world or modpack.
+
 
 ---
 ## 📥 Installation (Minecraft 1.21.x)
