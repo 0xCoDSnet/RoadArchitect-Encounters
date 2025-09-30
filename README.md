@@ -38,12 +38,13 @@
 
 # RoadArchitect: Encounters
 
-**RoadArchitect: Encounters** is a **Fabric** / **Quilt** / **NeoForge** add-on for **Minecraft 1.21–1.21.2**.
+**RoadArchitect: Encounters** is a **Fabric** / **Quilt** / **NeoForge** add-on for **Minecraft 1.20.1, 1.21–1.21.2**.
 
 It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and brings your roads to life with random roadside encounters — bandits, traveling merchants, and more you may encounter as you travel.
 
 > **Current version:** `v1.1.0`
 
+> _For **Forge 1.20.1**, it works correctly through_ [**Sinytra Connector**](https://modrinth.com/mod/connector)
 
 ## 📷 Showcase
 
@@ -115,6 +116,13 @@ It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and bring
 *   Nothing happens.
 
 </details>
+
+---
+## ⚙️ Configuration
+
+- Encounter tables are fully customizable via `config/roadarchitect_roadencounters.json` (or through Mod Menu/Catalogue on supported loaders).
+- Adjust spawn weights, biome filters, entity groups, NBT payloads, and event sounds to tailor roadside events to your world or modpack.
+
 
 ---
 ## 📥 Installation (Minecraft 1.21.x)
