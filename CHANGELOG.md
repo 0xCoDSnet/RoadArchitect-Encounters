@@ -1,5 +1,3 @@
 ## Changelog
-### 🔁 Backport
-- Port project on **1.20.1 (Fabric)**.
-
-There are no functional changes - only transfer to the required version.
+### 🛠 Fixes
+- Fixed a startup error on Minecraft 1.20.1 clients without `UnsupportedClassVersionError`.
