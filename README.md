@@ -2,36 +2,27 @@
   <img src="https://cdn.modrinth.com/data/cached_images/8df881c3bbe715dd7bbc198355ef952bd6d84a74.png" width="128" height="128" alt="RoadArchitect: Encounters">
 </p>
 
+<p align="center" style="display:flex;justify-content:center;gap:8px;margin:6px 0;">
+  <a href="https://modrinth.com/mod/roadarchitect-encounters">
+    <img alt="Modrinth" height="48" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/modrinth_vector.svg">
+  </a>&nbsp;
+  <a href="https://www.curseforge.com/minecraft/mc-mods/roadarchitect-encounters">
+    <img alt="CurseForge" height="48" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/curseforge_vector.svg">
+  </a>&nbsp;
+  <a href="https://discord.gg/9JRb3JMAD3">
+    <img alt="Discord" height="48" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/social/discord-plural_vector.svg">
+  </a>&nbsp;
+  <a href="https://github.com/Shadscure/RoadArchitect-Encounters">
+    <img alt="GitHub" height="48" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/available/github_vector.svg">
+  </a>
+</p>
+
 <p align="center">
   <a href="https://modrinth.com/mod/roadarchitect-encounters">
     <img alt="Modrinth Downloads" src="https://img.shields.io/modrinth/dt/XVknWoiY?style=flat&logo=modrinth">
   </a>
   <a href="https://www.curseforge.com/minecraft/mc-mods/roadarchitect-encounters">
     <img alt="CurseForge Downloads" src="https://img.shields.io/curseforge/dt/1337294?style=flat&logo=curseforge">
-  </a>
-</p>
-
-<p align="center" style="display: flex; justify-content: center; gap: 6px;">
-    <a href="https://modrinth.com/mod/roadarchitect-encounters/versions?l=fabric">
-        <img src="https://cdn.modrinth.com/data/cached_images/d8a8d9852fb6e55292d6f5ecc1842fd7bc8c3c9e.webp" alt="Available on Fabric">
-    </a>
-    <a href="https://modrinth.com/mod/roadarchitect-encounters/versions?l=quilt">
-        <img src="https://cdn.modrinth.com/data/cached_images/77e67c2eae40b638430d5959e9a0d0ef60f76f41.webp" alt="Available on Quilt">
-    </a>
-   <a href="https://modrinth.com/mod/roadarchitect-encounters/versions?l=neoforge">
-    <img src="https://cdn.modrinth.com/data/cached_images/ecbd0303728027761730760800f9354e14f38d31.webp" alt="Available on NeoForge">
-  </a>
-</p>
-
-   <p align="center" style="display:flex;justify-content:center;gap:8px;margin:6px 0;">
-<a href="https://boosty.to/0xcodsnet" target="_blank" rel="noopener">
-  <img alt="Boosty — Support" src="https://cdn.modrinth.com/data/cached_images/e5ac57a392801dee070cc961eb901e1379c945b6.webp">
-</a>
-</p>
-
-<p align="center" style="display:flex;justify-content:center;gap:8px;margin:6px 0;">
-  <a href="https://discord.gg/9JRb3JMAD3" target="_blank" rel="noopener">
-    <img alt="discord-plural" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy-minimal/social/discord-plural_vector.svg">
   </a>
 </p>
 
