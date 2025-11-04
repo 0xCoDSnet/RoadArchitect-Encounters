@@ -33,10 +33,6 @@
 
 It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and brings your roads to life with random roadside encounters — bandits, traveling merchants, and more you may encounter as you travel.
 
-> **Current version:** `v1.1.0`
-
-> _For **Forge 1.20.1**, it works correctly through_ [**Sinytra Connector**](https://modrinth.com/mod/connector)
-
 ## 📷 Showcase
 
 ![Wandering Trader](https://cdn.modrinth.com/data/cached_images/f30b8056c4326844cc9529faa3b260a7770664fb_0.webp)
