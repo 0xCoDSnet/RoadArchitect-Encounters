@@ -17,21 +17,7 @@
   </a>
 </p>
 
-<p align="center">
-  <a href="https://modrinth.com/mod/roadarchitect-encounters">
-    <img alt="Modrinth Downloads" src="https://img.shields.io/modrinth/dt/XVknWoiY?style=flat&logo=modrinth">
-  </a>
-  <a href="https://www.curseforge.com/minecraft/mc-mods/roadarchitect-encounters">
-    <img alt="CurseForge Downloads" src="https://img.shields.io/curseforge/dt/1337294?style=flat&logo=curseforge">
-  </a>
-</p>
-
-
-# RoadArchitect: Encounters
-
-**RoadArchitect: Encounters** is a **Fabric** / **Quilt** / **NeoForge** add-on for **Minecraft 1.21–1.21.2**.
-
-It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and brings your roads to life with random roadside encounters — bandits, traveling merchants, and more you may encounter as you travel.
+**RoadArchitect: Encounters** extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and brings your roads to life with random roadside encounters — bandits, traveling merchants, and more you may encounter as you travel.
 
 ## 📷 Showcase
 
@@ -52,7 +38,6 @@ It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and bring
 <summary>Full sheet</summary>
 
 ### Ambushes (60% chance)
-*   Pillager Ambush
 *   Zombie Ambush
 *   Skeleton Ambush
 *   Bandit Ambush (Zombies and Skeletons)
@@ -104,41 +89,12 @@ It extends **[RoadArchitect](https://modrinth.com/mod/roadarchitect)** and bring
 
 </details>
 
----
+
 ## ⚙️ Configuration
 
 - Encounter tables are fully customizable via `config/roadarchitect_roadencounters.json` (or through Mod Menu/Catalogue on supported loaders).
 - Adjust spawn weights, biome filters, entity groups, NBT payloads, and event sounds to tailor roadside events to your world or modpack.
 
-
----
-## 📥 Installation (Minecraft 1.21.x)
-
-**Loaders:** Fabric / Quilt / NeoForge
-
-1. Install a **loader** compatible with your game:
-   - **Fabric**
-   - **Quilt**
-   - **NeoForge**
-2. **Required dependency (all loaders):**
-   - **Cloth Config** *(mandatory on Fabric / Quilt / NeoForge)*
-3. Download the mod:
-   <p align="center" style="display:flex;justify-content:center;gap:8px;margin:6px 0;">
-     <a href="https://modrinth.com/mod/roadarchitect-encounters">
-       <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/modrinth_vector.svg" alt="Available on Modrinth">
-     </a>
-     <a href="https://www.curseforge.com/minecraft/mc-mods/roadarchitect-encounters">
-       <img src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/compact/available/curseforge_vector.svg" alt="Available on CurseForge">
-     </a>
-   </p>
-4. Place the `.jar` file in your `mods` folder.
-5. *(Optional)*
-   - **Mod Menu** (Fabric/Quilt) for quick access to settings.
-   - **Catalogue** by MrCrayfish (NeoForge)
-     > Settings are also available from the mods list
-
-
----
 
 ## 📜 License
 
